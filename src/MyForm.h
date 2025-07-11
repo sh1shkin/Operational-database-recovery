@@ -181,7 +181,7 @@ namespace src {
 			this->CheckConnect->Name = L"CheckConnect";
 			this->CheckConnect->Size = System::Drawing::Size(329, 32);
 			this->CheckConnect->TabIndex = 20;
-			this->CheckConnect->Text = L"Тестировать соеденение";
+			this->CheckConnect->Text = L"Тестировать соединение";
 			this->CheckConnect->UseVisualStyleBackColor = false;
 			this->CheckConnect->Click += gcnew System::EventHandler(this, &MyForm::CheckConnect_Click);
 			// 
