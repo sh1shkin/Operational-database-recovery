@@ -1,5 +1,5 @@
 ﻿  MyForm.cpp
-C:\Users\maksi\Developers\C++\Operational-database-recovery\src\MyForm.h(485,21): warning C4101: ex: неиспользованная локальная переменная
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\MyForm.h(461,21): warning C4101: ex: неиспользованная локальная переменная
   (компиляция исходного файла "MyForm.cpp")
   
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
