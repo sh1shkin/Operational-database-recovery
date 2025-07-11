@@ -169,7 +169,10 @@ namespace src {
 			// 
 			this->CheckConnect->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->CheckConnect->BackColor = System::Drawing::Color::White;
-			this->CheckConnect->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->CheckConnect->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(90)),
+				static_cast<System::Int32>(static_cast<System::Byte>(115)), static_cast<System::Int32>(static_cast<System::Byte>(191)));
+			this->CheckConnect->FlatAppearance->BorderSize = 2;
+			this->CheckConnect->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->CheckConnect->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->CheckConnect->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
@@ -272,7 +275,9 @@ namespace src {
 			this->ButtonConnect->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->ButtonConnect->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
-			this->ButtonConnect->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->ButtonConnect->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
+			this->ButtonConnect->FlatAppearance->BorderSize = 2;
+			this->ButtonConnect->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->ButtonConnect->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->ButtonConnect->ForeColor = System::Drawing::Color::White;
