@@ -1,0 +1,14 @@
+# Игнорировать файлы и папки Visual Studio
+.vs/
+*.suo
+*.user
+*.vsidx
+*.db
+*.db-shm
+*.db-wal
+*.tlog
+*.log
+*.pdb
+*.ipch/
+*.resx
+*.resources
