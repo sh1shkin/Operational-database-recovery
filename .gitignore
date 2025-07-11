@@ -10,5 +10,9 @@
 *.log
 *.pdb
 *.ipch/
-*.resx
-*.resources
+*.obj
+*.exe
+*.pdb
+*.cache
+*.recipe
+*.metagen
