@@ -1,5 +1,3 @@
 ﻿  MyForm.cpp
-  .NETFramework,Version=v4.8.AssemblyAttributes.cpp
-  Создание кода...
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
-  src.vcxproj -> E:\Project\Practica\Operational-database-recovery\src\x64\Debug\src.exe
+  src.vcxproj -> C:\Users\maksi\Developers\C++\Operational-database-recovery\src\x64\Debug\src.exe

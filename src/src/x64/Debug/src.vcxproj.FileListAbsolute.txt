@@ -1,1 +1,4 @@
 E:\Project\Practica\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.AssemblyReference.cache
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.AssemblyReference.cache
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.MyForm.resources
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.GenerateResource.cache
