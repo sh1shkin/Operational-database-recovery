@@ -412,11 +412,13 @@ namespace src {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
+			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
+				static_cast<System::Int32>(static_cast<System::Byte>(216)));
 			this->label2->Location = System::Drawing::Point(12, 11);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(56, 16);
+			this->label2->Size = System::Drawing::Size(56, 19);
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Статус:";
 			// 
@@ -426,14 +428,14 @@ namespace src {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(249)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
 				static_cast<System::Int32>(static_cast<System::Byte>(249)));
-			this->ClientSize = System::Drawing::Size(884, 511);
+			this->ClientSize = System::Drawing::Size(884, 481);
 			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MaximizeBox = false;
-			this->MaximumSize = System::Drawing::Size(900, 550);
-			this->MinimumSize = System::Drawing::Size(900, 550);
+			this->MaximumSize = System::Drawing::Size(900, 520);
+			this->MinimumSize = System::Drawing::Size(900, 520);
 			this->Name = L"MyForm";
 			this->Text = L"Operational-database-recovery";
 			this->panel1->ResumeLayout(false);
@@ -499,5 +501,6 @@ private: System::Void CheckConnect_Click(System::Object^ sender, System::EventAr
 	MessageTextConnect->ForeColor = Color::Green;
 	MessageTextConnect->Text = L"Подключение успешно!";
 }
+
 };
 }
