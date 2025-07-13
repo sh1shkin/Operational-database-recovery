@@ -10,6 +10,6 @@ using namespace src;
 int main() {
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
-    Application::Run(gcnew MainWindow());
+    Application::Run(gcnew ConnectionWindow());
     return 0;
 }

@@ -128,7 +128,7 @@ namespace src {
 			this->panel1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->panel1->Location = System::Drawing::Point(128, 107);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel1->Margin = System::Windows::Forms::Padding(4);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(792, 389);
 			this->panel1->TabIndex = 0;
@@ -148,7 +148,7 @@ namespace src {
 			this->CheckConnect->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"CheckConnect.Image")));
 			this->CheckConnect->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->CheckConnect->Location = System::Drawing::Point(45, 321);
-			this->CheckConnect->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->CheckConnect->Margin = System::Windows::Forms::Padding(4);
 			this->CheckConnect->Name = L"CheckConnect";
 			this->CheckConnect->Size = System::Drawing::Size(328, 39);
 			this->CheckConnect->TabIndex = 20;
@@ -174,9 +174,9 @@ namespace src {
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(111, 18);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(28, 28);
+			this->pictureBox1->Size = System::Drawing::Size(48, 48);
 			this->pictureBox1->TabIndex = 17;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -185,7 +185,7 @@ namespace src {
 			this->TextBoxDataBase->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->TextBoxDataBase->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 12));
 			this->TextBoxDataBase->Location = System::Drawing::Point(45, 178);
-			this->TextBoxDataBase->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->TextBoxDataBase->Margin = System::Windows::Forms::Padding(4);
 			this->TextBoxDataBase->Name = L"TextBoxDataBase";
 			this->TextBoxDataBase->Size = System::Drawing::Size(327, 34);
 			this->TextBoxDataBase->TabIndex = 15;
@@ -210,7 +210,7 @@ namespace src {
 			this->TextBoxPassword->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->TextBoxPassword->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 12));
 			this->TextBoxPassword->Location = System::Drawing::Point(45, 268);
-			this->TextBoxPassword->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->TextBoxPassword->Margin = System::Windows::Forms::Padding(4);
 			this->TextBoxPassword->Name = L"TextBoxPassword";
 			this->TextBoxPassword->PasswordChar = '*';
 			this->TextBoxPassword->Size = System::Drawing::Size(705, 34);
@@ -221,7 +221,7 @@ namespace src {
 			this->TextBoxUser->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->TextBoxUser->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 12));
 			this->TextBoxUser->Location = System::Drawing::Point(407, 178);
-			this->TextBoxUser->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->TextBoxUser->Margin = System::Windows::Forms::Padding(4);
 			this->TextBoxUser->Name = L"TextBoxUser";
 			this->TextBoxUser->Size = System::Drawing::Size(344, 34);
 			this->TextBoxUser->TabIndex = 10;
@@ -231,7 +231,7 @@ namespace src {
 			this->TextBoxServer->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->TextBoxServer->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 12));
 			this->TextBoxServer->Location = System::Drawing::Point(407, 97);
-			this->TextBoxServer->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->TextBoxServer->Margin = System::Windows::Forms::Padding(4);
 			this->TextBoxServer->Name = L"TextBoxServer";
 			this->TextBoxServer->Size = System::Drawing::Size(344, 34);
 			this->TextBoxServer->TabIndex = 9;
@@ -244,7 +244,7 @@ namespace src {
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"MS SQL", L"Oracle" });
 			this->comboBox1->Location = System::Drawing::Point(45, 97);
-			this->comboBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->comboBox1->Margin = System::Windows::Forms::Padding(4);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(327, 35);
 			this->comboBox1->TabIndex = 7;
@@ -263,7 +263,7 @@ namespace src {
 			this->ButtonConnect->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ButtonConnect.Image")));
 			this->ButtonConnect->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->ButtonConnect->Location = System::Drawing::Point(407, 321);
-			this->ButtonConnect->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->ButtonConnect->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonConnect->Name = L"ButtonConnect";
 			this->ButtonConnect->Size = System::Drawing::Size(345, 39);
 			this->ButtonConnect->TabIndex = 6;
@@ -349,9 +349,9 @@ namespace src {
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
 			this->pictureBox2->Location = System::Drawing::Point(240, 12);
-			this->pictureBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(36, 36);
+			this->pictureBox2->Size = System::Drawing::Size(60, 65);
 			this->pictureBox2->TabIndex = 13;
 			this->pictureBox2->TabStop = false;
 			// 
@@ -364,7 +364,7 @@ namespace src {
 			this->panel2->Controls->Add(this->label1);
 			this->panel2->Controls->Add(this->pictureBox2);
 			this->panel2->Location = System::Drawing::Point(0, -1);
-			this->panel2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel2->Margin = System::Windows::Forms::Padding(4);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(1045, 85);
 			this->panel2->TabIndex = 1;
@@ -391,7 +391,7 @@ namespace src {
 			this->panel3->Controls->Add(this->MessageTextConnect);
 			this->panel3->Controls->Add(this->label2);
 			this->panel3->Location = System::Drawing::Point(0, 503);
-			this->panel3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel3->Margin = System::Windows::Forms::Padding(4);
 			this->panel3->MaximumSize = System::Drawing::Size(1333, 492);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(1045, 86);
@@ -420,7 +420,7 @@ namespace src {
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Статус:";
 			// 
-			// MyForm
+			// ConnectionWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -431,11 +431,11 @@ namespace src {
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(1061, 629);
 			this->MinimumSize = System::Drawing::Size(1061, 629);
-			this->Name = L"MyForm";
+			this->Name = L"ConnectionWindow";
 			this->Text = L"Operational-database-recovery";
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
