@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Project\\Practica\\Operational-database-recovery\\src\\",
+  "WorkspaceRootPath": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h",
+              "RelativeDocumentMoniker": "MyForm.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-11T19:52:39.482Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MyForm.h",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.h",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h",
               "RelativeDocumentMoniker": "MyForm.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h",
               "RelativeToolTip": "MyForm.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFUAAAAAAAAAAIAwwLEBAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-10T19:34:18.34Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MyForm.cpp",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.cpp",
-              "RelativeDocumentMoniker": "MyForm.cpp",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.cpp",
-              "RelativeToolTip": "MyForm.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-10T19:34:06.526Z",
+              "WhenOpened": "2025-07-11T09:54:59.202Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.h",
-              "RelativeDocumentMoniker": "MyForm.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-10T19:33:37.698Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "Title": "MyForm.cpp",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.cpp",
+              "RelativeDocumentMoniker": "MyForm.cpp",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.cpp",
+              "RelativeToolTip": "MyForm.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-10T19:34:06.526Z",
+              "EditorCaption": ""
             }
           ]
         }
