@@ -1,7 +1,6 @@
 #pragma once
-
 namespace src {
-
+    
     using namespace System;
     using namespace System::ComponentModel;
     using namespace System::Collections;
@@ -9,6 +8,7 @@ namespace src {
     using namespace System::Data;
     using namespace System::Drawing;
     using namespace System::Data::Odbc;
+    using namespace System::Collections::Generic;
 
     /// <summary>
     /// Сводка для PartialMainWindow
@@ -16,6 +16,7 @@ namespace src {
     public ref class PartialMainWindow : public System::Windows::Forms::Form
     {
     private:
+        List<String^>^ arrayIO;
         OdbcConnection^ connect;
         String^ typeString;
         String^ nameDB;
@@ -29,6 +30,7 @@ namespace src {
         PartialMainWindow(OdbcConnection^ connection, String^ typeStr, String^ dbName, String^ userName)
             : connect(connection), typeString(typeStr), nameDB(dbName), nameUser(userName)
         {
+            arrayIO = gcnew List<String^>();
             InitializeComponent();
             // Инициализация формы с переданными параметрами
             lblConnectionInfo->Text = String::Format("DB1: {0}: {1}/{2}", typeStr, dbName, userName);
@@ -799,16 +801,18 @@ private: System::Void btnGetID_Click(System::Object^ sender, System::EventArgs^ 
 
         if (typeString == "MS SQL")
         {
-            cmd->CommandText = (nameDB == L"CoilsDB1")
-                ? L"SELECT MAX(SIC_ID2) FROM STA_INPUT_COILS"
-                : L"SELECT MAX(SOC_ID2) FROM STA_OUTPUT_COILS";
+            if (nameDB == L"CoilsDB1") {
+                arrayIO->Add(L"SELECT MAX(t.id2in) FROM input_coils t");
+            }
+            arrayIO->Add(L"SELECT MAX(t.id2out) FROM output_coils t");
         }
-        else if (typeString == L"Oracle")
+        if (nameDB == L"FREEPDB1")
         {
-            cmd->CommandText = (nameDB == L"FREEPDB1" && nameUser == L"coils_user")
-                ? L"SELECT MAX(t.id2in) FROM input_coils t"
-                : L"SELECT MAX(t.id2out) FROM output_coils t";
+            if(nameUser == L"coils_user" || nameUser == L"COILS_USER")
+                arrayIO->Add(L"SELECT MAX(t.id2in) FROM input_coils t");
+            arrayIO->Add(L"SELECT MAX(t.id2out) FROM output_coils t");
         }
+
 
         Object^ result = cmd->ExecuteScalar();
         if (result != nullptr && result != DBNull::Value)

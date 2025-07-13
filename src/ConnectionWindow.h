@@ -1,5 +1,5 @@
 #pragma once
-
+#include "PartialMainWindow.h"
 namespace src {
 
 	using namespace System;
@@ -512,8 +512,8 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 		MessageTextConnect->ForeColor = Color::Green;
 		MessageTextConnect->Text = L"Подключено успешно, " + TypeSUBD + L": " + TextBoxDataBase->Text;
 		if (db_connect->State == ConnectionState::Open) {
-			PartialMainWindow form2(db_connect, comboBox1->Text, TextBoxDataBase->Text, TextBoxUser->Text);
-			form2.Show();
+			PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, comboBox1->Text, TextBoxDataBase->Text, TextBoxUser->Text);
+			form2->Show();
 			this->Hide();
 		}
 		// Тестовый запрос для проверки
@@ -537,7 +537,7 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 	catch (Exception^ ex) {
 		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 		MessageTextConnect->ForeColor = Color::Red;
-		TextBoxUser->Text = L"Ошибка! Проверьте правильность введённых полей: " + ex->Message;
+		MessageTextConnect->Text = L"Ошибка! Проверьте правильность введённых полей: " + ex->Message;
 	}
 	finally {
 		if (db_connect != nullptr && db_connect->State == ConnectionState::Open) {
