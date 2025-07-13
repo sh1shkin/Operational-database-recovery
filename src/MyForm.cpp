@@ -10,4 +10,5 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     Application::SetCompatibleTextRenderingDefault(false);
     Application::Run(gcnew MyForm);
     return 0;
+
 }
