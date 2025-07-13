@@ -439,7 +439,7 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 	if (TypeSUBD == L"") {
 		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 		MessageTextConnect->ForeColor = Color::Red;
-		MessageTextConnect->Text = L"Выберите используемую СУБД ";
+		MessageTextConnect->Text = L"Выберите используемую СУБД";
 		return;
 	}
 	if (TypeSUBD == L"MS SQL") {
@@ -451,17 +451,17 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 			if (sql_connect->State != ConnectionState::Open) {
 				MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 				MessageTextConnect->ForeColor = Color::Red;
-				MessageTextConnect->Text = L"Ошибка подключения к " + TextBoxDataBase->Text;
+				MessageTextConnect->Text = L"Ошибка подключения, " + TextBoxDataBase->Text;
 				return;
 			}
 			MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 			MessageTextConnect->ForeColor = Color::Green;
-			MessageTextConnect->Text = L"Подключено успоешно к " + TextBoxDataBase->Text;
+			MessageTextConnect->Text = L"Подключено успоешно, " + TextBoxDataBase->Text;
 		}
 		catch (Exception^ ex) {
 			MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 			MessageTextConnect->ForeColor = Color::Red;
-			MessageTextConnect->Text = L"Ошибка! Проверьте правильность введеных вами полей!";
+			MessageTextConnect->Text = L"Ошибка! Проверьте правильность введеных вами полей";
 		}
 		finally {
 			if (sql_connect->State == ConnectionState::Open) {
@@ -475,12 +475,12 @@ private: System::Void CheckConnect_Click(System::Object^ sender, System::EventAr
 	if (sql_connect == nullptr || sql_connect->State != ConnectionState::Open) {
 		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 		MessageTextConnect->ForeColor = Color::Red;
-		MessageTextConnect->Text = L"Ошибка подключения!";
+		MessageTextConnect->Text = L"Ошибка подключения";
 		return;
 	}
 	MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 	MessageTextConnect->ForeColor = Color::Green;
-	MessageTextConnect->Text = L"Подключение успешно!";
+	MessageTextConnect->Text = L"Подключение успешно";
 }
 
 
