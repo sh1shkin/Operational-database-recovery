@@ -1,4 +1,4 @@
-﻿#include "ConnectionWindow.h"
+#include "ConnectionWindow.h"
 #include "MainWindow.h"
 #include "PartialMainWindow.h"
 #include <Windows.h>

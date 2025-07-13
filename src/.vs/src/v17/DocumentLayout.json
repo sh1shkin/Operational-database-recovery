@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:ConnectionWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MainWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MainWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +34,83 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h",
-              "RelativeDocumentMoniker": "MyForm.h",
-              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "MyForm.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-13T11:51:38.943Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MyForm.h",
-              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h",
-              "RelativeDocumentMoniker": "MyForm.h",
-              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.h",
-              "RelativeToolTip": "MyForm.h",
-              "ViewState": "AgIAAL8BAAAAAAAAAAAAALEBAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-11T09:54:59.202Z",
+              "DocumentIndex": 1,
+              "Title": "ConnectionWindow.cpp",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.cpp",
+              "RelativeDocumentMoniker": "ConnectionWindow.cpp",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.cpp",
+              "RelativeToolTip": "ConnectionWindow.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-13T22:54:31.54Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MyForm.cpp",
-              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.cpp",
-              "RelativeDocumentMoniker": "MyForm.cpp",
-              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MyForm.cpp",
-              "RelativeToolTip": "MyForm.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.cpp",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MainWindow.cpp",
+              "RelativeDocumentMoniker": "MainWindow.cpp",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MainWindow.cpp",
+              "RelativeToolTip": "MainWindow.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-10T19:34:06.526Z",
+              "WhenOpened": "2025-07-13T22:54:30.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PartialMainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\PartialMainWindow.h",
+              "RelativeDocumentMoniker": "PartialMainWindow.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\PartialMainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "PartialMainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-13T22:37:06.724Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PartialMainWindow.h",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\PartialMainWindow.h",
+              "RelativeDocumentMoniker": "PartialMainWindow.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\PartialMainWindow.h",
+              "RelativeToolTip": "PartialMainWindow.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwDAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-13T22:00:11.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.h",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MainWindow.h",
+              "RelativeDocumentMoniker": "MainWindow.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\MainWindow.h",
+              "RelativeToolTip": "MainWindow.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-13T21:55:55.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConnectionWindow.h",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h",
+              "RelativeDocumentMoniker": "ConnectionWindow.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h",
+              "RelativeToolTip": "ConnectionWindow.h",
+              "ViewState": "AgIAAPIBAAAAAAAAAAAmwAUCAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-13T20:58:23.043Z",
               "EditorCaption": ""
             }
           ]

@@ -1,8 +1,10 @@
 E:\Project\Practica\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.AssemblyReference.cache
 C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.AssemblyReference.cache
-C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.MyForm.resources
 C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.GenerateResource.cache
 E:\Project\Practica\Operational-database-recovery\src\src\x64\Debug\src.MainWindow.resources
 E:\Project\Practica\Operational-database-recovery\src\src\x64\Debug\src.PartialMainWindow.resources
 E:\Project\Practica\Operational-database-recovery\src\src\x64\Debug\src.vcxproj.GenerateResource.cache
 E:\Project\Practica\Operational-database-recovery\src\src\x64\Debug\src.ConnectionWindow.resources
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.MainWindow.resources
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.PartialMainWindow.resources
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\src\x64\Debug\src.ConnectionWindow.resources

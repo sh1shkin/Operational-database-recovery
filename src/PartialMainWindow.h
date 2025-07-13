@@ -1,4 +1,4 @@
-п»ї#pragma once
+#pragma once
 
 namespace src {
 
@@ -8,30 +8,44 @@ namespace src {
     using namespace System::Windows::Forms;
     using namespace System::Data;
     using namespace System::Drawing;
+    using namespace System::Data::Odbc;
 
     /// <summary>
-    /// РЎРІРѕРґРєР° РґР»СЏ PartialMainWindow
+    /// Сводка для PartialMainWindow
     /// </summary>
     public ref class PartialMainWindow : public System::Windows::Forms::Form
     {
+    private:
+        OdbcConnection^ connect;
+        String^ typeString;
+        String^ nameDB;
+        String^ nameUser;
     public:
         PartialMainWindow(void)
         {
             InitializeComponent();
-            //
-            //TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
-            //
         }
 
+        PartialMainWindow(OdbcConnection^ connection, String^ typeStr, String^ dbName, String^ userName)
+            : connect(connection), typeString(typeStr), nameDB(dbName), nameUser(userName)
+        {
+            InitializeComponent();
+            // Инициализация формы с переданными параметрами
+            lblConnectionInfo->Text = String::Format("DB1: {0}: {1}/{2}", typeStr, dbName, userName);
+        }
     protected:
         /// <summary>
-        /// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        ~PartialMainWindow()
+         ~PartialMainWindow()
         {
             if (components)
             {
                 delete components;
+            }
+            if (connect != nullptr && connect->State == ConnectionState::Open)
+            {
+                connect->Close();
             }
         }
 
@@ -85,14 +99,14 @@ namespace src {
 
     private:
         /// <summary>
-        /// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
+        /// Обязательная переменная конструктора.
         /// </summary>
         System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
         /// <summary>
-        /// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
-        /// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         void InitializeComponent(void)
         {
@@ -187,7 +201,7 @@ namespace src {
             this->lblTitle->Name = L"lblTitle";
             this->lblTitle->Size = System::Drawing::Size(359, 32);
             this->lblTitle->TabIndex = 1;
-            this->lblTitle->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ ID2 РґР»СЏ СЂСѓР»РѕРЅРѕРІ";
+            this->lblTitle->Text = L"Управление ID2 для рулонов";
             // 
             // lblConnectionInfo
             // 
@@ -199,7 +213,7 @@ namespace src {
             this->lblConnectionInfo->Name = L"lblConnectionInfo";
             this->lblConnectionInfo->Size = System::Drawing::Size(245, 19);
             this->lblConnectionInfo->TabIndex = 2;
-            this->lblConnectionInfo->Text = L"Р‘Р”1: MSSQL: AEIP6L2S\\LEVEL2/NLMK";
+            this->lblConnectionInfo->Text = L"БД1: MSSQL: AEIP6L2S\\LEVEL2/NLMK";
             // 
             // btnDisconnect
             // 
@@ -219,7 +233,7 @@ namespace src {
             this->btnDisconnect->Name = L"btnDisconnect";
             this->btnDisconnect->Size = System::Drawing::Size(150, 40);
             this->btnDisconnect->TabIndex = 3;
-            this->btnDisconnect->Text = L"  РћС‚РєР»СЋС‡РёС‚СЊСЃСЏ";
+            this->btnDisconnect->Text = L"  Отключиться";
             this->btnDisconnect->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnDisconnect->UseVisualStyleBackColor = false;
             // 
@@ -263,7 +277,7 @@ namespace src {
             this->lblID2Title->Name = L"lblID2Title";
             this->lblID2Title->Size = System::Drawing::Size(159, 25);
             this->lblID2Title->TabIndex = 5;
-            this->lblID2Title->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ ID2";
+            this->lblID2Title->Text = L"Управление ID2";
             // 
             // lblID2In
             // 
@@ -273,9 +287,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblID2In->Location = System::Drawing::Point(20, 50);
             this->lblID2In->Name = L"lblID2In";
-            this->lblID2In->Size = System::Drawing::Size(51, 15);
+            this->lblID2In->Size = System::Drawing::Size(52, 15);
             this->lblID2In->TabIndex = 6;
-            this->lblID2In->Text = L"ID2 РІС…РѕРґ";
+            this->lblID2In->Text = L"ID2 вход";
             // 
             // txtID2In
             // 
@@ -298,9 +312,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblID2Out->Location = System::Drawing::Point(290, 50);
             this->lblID2Out->Name = L"lblID2Out";
-            this->lblID2Out->Size = System::Drawing::Size(60, 15);
+            this->lblID2Out->Size = System::Drawing::Size(61, 15);
             this->lblID2Out->TabIndex = 8;
-            this->lblID2Out->Text = L"ID2 РІС‹С…РѕРґ";
+            this->lblID2Out->Text = L"ID2 выход";
             // 
             // txtID2Out
             // 
@@ -331,9 +345,10 @@ namespace src {
             this->btnGetID->Name = L"btnGetID";
             this->btnGetID->Size = System::Drawing::Size(280, 30);
             this->btnGetID->TabIndex = 10;
-            this->btnGetID->Text = L"  РџРѕР»СѓС‡РёС‚СЊ ID РёР· Р‘Р”1";
+            this->btnGetID->Text = L"  Получить ID из БД1";
             this->btnGetID->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnGetID->UseVisualStyleBackColor = false;
+            this->btnGetID->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnGetID_Click);
             // 
             // panelInputParams
             // 
@@ -360,7 +375,7 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblInputBadge->Location = System::Drawing::Point(10, 11);
             this->lblInputBadge->Name = L"lblInputBadge";
-            this->lblInputBadge->Size = System::Drawing::Size(37, 13);
+            this->lblInputBadge->Size = System::Drawing::Size(38, 13);
             this->lblInputBadge->TabIndex = 12;
             this->lblInputBadge->Text = L"INPUT";
             // 
@@ -374,7 +389,7 @@ namespace src {
             this->lblInputParams->Name = L"lblInputParams";
             this->lblInputParams->Size = System::Drawing::Size(110, 15);
             this->lblInputParams->TabIndex = 13;
-            this->lblInputParams->Text = L"РџР°СЂР°РјРµС‚СЂС‹ РІС…РѕРґР°";
+            this->lblInputParams->Text = L"Параметры входа";
             // 
             // lblThicknessIn
             // 
@@ -384,9 +399,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblThicknessIn->Location = System::Drawing::Point(10, 40);
             this->lblThicknessIn->Name = L"lblThicknessIn";
-            this->lblThicknessIn->Size = System::Drawing::Size(54, 13);
+            this->lblThicknessIn->Size = System::Drawing::Size(55, 13);
             this->lblThicknessIn->TabIndex = 14;
-            this->lblThicknessIn->Text = L"РўРѕР»С‰РёРЅР°";
+            this->lblThicknessIn->Text = L"Толщина";
             // 
             // txtThicknessIn
             // 
@@ -409,7 +424,7 @@ namespace src {
             this->lblWidthIn->Name = L"lblWidthIn";
             this->lblWidthIn->Size = System::Drawing::Size(52, 13);
             this->lblWidthIn->TabIndex = 16;
-            this->lblWidthIn->Text = L"РЁРёСЂРёРЅР°";
+            this->lblWidthIn->Text = L"Ширина";
             // 
             // txtWidthIn
             // 
@@ -432,7 +447,7 @@ namespace src {
             this->lblStatusIn->Name = L"lblStatusIn";
             this->lblStatusIn->Size = System::Drawing::Size(40, 13);
             this->lblStatusIn->TabIndex = 18;
-            this->lblStatusIn->Text = L"РЎС‚Р°С‚СѓСЃ";
+            this->lblStatusIn->Text = L"Статус";
             // 
             // txtStatusIn
             // 
@@ -471,7 +486,7 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(175)));
             this->lblOutputBadge->Location = System::Drawing::Point(19, 11);
             this->lblOutputBadge->Name = L"lblOutputBadge";
-            this->lblOutputBadge->Size = System::Drawing::Size(48, 13);
+            this->lblOutputBadge->Size = System::Drawing::Size(50, 13);
             this->lblOutputBadge->TabIndex = 21;
             this->lblOutputBadge->Text = L"OUTPUT";
             // 
@@ -485,7 +500,7 @@ namespace src {
             this->lblOutputParams->Name = L"lblOutputParams";
             this->lblOutputParams->Size = System::Drawing::Size(120, 15);
             this->lblOutputParams->TabIndex = 22;
-            this->lblOutputParams->Text = L"РџР°СЂР°РјРµС‚СЂС‹ РІС‹С…РѕРґР°";
+            this->lblOutputParams->Text = L"Параметры выхода";
             // 
             // lblThicknessOut
             // 
@@ -495,9 +510,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblThicknessOut->Location = System::Drawing::Point(19, 40);
             this->lblThicknessOut->Name = L"lblThicknessOut";
-            this->lblThicknessOut->Size = System::Drawing::Size(54, 13);
+            this->lblThicknessOut->Size = System::Drawing::Size(55, 13);
             this->lblThicknessOut->TabIndex = 23;
-            this->lblThicknessOut->Text = L"РўРѕР»С‰РёРЅР°";
+            this->lblThicknessOut->Text = L"Толщина";
             // 
             // txtThicknessOut
             // 
@@ -520,7 +535,7 @@ namespace src {
             this->lblWidthOut->Name = L"lblWidthOut";
             this->lblWidthOut->Size = System::Drawing::Size(52, 13);
             this->lblWidthOut->TabIndex = 25;
-            this->lblWidthOut->Text = L"РЁРёСЂРёРЅР°";
+            this->lblWidthOut->Text = L"Ширина";
             // 
             // txtWidthOut
             // 
@@ -543,7 +558,7 @@ namespace src {
             this->lblStatusOut->Name = L"lblStatusOut";
             this->lblStatusOut->Size = System::Drawing::Size(40, 13);
             this->lblStatusOut->TabIndex = 27;
-            this->lblStatusOut->Text = L"РЎС‚Р°С‚СѓСЃ";
+            this->lblStatusOut->Text = L"Статус";
             // 
             // txtStatusOut
             // 
@@ -607,7 +622,7 @@ namespace src {
             this->lblConnectDB2Title->Name = L"lblConnectDB2Title";
             this->lblConnectDB2Title->Size = System::Drawing::Size(171, 21);
             this->lblConnectDB2Title->TabIndex = 30;
-            this->lblConnectDB2Title->Text = L"РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”2";
+            this->lblConnectDB2Title->Text = L"Подключение к БД2";
             // 
             // lblConnectDB2Desc
             // 
@@ -617,10 +632,10 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(78)), static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblConnectDB2Desc->Location = System::Drawing::Point(155, 73);
             this->lblConnectDB2Desc->Name = L"lblConnectDB2Desc";
-            this->lblConnectDB2Desc->Size = System::Drawing::Size(564, 15);
+            this->lblConnectDB2Desc->Size = System::Drawing::Size(566, 15);
             this->lblConnectDB2Desc->TabIndex = 31;
-            this->lblConnectDB2Desc->Text = L"Р”Р»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ Р·Р°РїРёСЃРµР№ Рё РІС‹РїРѕР»РЅРµРЅРёСЏ РѕРїРµСЂР°С†РёР№ РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ РєРѕ РІС‚РѕСЂРѕР№ Р±Р°"
-                L"Р·Рµ РґР°РЅРЅС‹С…";
+            this->lblConnectDB2Desc->Text = L"Для добавления записей и выполнения операций необходимо подключиться ко второй ба"
+                L"зе данных";
             // 
             // btnConnectDB2
             // 
@@ -639,9 +654,10 @@ namespace src {
             this->btnConnectDB2->Padding = System::Windows::Forms::Padding(3);
             this->btnConnectDB2->Size = System::Drawing::Size(200, 40);
             this->btnConnectDB2->TabIndex = 32;
-            this->btnConnectDB2->Text = L"  РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє Р‘Р”2";
+            this->btnConnectDB2->Text = L"  Подключиться к БД2";
             this->btnConnectDB2->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnConnectDB2->UseVisualStyleBackColor = false;
+            this->btnConnectDB2->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnConnectDB2_Click);
             // 
             // panelLogs
             // 
@@ -665,7 +681,7 @@ namespace src {
             this->lblLogsTitle->Name = L"lblLogsTitle";
             this->lblLogsTitle->Size = System::Drawing::Size(131, 21);
             this->lblLogsTitle->TabIndex = 34;
-            this->lblLogsTitle->Text = L"Р›РѕРіРё РѕРїРµСЂР°С†РёР№";
+            this->lblLogsTitle->Text = L"Логи операций";
             // 
             // lstLogs
             // 
@@ -675,7 +691,7 @@ namespace src {
             this->lstLogs->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(22)), static_cast<System::Int32>(static_cast<System::Byte>(163)),
                 static_cast<System::Int32>(static_cast<System::Byte>(74)));
             this->lstLogs->ItemHeight = 14;
-            this->lstLogs->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"11.07.2025 16:19: РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”1 (MSSQL) СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ" });
+            this->lstLogs->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"11.07.2025 16:19: Подключение к БД1 (MSSQL) успешно установлено" });
             this->lstLogs->Location = System::Drawing::Point(20, 50);
             this->lstLogs->Name = L"lstLogs";
             this->lstLogs->Size = System::Drawing::Size(820, 74);
@@ -705,7 +721,7 @@ namespace src {
             this->lblStatusTxt->Name = L"lblStatusTxt";
             this->lblStatusTxt->Size = System::Drawing::Size(46, 15);
             this->lblStatusTxt->TabIndex = 40;
-            this->lblStatusTxt->Text = L"РЎС‚Р°С‚СѓСЃ:";
+            this->lblStatusTxt->Text = L"Статус:";
             // 
             // lblDB1Status
             // 
@@ -717,7 +733,7 @@ namespace src {
             this->lblDB1Status->Name = L"lblDB1Status";
             this->lblDB1Status->Size = System::Drawing::Size(102, 13);
             this->lblDB1Status->TabIndex = 38;
-            this->lblDB1Status->Text = L"Р‘Р”1: РџРѕРґРєР»СЋС‡РµРЅРѕ";
+            this->lblDB1Status->Text = L"БД1: Подключено";
             // 
             // lblDB2Status
             // 
@@ -729,7 +745,7 @@ namespace src {
             this->lblDB2Status->Name = L"lblDB2Status";
             this->lblDB2Status->Size = System::Drawing::Size(95, 13);
             this->lblDB2Status->TabIndex = 39;
-            this->lblDB2Status->Text = L"Р‘Р”2: РћС‚РєР»СЋС‡РµРЅРѕ";
+            this->lblDB2Status->Text = L"БД2: Отключено";
             // 
             // PartialMainWindow
             // 
@@ -767,5 +783,43 @@ namespace src {
 
         }
 #pragma endregion
-    };
+    private: System::Void btnConnectDB2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+    }
+private: System::Void btnGetID_Click(System::Object^ sender, System::EventArgs^ e) {
+    try
+    {
+        if (connect->State != ConnectionState::Open)
+        {
+            connect->Open();
+        }
+
+        OdbcCommand^ cmd = gcnew OdbcCommand();
+        cmd->Connection = connect;
+
+        if (typeString == "MS SQL")
+        {
+            cmd->CommandText = (nameDB == L"CoilsDB1")
+                ? L"SELECT MAX(SIC_ID2) FROM STA_INPUT_COILS"
+                : L"SELECT MAX(SOC_ID2) FROM STA_OUTPUT_COILS";
+        }
+        else if (typeString == L"Oracle")
+        {
+            cmd->CommandText = (nameDB == L"FREEPDB1" && nameUser == L"coils_user")
+                ? L"SELECT MAX(t.id2in) FROM input_coils t"
+                : L"SELECT MAX(t.id2out) FROM output_coils t";
+        }
+
+        Object^ result = cmd->ExecuteScalar();
+        if (result != nullptr && result != DBNull::Value)
+        {
+            txtID2In->Text = result->ToString();
+        }
+    }
+    catch (Exception^ ex)
+    {
+        MessageBox::Show("Ошибка при получении ID: " + ex->Message);
+    }
+}
+};
 }

@@ -1,3 +1,13 @@
 ﻿  ConnectionWindow.cpp
-  MainWindow.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
-  src.vcxproj -> E:\Project\Practica\Operational-database-recovery\src\x64\Debug\src.exe
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\ConnectionWindow.h(515,4): error C2065: PartialMainWindow: необъявленный идентификатор
+  (компиляция исходного файла "ConnectionWindow.cpp")
+  
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\ConnectionWindow.h(515,22): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "form2"
+  (компиляция исходного файла "ConnectionWindow.cpp")
+  
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\ConnectionWindow.h(515,22): error C3861: form2: идентификатор не найден
+  (компиляция исходного файла "ConnectionWindow.cpp")
+  
+C:\Users\maksi\Developers\C++\Operational-database-recovery\src\ConnectionWindow.h(516,4): error C2065: form2: необъявленный идентификатор
+  (компиляция исходного файла "ConnectionWindow.cpp")
+  
