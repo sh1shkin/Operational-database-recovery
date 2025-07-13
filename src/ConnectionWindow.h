@@ -9,6 +9,7 @@ namespace src {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Data::SqlClient;
+	using namespace System::Data::Odbc;
 
 	/// <summary>
 	/// Сводка для MyForm
@@ -254,7 +255,8 @@ namespace src {
 			this->ButtonConnect->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->ButtonConnect->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
-			this->ButtonConnect->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
+			this->ButtonConnect->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
+				static_cast<System::Int32>(static_cast<System::Byte>(74)), static_cast<System::Int32>(static_cast<System::Byte>(172)));
 			this->ButtonConnect->FlatAppearance->BorderSize = 2;
 			this->ButtonConnect->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->ButtonConnect->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -451,6 +453,9 @@ namespace src {
 #pragma endregion
 	
 private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ e) {
+	using namespace System::Data::Odbc;
+	using namespace System::Drawing;
+
 	String^ TypeSUBD = comboBox1->Text;
 	if (TypeSUBD == L"") {
 		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
@@ -458,31 +463,68 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 		MessageTextConnect->Text = L"Выберите используемую СУБД";
 		return;
 	}
+
+	OdbcConnection^ db_connect = nullptr;
+	String^ connectString;
+
 	if (TypeSUBD == L"MS SQL") {
-		String^ connect = "Server=" + TextBoxServer->Text + "LEVEL2; Database = " + TextBoxDataBase->Text + "; User Id =" + TextBoxUser->Text + "; Password = " + TextBoxPassword->Text + ";";
-		if(sql_connect == nullptr || sql_connect->State != ConnectionState::Open)
-			SqlConnection^ sql_connect = gcnew SqlConnection(connect);
-		try {
-			sql_connect->Open();
-			if (sql_connect->State != ConnectionState::Open) {
-				MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
-				MessageTextConnect->ForeColor = Color::Red;
-				MessageTextConnect->Text = L"Ошибка подключения, " + TextBoxDataBase->Text;
-				return;
-			}
-			MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
-			MessageTextConnect->ForeColor = Color::Green;
-			MessageTextConnect->Text = L"Подключено успоешно, " + TextBoxDataBase->Text;
-		}
-		catch (Exception^ ex) {
+		connectString = "Driver={ODBC Driver 17 for SQL Server};Server=" + TextBoxServer->Text +
+			";Database=" + TextBoxDataBase->Text +
+			";Uid=" + TextBoxUser->Text +
+			";Pwd=" + TextBoxPassword->Text + ";";
+	}
+	else if (TypeSUBD == L"Oracle") {
+		connectString = "Driver={Oracle in instantclient_23_8};DBQ=" + TextBoxServer->Text +
+			"/" + TextBoxDataBase->Text +
+			";Uid=" + TextBoxUser->Text +
+			";Pwd=" + TextBoxPassword->Text + ";";
+	}
+	else {
+		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
+		MessageTextConnect->ForeColor = Color::Red;
+		MessageTextConnect->Text = L"Неподдерживаемый тип СУБД";
+		return;
+	}
+
+	try {
+		db_connect = gcnew OdbcConnection(connectString);
+		db_connect->Open();
+		if (db_connect->State != ConnectionState::Open) {
 			MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 			MessageTextConnect->ForeColor = Color::Red;
-			MessageTextConnect->Text = L"Ошибка! Проверьте правильность введеных вами полей";
+			MessageTextConnect->Text = L"Ошибка подключения, " + TextBoxDataBase->Text;
+			return;
 		}
-		finally {
-			if (sql_connect->State == ConnectionState::Open) {
-				sql_connect->Close();
-			}
+		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
+		MessageTextConnect->ForeColor = Color::Green;
+		MessageTextConnect->Text = L"Подключено успешно, " + TypeSUBD + L": " + TextBoxDataBase->Text;
+
+		// Тестовый запрос для проверки
+		OdbcCommand^ cmd = gcnew OdbcCommand();
+		cmd->Connection = db_connect;
+		if (TypeSUBD == L"MS SQL") {
+			cmd->CommandText = (TextBoxDataBase->Text == L"CoilsDB1")
+				? L"SELECT MAX(SIC_ID2) FROM STA_INPUT_COILS"
+				: L"SELECT MAX(SOC_ID2) FROM STA_OUTPUT_COILS";
+		}
+		else if (TypeSUBD == L"Oracle") {
+			cmd->CommandText = (TextBoxDataBase->Text == L"FREEPDB1" && TextBoxUser->Text == L"coils_user")
+				? L"SELECT MAX(t.id2in) FROM input_coils t"
+				: L"SELECT MAX(t.id2out) FROM output_coils t";
+		}
+		Object^ result = cmd->ExecuteScalar();
+		if (result != nullptr && result != DBNull::Value) {
+			MessageTextConnect->Text += L" | Max ID: " + result->ToString();
+		}
+	}
+	catch (Exception^ ex) {
+		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
+		MessageTextConnect->ForeColor = Color::Red;
+		MessageTextConnect->Text = L"Ошибка! Проверьте правильность введённых полей: " + ex->Message;
+	}
+	finally {
+		if (db_connect != nullptr && db_connect->State == ConnectionState::Open) {
+			db_connect->Close();
 		}
 	}
 }

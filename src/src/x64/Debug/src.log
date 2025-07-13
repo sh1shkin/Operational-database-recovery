@@ -1,6 +1,3 @@
 ﻿  ConnectionWindow.cpp
-E:\Project\Practica\Operational-database-recovery\src\ConnectionWindow.h(477,21): warning C4101: ex: неиспользованная локальная переменная
-  (компиляция исходного файла "ConnectionWindow.cpp")
-  
   MainWindow.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   src.vcxproj -> E:\Project\Practica\Operational-database-recovery\src\x64\Debug\src.exe
