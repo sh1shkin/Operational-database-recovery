@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 namespace src {
 
@@ -11,7 +11,7 @@ namespace src {
 	using namespace System::Data::SqlClient;
 
 	/// <summary>
-	/// Сводка для MyForm
+	/// РЎРІРѕРґРєР° РґР»СЏ MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -22,13 +22,13 @@ namespace src {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~MyForm()
 		{
@@ -61,25 +61,18 @@ namespace src {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ LabelText;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-
 	private: System::Windows::Forms::Button^ CheckConnect;
-
-
-
-
-
-
 
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -157,7 +150,7 @@ namespace src {
 			this->CheckConnect->Name = L"CheckConnect";
 			this->CheckConnect->Size = System::Drawing::Size(246, 32);
 			this->CheckConnect->TabIndex = 20;
-			this->CheckConnect->Text = L"Тестировать соединение";
+			this->CheckConnect->Text = L"РўРµСЃС‚РёСЂРѕРІР°С‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ";
 			this->CheckConnect->UseVisualStyleBackColor = false;
 			this->CheckConnect->Click += gcnew System::EventHandler(this, &MyForm::CheckConnect_Click);
 			// 
@@ -172,7 +165,7 @@ namespace src {
 			this->LabelText->Name = L"LabelText";
 			this->LabelText->Size = System::Drawing::Size(392, 25);
 			this->LabelText->TabIndex = 16;
-			this->LabelText->Text = L"Настройка подключения к базе данных";
+			this->LabelText->Text = L"РќР°СЃС‚СЂРѕР№РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…";
 			// 
 			// pictureBox1
 			// 
@@ -204,7 +197,7 @@ namespace src {
 			this->labelDataBase->Name = L"labelDataBase";
 			this->labelDataBase->Size = System::Drawing::Size(105, 19);
 			this->labelDataBase->TabIndex = 14;
-			this->labelDataBase->Text = L"База данных*";
+			this->labelDataBase->Text = L"Р‘Р°Р·Р° РґР°РЅРЅС‹С…*";
 			// 
 			// TextBoxPassword
 			// 
@@ -263,7 +256,7 @@ namespace src {
 			this->ButtonConnect->Name = L"ButtonConnect";
 			this->ButtonConnect->Size = System::Drawing::Size(259, 32);
 			this->ButtonConnect->TabIndex = 6;
-			this->ButtonConnect->Text = L"Подключиться и продолжить";
+			this->ButtonConnect->Text = L"РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рё РїСЂРѕРґРѕР»Р¶РёС‚СЊ";
 			this->ButtonConnect->UseVisualStyleBackColor = false;
 			this->ButtonConnect->Click += gcnew System::EventHandler(this, &MyForm::connect1_Click);
 			// 
@@ -279,7 +272,7 @@ namespace src {
 			this->labelPassword->Name = L"labelPassword";
 			this->labelPassword->Size = System::Drawing::Size(68, 19);
 			this->labelPassword->TabIndex = 5;
-			this->labelPassword->Text = L"Пароль*";
+			this->labelPassword->Text = L"РџР°СЂРѕР»СЊ*";
 			// 
 			// labelUser
 			// 
@@ -293,7 +286,7 @@ namespace src {
 			this->labelUser->Name = L"labelUser";
 			this->labelUser->Size = System::Drawing::Size(111, 19);
 			this->labelUser->TabIndex = 4;
-			this->labelUser->Text = L"Пользователь:";
+			this->labelUser->Text = L"РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ:";
 			// 
 			// labelServer
 			// 
@@ -307,7 +300,7 @@ namespace src {
 			this->labelServer->Name = L"labelServer";
 			this->labelServer->Size = System::Drawing::Size(64, 19);
 			this->labelServer->TabIndex = 3;
-			this->labelServer->Text = L"Сервер:";
+			this->labelServer->Text = L"РЎРµСЂРІРµСЂ:";
 			// 
 			// SUBD
 			// 
@@ -321,7 +314,7 @@ namespace src {
 			this->SUBD->Name = L"SUBD";
 			this->SUBD->Size = System::Drawing::Size(138, 19);
 			this->SUBD->TabIndex = 1;
-			this->SUBD->Text = L"Тип базы данных*";
+			this->SUBD->Text = L"РўРёРї Р±Р°Р·С‹ РґР°РЅРЅС‹С…*";
 			// 
 			// label1
 			// 
@@ -334,7 +327,7 @@ namespace src {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(299, 19);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Подключение к БД1(Для получения данных)";
+			this->label1->Text = L"РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”1(Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…)";
 			// 
 			// pictureBox2
 			// 
@@ -369,7 +362,7 @@ namespace src {
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(431, 36);
 			this->label3->TabIndex = 0;
-			this->label3->Text = L"Управление ID2 для рулонов";
+			this->label3->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ ID2 РґР»СЏ СЂСѓР»РѕРЅРѕРІ";
 			// 
 			// panel3
 			// 
@@ -403,7 +396,7 @@ namespace src {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(56, 19);
 			this->label2->TabIndex = 0;
-			this->label2->Text = L"Статус:";
+			this->label2->Text = L"РЎС‚Р°С‚СѓСЃ:";
 			// 
 			// MyForm
 			// 
@@ -439,7 +432,7 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 	if (TypeSUBD == L"") {
 		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 		MessageTextConnect->ForeColor = Color::Red;
-		MessageTextConnect->Text = L"Выберите используемую СУБД";
+		MessageTextConnect->Text = L"Р’С‹Р±РµСЂРёС‚Рµ РёСЃРїРѕР»СЊР·СѓРµРјСѓСЋ РЎРЈР‘Р”";
 		return;
 	}
 	if (TypeSUBD == L"MS SQL") {
@@ -451,17 +444,17 @@ private: System::Void connect1_Click(System::Object^ sender, System::EventArgs^ 
 			if (sql_connect->State != ConnectionState::Open) {
 				MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 				MessageTextConnect->ForeColor = Color::Red;
-				MessageTextConnect->Text = L"Ошибка подключения, " + TextBoxDataBase->Text;
+				MessageTextConnect->Text = L"РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ, " + TextBoxDataBase->Text;
 				return;
 			}
 			MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 			MessageTextConnect->ForeColor = Color::Green;
-			MessageTextConnect->Text = L"Подключено успоешно, " + TextBoxDataBase->Text;
+			MessageTextConnect->Text = L"РџРѕРґРєР»СЋС‡РµРЅРѕ СѓСЃРїРѕРµС€РЅРѕ, " + TextBoxDataBase->Text;
 		}
 		catch (Exception^ ex) {
 			MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 			MessageTextConnect->ForeColor = Color::Red;
-			MessageTextConnect->Text = L"Ошибка! Проверьте правильность введеных вами полей";
+			MessageTextConnect->Text = L"РћС€РёР±РєР°! РџСЂРѕРІРµСЂСЊС‚Рµ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РІРІРµРґРµРЅС‹С… РІР°РјРё РїРѕР»РµР№";
 		}
 		finally {
 			if (sql_connect->State == ConnectionState::Open) {
@@ -475,12 +468,12 @@ private: System::Void CheckConnect_Click(System::Object^ sender, System::EventAr
 	if (sql_connect == nullptr || sql_connect->State != ConnectionState::Open) {
 		MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 		MessageTextConnect->ForeColor = Color::Red;
-		MessageTextConnect->Text = L"Ошибка подключения";
+		MessageTextConnect->Text = L"РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ";
 		return;
 	}
 	MessageTextConnect->Font = gcnew System::Drawing::Font("Microsoft Sans Serif", 10.25);
 	MessageTextConnect->ForeColor = Color::Green;
-	MessageTextConnect->Text = L"Подключение успешно";
+	MessageTextConnect->Text = L"РџРѕРґРєР»СЋС‡РµРЅРёРµ СѓСЃРїРµС€РЅРѕ";
 }
 
 

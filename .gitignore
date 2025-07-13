@@ -1,18 +1,16 @@
-# Игнорировать файлы и папки Visual Studio
-.vs/
+# Visual Studio temporary files
+*.VC.db
+*.VC.db-shm
 *.suo
-*.user
-*.vsidx
-*.db
-*.db-shm
-*.db-wal
-*.tlog
-*.log
+*.ipch
+.vs/
+x64/Debug/
+src/x64/Debug/
 *.pdb
-*.ipch/
-*.obj
 *.exe
-*.pdb
-*.cache
 *.recipe
+*.tlog
 *.metagen
+*.obj
+*.resources
+*.FileListAbsolute.txt

@@ -18,9 +18,21 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="PartialMainWindow.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PartialMainWindow.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -28,5 +40,13 @@
     <Image Include="..\..\..\..\OneDrive\Рабочий стол\Developers\C#\WinApp\NLMK_ICON.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PartialMainWindow.resx">
+      <Filter>Файлы заголовков</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <Filter>Файлы заголовков</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

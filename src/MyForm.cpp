@@ -1,14 +1,15 @@
-#include "MyForm.h"
-
+﻿#include "MyForm.h"
+#include "MainWindow.h"
+#include "PartialMainWindow.h"
 #include <Windows.h>
 #include <iostream>
+
 using namespace src;
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-    setlocale(LC_ALL, "ru");
+[STAThread]
+int main() {
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
-    Application::Run(gcnew MyForm);
+    Application::Run(gcnew PartialMainWindow());
     return 0;
-
 }
