@@ -19,12 +19,6 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class src.ConnectionWindow: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Methods:
-    getConnection(): PrivateScope, Public, HideBySig
-    getTypeString(): PrivateScope, Public, HideBySig
-    getNameDB(): PrivateScope, Public, HideBySig
-    getNameUser(): PrivateScope, Public, HideBySig
-    ClearFields(): PrivateScope, Public, HideBySig
 Class src.MainWindow: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

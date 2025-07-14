@@ -1,42 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Project\\Practica\\Operational-database-recovery\\src\\",
+  "WorkspaceRootPath": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:PartialMainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:ConnectionWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:PartialMainWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|E:\\Project\\Practica\\Operational-database-recovery\\src\\MainWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:MainWindow.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{E60ABC05-6B25-CF0A-D2C9-BD733A0F77D7}|src.vcxproj|solutionrelative:ConnectionWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,110 +34,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ConnectionWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.h",
-              "RelativeDocumentMoniker": "ConnectionWindow.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "ConnectionWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-14T10:26:22.39Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PartialMainWindow.cpp",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.cpp",
-              "RelativeDocumentMoniker": "PartialMainWindow.cpp",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.cpp",
-              "RelativeToolTip": "PartialMainWindow.cpp",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC0AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-14T00:37:37.623Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ConnectionWindow.cpp",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.cpp",
-              "RelativeDocumentMoniker": "ConnectionWindow.cpp",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.cpp",
-              "RelativeToolTip": "ConnectionWindow.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-13T22:54:31.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PartialMainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.h",
-              "RelativeDocumentMoniker": "PartialMainWindow.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "PartialMainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-13T22:37:06.724Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PartialMainWindow.h",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.h",
-              "RelativeDocumentMoniker": "PartialMainWindow.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\PartialMainWindow.h",
-              "RelativeToolTip": "PartialMainWindow.h",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAAAOQAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-13T22:00:11.209Z",
+              "Title": "ConnectionWindow.cpp",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.cpp",
+              "RelativeDocumentMoniker": "ConnectionWindow.cpp",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.cpp",
+              "RelativeToolTip": "ConnectionWindow.cpp",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAEgAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-14T10:44:01.844Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MainWindow.h",
-              "RelativeDocumentMoniker": "MainWindow.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "MainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-14T10:26:40.911Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MainWindow.cpp",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MainWindow.cpp",
-              "RelativeDocumentMoniker": "MainWindow.cpp",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\MainWindow.cpp",
-              "RelativeToolTip": "MainWindow.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-13T22:54:30.292Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ConnectionWindow.h",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.h",
+              "DocumentIndex": 2,
+              "Title": "ConnectionWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h",
               "RelativeDocumentMoniker": "ConnectionWindow.h",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\ConnectionWindow.h",
-              "RelativeToolTip": "ConnectionWindow.h",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAAMAAAAdAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "ConnectionWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-07-13T20:58:23.043Z"
+              "WhenOpened": "2025-07-14T11:03:01.149Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Main.cpp",
-              "DocumentMoniker": "E:\\Project\\Practica\\Operational-database-recovery\\src\\Main.cpp",
-              "RelativeDocumentMoniker": "Main.cpp",
-              "ToolTip": "E:\\Project\\Practica\\Operational-database-recovery\\src\\Main.cpp",
-              "RelativeToolTip": "Main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-07-14T00:35:35.717Z"
+              "DocumentIndex": 1,
+              "Title": "ConnectionWindow.h",
+              "DocumentMoniker": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h",
+              "RelativeDocumentMoniker": "ConnectionWindow.h",
+              "ToolTip": "C:\\Users\\maksi\\Developers\\C\u002B\u002B\\Operational-database-recovery\\src\\ConnectionWindow.h",
+              "RelativeToolTip": "ConnectionWindow.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-14T10:43:20.143Z",
+              "EditorCaption": ""
             }
           ]
         }

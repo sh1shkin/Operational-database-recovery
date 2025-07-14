@@ -1,67 +1,79 @@
-ï»¿#include "ConnectionWindow.h"
+#include "ConnectionWindow.h"
 #include "PartialMainWindow.h"
 #include <Windows.h>
+#include <fstream>
+#include <msclr/marshal_cppstd.h>
+using namespace System::IO;
 
 namespace src {
+    System::Void ConnectionWindow::CheckConnect_Click(System::Object^ sender, System::EventArgs^ e) {
+
+        OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
+        openFileDialog->Filter = "Config files (*.ini;*.conf;*.txt)|*.ini;*.conf;*.txt|All files (*.*)|*.*";
+        openFileDialog->FilterIndex = 1;
+        openFileDialog->RestoreDirectory = true;
+
+        if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+            String^ filePath = openFileDialog->FileName;
+
+            try {
+                array<String^>^ lines = File::ReadAllLines(filePath);
+
+                for each (String ^ line in lines) {
+                    line = line->Trim();
+                    if (line->StartsWith("#") || line->IndexOf("=") == -1)
+                        continue;
+
+                    array<String^>^ parts = line->Split('=');
+                    if (parts->Length == 2) {
+                        String^ key = parts[0]->Trim();
+                        String^ value = parts[1]->Trim();
+
+                        if (key == "dbms")
+                            nameDBMS = value;
+                        else if (key == "server")
+                            Server = value;
+                        else if (key == "database")
+                            DataBase = value;
+                        else if (key == "user")
+                            User = value;
+                    }
+                }
+            }
+            catch (Exception^ ex) {
+                MessageBox::Show("Îøèáêà ÷òåíèÿ ôàéëà: " + ex->Message);
+            }
+        }
+    }
     System::Void ConnectionWindow::connect1_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             String^ connectionString;
-            if (comboBox1->Text == "MS SQL") {
-                connectionString = "Driver={SQL Server};Server=" + TextBoxServer->Text +
-                    ";Database=" + TextBoxDataBase->Text +
-                    ";Uid=" + TextBoxUser->Text +
+            if (nameDBMS == "MS SQL") {
+                connectionString = "Driver={SQL Server};Server=" + Server +
+                    ";Database=" + DataBase +
+                    ";Uid=" + User +
                     ";Pwd=" + TextBoxPassword->Text + ";";
             }
-            else if (comboBox1->Text == "Oracle") {
-                connectionString = "Driver={Oracle in instantclient_23_8};DBQ=" + TextBoxServer->Text +
-                    "/" + TextBoxDataBase->Text +
-                    ";Uid=" + TextBoxUser->Text +
+            else if (nameDBMS == "Oracle") {
+                connectionString = "Driver={Oracle in instantclient_23_8};DBQ=" + Server +
+                    "/" + DataBase +
+                    ";Uid=" + User +
                     ";Pwd=" + TextBoxPassword->Text + ";";
             }
             else {
-                MessageTextConnect->Text = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…!";
+                MessageTextConnect->Text = "Âûáåðèòå òèï áàçû äàííûõ!";
                 return;
             }
 
             db_connect = gcnew OdbcConnection(connectionString);
             db_connect->Open();
-            MessageTextConnect->Text = "Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾!";
-            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, comboBox1->Text, TextBoxDataBase->Text, TextBoxUser->Text);
+            MessageTextConnect->Text = "Ñîåäèíåíèå óñïåøíî óñòàíîâëåíî!";
+            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User);
             form2->Show();
-            this->Hide();
+            //this->Hide();
         }
         catch (Exception^ ex) {
-            MessageTextConnect->Text = "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ: " + ex->Message;
-        }
-    }
-
-    System::Void ConnectionWindow::CheckConnect_Click(System::Object^ sender, System::EventArgs^ e) {
-        try {
-            String^ connectionString;
-            if (comboBox1->Text == "MS SQL") {
-                connectionString = "Driver={SQL Server};Server=" + TextBoxServer->Text +
-                    ";Database=" + TextBoxDataBase->Text +
-                    ";Uid=" + TextBoxUser->Text +
-                    ";Pwd=" + TextBoxPassword->Text + ";";
-            }
-            else if (comboBox1->Text == "Oracle") {
-                connectionString = "Driver={Oracle in instantclient_23_8};DBQ=" + TextBoxServer->Text +
-                    "/" + TextBoxDataBase->Text +
-                    ";Uid=" + TextBoxUser->Text +
-                    ";Pwd=" + TextBoxPassword->Text + ";";
-            }
-            else {
-                MessageTextConnect->Text = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…!";
-                return;
-            }
-
-            OdbcConnection^ testConnection = gcnew OdbcConnection(connectionString);
-            testConnection->Open();
-            MessageTextConnect->Text = "Ð¢ÐµÑÑ‚Ð¾Ð²Ð¾Ðµ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾!";
-            testConnection->Close();
-        }
-        catch (Exception^ ex) {
-            MessageTextConnect->Text = "ÐžÑˆÐ¸Ð±ÐºÐ° Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ: " + ex->Message;
+            MessageTextConnect->Text = "Îøèáêà ïîäêëþ÷åíèÿ: " + ex->Message;
         }
     }
 }
