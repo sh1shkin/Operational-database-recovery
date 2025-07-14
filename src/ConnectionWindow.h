@@ -15,20 +15,24 @@ namespace src {
 	public ref class ConnectionWindow : public System::Windows::Forms::Form
 	{
 	private:
+		bool isDragging; // Флаг, указывающий, выполняется ли перетаскивание
+		Point^ dragStartPoint; // Начальная точка перетаскивания
 		OdbcConnection^ db_connect;
 		String^ nameDBMS;
 		String^ Server;
 		String^ DataBase;
-		String^ User;
+	private: System::Windows::Forms::Button^ btnClosedCW;
+		   String^ User;
 	public:
 		ConnectionWindow(void)
 		{
 			InitializeComponent();
+			isDragging = false;
+			dragStartPoint = gcnew Point(0, 0);
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
-		
 		
 		/*public: void ClearFields() {
 			comboBox1->SelectedIndex = -1;
@@ -95,6 +99,7 @@ namespace src {
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->MessageTextConnect = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->btnClosedCW = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -115,7 +120,7 @@ namespace src {
 			this->panel1->Controls->Add(this->labelPassword);
 			this->panel1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->panel1->Location = System::Drawing::Point(96, 87);
+			this->panel1->Location = System::Drawing::Point(99, 120);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(594, 316);
 			this->panel1->TabIndex = 0;
@@ -240,9 +245,9 @@ namespace src {
 			this->panel2->Controls->Add(this->label3);
 			this->panel2->Controls->Add(this->label1);
 			this->panel2->Controls->Add(this->pictureBox2);
-			this->panel2->Location = System::Drawing::Point(0, -1);
+			this->panel2->Location = System::Drawing::Point(0, 45);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(784, 69);
+			this->panel2->Size = System::Drawing::Size(800, 69);
 			this->panel2->TabIndex = 1;
 			// 
 			// label3
@@ -265,10 +270,10 @@ namespace src {
 			this->panel3->BackColor = System::Drawing::Color::White;
 			this->panel3->Controls->Add(this->MessageTextConnect);
 			this->panel3->Controls->Add(this->label2);
-			this->panel3->Location = System::Drawing::Point(0, 409);
+			this->panel3->Location = System::Drawing::Point(0, 442);
 			this->panel3->MaximumSize = System::Drawing::Size(1000, 400);
 			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(784, 70);
+			this->panel3->Size = System::Drawing::Size(800, 70);
 			this->panel3->TabIndex = 2;
 			// 
 			// MessageTextConnect
@@ -292,22 +297,46 @@ namespace src {
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Статус:";
 			// 
+			// btnClosedCW
+			// 
+			this->btnClosedCW->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->btnClosedCW->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->btnClosedCW->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
+				static_cast<System::Int32>(static_cast<System::Byte>(246)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->btnClosedCW->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClosedCW->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
+			this->btnClosedCW->ForeColor = System::Drawing::Color::White;
+			this->btnClosedCW->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClosedCW.Image")));
+			this->btnClosedCW->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->btnClosedCW->Location = System::Drawing::Point(756, -1);
+			this->btnClosedCW->Name = L"btnClosedCW";
+			this->btnClosedCW->Size = System::Drawing::Size(41, 40);
+			this->btnClosedCW->TabIndex = 6;
+			this->btnClosedCW->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->btnClosedCW->UseVisualStyleBackColor = false;
+			this->btnClosedCW->Click += gcnew System::EventHandler(this, &ConnectionWindow::btnClosedCW_Click);
+			// 
 			// ConnectionWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(249)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
 				static_cast<System::Int32>(static_cast<System::Byte>(249)));
-			this->ClientSize = System::Drawing::Size(784, 479);
+			this->ClientSize = System::Drawing::Size(800, 518);
+			this->Controls->Add(this->btnClosedCW);
 			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(800, 518);
 			this->MinimumSize = System::Drawing::Size(800, 518);
 			this->Name = L"ConnectionWindow";
 			this->Text = L"Operational-database-recovery";
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &ConnectionWindow::ConnectionWindow_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &ConnectionWindow::ConnectionWindow_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &ConnectionWindow::ConnectionWindow_MouseUp);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -323,6 +352,9 @@ namespace src {
 		private: System::Void connect1_Click(System::Object^, System::EventArgs^);
 		private: System::Void CheckConnect_Click(System::Object^, System::EventArgs^);
 		private: System::Void ConnectionWindow_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
-
+		private: System::Void btnClosedCW_Click(System::Object^ sender, System::EventArgs^ e);
+		private: System::Void ConnectionWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+		private: System::Void ConnectionWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+		private: System::Void ConnectionWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 };
 }

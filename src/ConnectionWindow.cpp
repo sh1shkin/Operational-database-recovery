@@ -84,6 +84,27 @@ namespace src {
         }
         Application::Exit(); // «авершаем приложение при закрытии формы
     }
+    System::Void ConnectionWindow::btnClosedCW_Click(System::Object^ sender, System::EventArgs^ e) {
+        if (this != nullptr) {
+            this->Close();
+        }
+    }
+    System::Void ConnectionWindow::ConnectionWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+        if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+            isDragging = true;
+            dragStartPoint = gcnew Point(e->X, e->Y);
+        }
+    }
 
+    System::Void ConnectionWindow::ConnectionWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+        if (isDragging) {
+            Point^ p = PointToScreen(Point(e->X, e->Y));
+            this->Location = Point(p->X - dragStartPoint->X, p->Y - dragStartPoint->Y);
+        }
+    }
+
+    System::Void ConnectionWindow::ConnectionWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+        isDragging = false;
+    }
 
 }

@@ -1,4 +1,4 @@
-п»ї#pragma once
+#pragma once
 #include "ConnectionWindow.h"
 
 namespace src {
@@ -12,26 +12,23 @@ namespace src {
     using namespace System::Collections::Generic;
 
     /// <summary>
-    /// РЎРІРѕРґРєР° РґР»СЏ PartialMainWindow
+    /// Сводка для PartialMainWindow
     /// </summary>
     //ref class ConnectionWindow;
     public ref class PartialMainWindow : public System::Windows::Forms::Form
     {
     private:
-        bool isDragging; // Р¤Р»Р°Рі, СѓРєР°Р·С‹РІР°СЋС‰РёР№, РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ Р»Рё РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёРµ
-        Point^ dragStartPoint; // РќР°С‡Р°Р»СЊРЅР°СЏ С‚РѕС‡РєР° РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ
+        bool isDragging; // Флаг, указывающий, выполняется ли перетаскивание
+        Point^ dragStartPoint; // Начальная точка перетаскивания
         ConnectionWindow^ connectForm;
-        OdbcConnection^ db_connect1; // РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB1
-        OdbcConnection^ db_connect2; // РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB2
+        OdbcConnection^ db_connect1; // Подключение к DB1
+        OdbcConnection^ db_connect2; // Подключение к DB2
         array<array<String^>^>^ queryParams;
         array<array<String^>^>^ queryParams1;
         OdbcConnection^ connect;
         String^ nameDBMS;
         String^ nameDB;
     private: System::Windows::Forms::Button^ btnClosed;
-
-
-
            String^ nameUser;
     public:
         PartialMainWindow(void)
@@ -59,7 +56,7 @@ namespace src {
 
     protected:
         /// <summary>
-        /// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
+        /// Освободить все используемые ресурсы.
         /// </summary>
         ~PartialMainWindow()
         {
@@ -95,19 +92,19 @@ namespace src {
     private: System::Windows::Forms::Panel^ panel1;
     private: System::Windows::Forms::Panel^ panel2;
     private: System::Windows::Forms::Label^ lblStatusTxt;
-    private: System::Windows::Forms::TextBox^ TextBoxPassword; // РџРѕР»Рµ РґР»СЏ РІРІРѕРґР° РїР°СЂРѕР»СЏ
-    private: System::Windows::Forms::Label^ lblPassword; // РњРµС‚РєР° РґР»СЏ РїРѕР»СЏ РїР°СЂРѕР»СЏ
+    private: System::Windows::Forms::TextBox^ TextBoxPassword; // Поле для ввода пароля
+    private: System::Windows::Forms::Label^ lblPassword; // Метка для поля пароля
 
     private:
         /// <summary>
-        /// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
+        /// Обязательная переменная конструктора.
         /// </summary>
         System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
         /// <summary>
-        /// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
-        /// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         void InitializeComponent(void)
         {
@@ -183,9 +180,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(138)));
             this->lblTitle->Location = System::Drawing::Point(54, 10);
             this->lblTitle->Name = L"lblTitle";
-            this->lblTitle->Size = System::Drawing::Size(442, 41);
+            this->lblTitle->Size = System::Drawing::Size(359, 32);
             this->lblTitle->TabIndex = 1;
-            this->lblTitle->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ ID2 РґР»СЏ СЂСѓР»РѕРЅРѕРІ";
+            this->lblTitle->Text = L"Управление ID2 для рулонов";
             // 
             // lblConnectionInfo
             // 
@@ -195,9 +192,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(78)), static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblConnectionInfo->Location = System::Drawing::Point(58, 46);
             this->lblConnectionInfo->Name = L"lblConnectionInfo";
-            this->lblConnectionInfo->Size = System::Drawing::Size(296, 23);
+            this->lblConnectionInfo->Size = System::Drawing::Size(245, 19);
             this->lblConnectionInfo->TabIndex = 2;
-            this->lblConnectionInfo->Text = L"Р‘Р”1: MSSQL: AEIP6L2S\\LEVEL2/NLMK";
+            this->lblConnectionInfo->Text = L"БД1: MSSQL: AEIP6L2S\\LEVEL2/NLMK";
             // 
             // btnDisconnect
             // 
@@ -217,7 +214,7 @@ namespace src {
             this->btnDisconnect->Name = L"btnDisconnect";
             this->btnDisconnect->Size = System::Drawing::Size(150, 40);
             this->btnDisconnect->TabIndex = 3;
-            this->btnDisconnect->Text = L"  РћС‚РєР»СЋС‡РёС‚СЊСЃСЏ";
+            this->btnDisconnect->Text = L"  Отключиться";
             this->btnDisconnect->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnDisconnect->UseVisualStyleBackColor = false;
             this->btnDisconnect->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnDisconnect_Click);
@@ -258,9 +255,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(138)));
             this->lblID2Title->Location = System::Drawing::Point(53, 15);
             this->lblID2Title->Name = L"lblID2Title";
-            this->lblID2Title->Size = System::Drawing::Size(202, 32);
+            this->lblID2Title->Size = System::Drawing::Size(159, 25);
             this->lblID2Title->TabIndex = 5;
-            this->lblID2Title->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ ID2";
+            this->lblID2Title->Text = L"Управление ID2";
             // 
             // lblID2In
             // 
@@ -270,9 +267,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblID2In->Location = System::Drawing::Point(20, 50);
             this->lblID2In->Name = L"lblID2In";
-            this->lblID2In->Size = System::Drawing::Size(68, 20);
+            this->lblID2In->Size = System::Drawing::Size(52, 15);
             this->lblID2In->TabIndex = 6;
-            this->lblID2In->Text = L"ID2 РІС…РѕРґ";
+            this->lblID2In->Text = L"ID2 вход";
             // 
             // txtID2In
             // 
@@ -283,7 +280,7 @@ namespace src {
             this->txtID2In->Location = System::Drawing::Point(31, 75);
             this->txtID2In->Name = L"txtID2In";
             this->txtID2In->ReadOnly = true;
-            this->txtID2In->Size = System::Drawing::Size(235, 24);
+            this->txtID2In->Size = System::Drawing::Size(235, 19);
             this->txtID2In->TabIndex = 7;
             this->txtID2In->Text = L"21312312";
             // 
@@ -295,9 +292,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblID2Out->Location = System::Drawing::Point(290, 50);
             this->lblID2Out->Name = L"lblID2Out";
-            this->lblID2Out->Size = System::Drawing::Size(79, 20);
+            this->lblID2Out->Size = System::Drawing::Size(61, 15);
             this->lblID2Out->TabIndex = 8;
-            this->lblID2Out->Text = L"ID2 РІС‹С…РѕРґ";
+            this->lblID2Out->Text = L"ID2 выход";
             // 
             // txtID2Out
             // 
@@ -308,7 +305,7 @@ namespace src {
             this->txtID2Out->Location = System::Drawing::Point(303, 75);
             this->txtID2Out->Name = L"txtID2Out";
             this->txtID2Out->ReadOnly = true;
-            this->txtID2Out->Size = System::Drawing::Size(233, 24);
+            this->txtID2Out->Size = System::Drawing::Size(233, 19);
             this->txtID2Out->TabIndex = 9;
             this->txtID2Out->Text = L"1232132131";
             // 
@@ -328,7 +325,7 @@ namespace src {
             this->btnGetID->Name = L"btnGetID";
             this->btnGetID->Size = System::Drawing::Size(280, 30);
             this->btnGetID->TabIndex = 10;
-            this->btnGetID->Text = L"  РџРѕР»СѓС‡РёС‚СЊ ID РёР· Р‘Р”1";
+            this->btnGetID->Text = L"  Получить ID из БД1";
             this->btnGetID->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnGetID->UseVisualStyleBackColor = false;
             this->btnGetID->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnGetID_Click);
@@ -364,7 +361,7 @@ namespace src {
             this->panelConnectDB2->Controls->Add(this->TextBoxPassword);
             this->panelConnectDB2->Location = System::Drawing::Point(24, 264);
             this->panelConnectDB2->Name = L"panelConnectDB2";
-            this->panelConnectDB2->Size = System::Drawing::Size(860, 157);
+            this->panelConnectDB2->Size = System::Drawing::Size(860, 190);
             this->panelConnectDB2->TabIndex = 29;
             // 
             // pictureBox2
@@ -384,9 +381,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(58)), static_cast<System::Int32>(static_cast<System::Byte>(138)));
             this->lblConnectDB2Title->Location = System::Drawing::Point(340, 45);
             this->lblConnectDB2Title->Name = L"lblConnectDB2Title";
-            this->lblConnectDB2Title->Size = System::Drawing::Size(215, 28);
+            this->lblConnectDB2Title->Size = System::Drawing::Size(171, 21);
             this->lblConnectDB2Title->TabIndex = 30;
-            this->lblConnectDB2Title->Text = L"РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”2";
+            this->lblConnectDB2Title->Text = L"Подключение к БД2";
             // 
             // lblConnectDB2Desc
             // 
@@ -396,10 +393,10 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(78)), static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblConnectDB2Desc->Location = System::Drawing::Point(155, 73);
             this->lblConnectDB2Desc->Name = L"lblConnectDB2Desc";
-            this->lblConnectDB2Desc->Size = System::Drawing::Size(724, 20);
+            this->lblConnectDB2Desc->Size = System::Drawing::Size(566, 15);
             this->lblConnectDB2Desc->TabIndex = 31;
-            this->lblConnectDB2Desc->Text = L"Р”Р»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ Р·Р°РїРёСЃРµР№ Рё РІС‹РїРѕР»РЅРµРЅРёСЏ РѕРїРµСЂР°С†РёР№ РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ РєРѕ РІС‚РѕСЂРѕР№ Р±Р°"
-                L"Р·Рµ РґР°РЅРЅС‹С…";
+            this->lblConnectDB2Desc->Text = L"Для добавления записей и выполнения операций необходимо подключиться ко второй ба"
+                L"зе данных";
             // 
             // btnConnectDB2
             // 
@@ -413,12 +410,12 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->btnConnectDB2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnConnectDB2.Image")));
             this->btnConnectDB2->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-            this->btnConnectDB2->Location = System::Drawing::Point(330, 100);
+            this->btnConnectDB2->Location = System::Drawing::Point(326, 145);
             this->btnConnectDB2->Name = L"btnConnectDB2";
             this->btnConnectDB2->Padding = System::Windows::Forms::Padding(3);
             this->btnConnectDB2->Size = System::Drawing::Size(200, 40);
             this->btnConnectDB2->TabIndex = 32;
-            this->btnConnectDB2->Text = L"  РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє Р‘Р”2";
+            this->btnConnectDB2->Text = L"  Подключиться к БД2";
             this->btnConnectDB2->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnConnectDB2->UseVisualStyleBackColor = false;
             this->btnConnectDB2->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnConnectDB2_Click);
@@ -426,18 +423,22 @@ namespace src {
             // lblPassword
             // 
             this->lblPassword->AutoSize = true;
-            this->lblPassword->Location = System::Drawing::Point(20, 50);
+            this->lblPassword->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(204)));
+            this->lblPassword->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
+                static_cast<System::Int32>(static_cast<System::Byte>(216)));
+            this->lblPassword->Location = System::Drawing::Point(161, 99);
             this->lblPassword->Name = L"lblPassword";
-            this->lblPassword->Size = System::Drawing::Size(59, 16);
+            this->lblPassword->Size = System::Drawing::Size(73, 21);
             this->lblPassword->TabIndex = 34;
-            this->lblPassword->Text = L"РџР°СЂРѕР»СЊ:";
+            this->lblPassword->Text = L"Пароль:";
             // 
             // TextBoxPassword
             // 
-            this->TextBoxPassword->Location = System::Drawing::Point(80, 50);
+            this->TextBoxPassword->Location = System::Drawing::Point(240, 102);
             this->TextBoxPassword->Name = L"TextBoxPassword";
             this->TextBoxPassword->PasswordChar = '*';
-            this->TextBoxPassword->Size = System::Drawing::Size(200, 22);
+            this->TextBoxPassword->Size = System::Drawing::Size(365, 20);
             this->TextBoxPassword->TabIndex = 35;
             // 
             // panelLogs
@@ -447,7 +448,7 @@ namespace src {
             this->panelLogs->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
             this->panelLogs->Controls->Add(this->lblLogsTitle);
             this->panelLogs->Controls->Add(this->lstLogs);
-            this->panelLogs->Location = System::Drawing::Point(23, 427);
+            this->panelLogs->Location = System::Drawing::Point(23, 460);
             this->panelLogs->Name = L"panelLogs";
             this->panelLogs->Size = System::Drawing::Size(860, 229);
             this->panelLogs->TabIndex = 33;
@@ -460,9 +461,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(138)));
             this->lblLogsTitle->Location = System::Drawing::Point(16, 9);
             this->lblLogsTitle->Name = L"lblLogsTitle";
-            this->lblLogsTitle->Size = System::Drawing::Size(163, 28);
+            this->lblLogsTitle->Size = System::Drawing::Size(131, 21);
             this->lblLogsTitle->TabIndex = 34;
-            this->lblLogsTitle->Text = L"Р›РѕРіРё РѕРїРµСЂР°С†РёР№";
+            this->lblLogsTitle->Text = L"Логи операций";
             // 
             // lstLogs
             // 
@@ -471,11 +472,11 @@ namespace src {
             this->lstLogs->Font = (gcnew System::Drawing::Font(L"Consolas", 9));
             this->lstLogs->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(22)), static_cast<System::Int32>(static_cast<System::Byte>(163)),
                 static_cast<System::Int32>(static_cast<System::Byte>(74)));
-            this->lstLogs->ItemHeight = 18;
-            this->lstLogs->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"11.07.2025 16:19: РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”1 (MSSQL) СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ" });
+            this->lstLogs->ItemHeight = 14;
+            this->lstLogs->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"11.07.2025 16:19: Подключение к БД1 (MSSQL) успешно установлено" });
             this->lstLogs->Location = System::Drawing::Point(15, 42);
             this->lstLogs->Name = L"lstLogs";
-            this->lstLogs->Size = System::Drawing::Size(820, 166);
+            this->lstLogs->Size = System::Drawing::Size(820, 158);
             this->lstLogs->TabIndex = 36;
             // 
             // footerPanel
@@ -486,7 +487,7 @@ namespace src {
             this->footerPanel->Controls->Add(this->lblStatusTxt);
             this->footerPanel->Controls->Add(this->lblDB1Status);
             this->footerPanel->Controls->Add(this->lblDB2Status);
-            this->footerPanel->Location = System::Drawing::Point(23, 662);
+            this->footerPanel->Location = System::Drawing::Point(24, 695);
             this->footerPanel->Name = L"footerPanel";
             this->footerPanel->Size = System::Drawing::Size(860, 40);
             this->footerPanel->TabIndex = 37;
@@ -500,9 +501,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(175)));
             this->lblStatusTxt->Location = System::Drawing::Point(20, 10);
             this->lblStatusTxt->Name = L"lblStatusTxt";
-            this->lblStatusTxt->Size = System::Drawing::Size(55, 20);
+            this->lblStatusTxt->Size = System::Drawing::Size(46, 15);
             this->lblStatusTxt->TabIndex = 40;
-            this->lblStatusTxt->Text = L"РЎС‚Р°С‚СѓСЃ:";
+            this->lblStatusTxt->Text = L"Статус:";
             // 
             // lblDB1Status
             // 
@@ -512,9 +513,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(74)));
             this->lblDB1Status->Location = System::Drawing::Point(66, 10);
             this->lblDB1Status->Name = L"lblDB1Status";
-            this->lblDB1Status->Size = System::Drawing::Size(124, 19);
+            this->lblDB1Status->Size = System::Drawing::Size(102, 13);
             this->lblDB1Status->TabIndex = 38;
-            this->lblDB1Status->Text = L"Р‘Р”1: РџРѕРґРєР»СЋС‡РµРЅРѕ";
+            this->lblDB1Status->Text = L"БД1: Подключено";
             // 
             // lblDB2Status
             // 
@@ -524,9 +525,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(38)));
             this->lblDB2Status->Location = System::Drawing::Point(174, 10);
             this->lblDB2Status->Name = L"lblDB2Status";
-            this->lblDB2Status->Size = System::Drawing::Size(115, 19);
+            this->lblDB2Status->Size = System::Drawing::Size(95, 13);
             this->lblDB2Status->TabIndex = 39;
-            this->lblDB2Status->Text = L"Р‘Р”2: РћС‚РєР»СЋС‡РµРЅРѕ";
+            this->lblDB2Status->Text = L"БД2: Отключено";
             // 
             // btnClosed
             // 
@@ -553,7 +554,7 @@ namespace src {
             this->AutoScroll = true;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->ClientSize = System::Drawing::Size(870, 720);
+            this->ClientSize = System::Drawing::Size(870, 750);
             this->Controls->Add(this->btnClosed);
             this->Controls->Add(this->headerPanel);
             this->Controls->Add(this->panelID2);
@@ -594,5 +595,7 @@ namespace src {
             System::Void PartialMainWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
             System::Void PartialMainWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
             System::Void PartialMainWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+
+
 };
 }
