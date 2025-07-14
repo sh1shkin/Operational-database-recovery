@@ -1,4 +1,4 @@
-п»ї#include "ConnectionWindow.h"
+#include "ConnectionWindow.h"
 #include "PartialMainWindow.h"
 #include <Windows.h>
 #include <fstream>
@@ -41,7 +41,7 @@ namespace src {
                 }
             }
             catch (Exception^ ex) {
-                MessageBox::Show("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°: " + ex->Message);
+                MessageBox::Show("Ошибка чтения файла: " + ex->Message);
             }
         }
     }
@@ -61,20 +61,20 @@ namespace src {
                     ";Pwd=" + TextBoxPassword->Text + ";";
             }
             else {
-                MessageTextConnect->Text = "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї Р±Р°Р·С‹ РґР°РЅРЅС‹С…!";
+                MessageTextConnect->Text = "Выберите тип базы данных!";
                 return;
             }
 
             db_connect = gcnew OdbcConnection(connectionString);
             db_connect->Open();
-            MessageTextConnect->Text = "РЎРѕРµРґРёРЅРµРЅРёРµ СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ!";
+            MessageTextConnect->Text = "Соединение успешно установлено!";
 
-            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User);
+            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User, this);
             form2->Show();
             this->Hide();
         }
         catch (Exception^ ex) {
-            MessageTextConnect->Text = "РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ: " + ex->Message;
+            MessageTextConnect->Text = "Ошибка подключения: " + ex->Message;
         }
     }
 
@@ -82,7 +82,7 @@ namespace src {
         if (db_connect != nullptr && db_connect->State == ConnectionState::Open) {
             db_connect->Close();
         }
-        Application::Exit(); // Р—Р°РІРµСЂС€Р°РµРј РїСЂРёР»РѕР¶РµРЅРёРµ РїСЂРё Р·Р°РєСЂС‹С‚РёРё С„РѕСЂРјС‹
+        Application::Exit(); // Завершаем приложение при закрытии формы
     }
 
 
