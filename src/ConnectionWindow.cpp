@@ -68,13 +68,22 @@ namespace src {
             db_connect = gcnew OdbcConnection(connectionString);
             db_connect->Open();
             MessageTextConnect->Text = "Соединение успешно установлено!";
+
             PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User);
             form2->Show();
-            //this->Hide();
+
+            this->Hide();
         }
         catch (Exception^ ex) {
             MessageTextConnect->Text = "Ошибка подключения: " + ex->Message;
         }
+    }
+
+    System::Void ConnectionWindow::ConnectionWindow_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+        if (db_connect != nullptr && db_connect->State == ConnectionState::Open) {
+            db_connect->Close();
+        }
+        Application::Exit(); // Завершаем приложение при закрытии формы
     }
 
 

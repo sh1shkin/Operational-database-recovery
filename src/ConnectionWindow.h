@@ -18,9 +18,9 @@ namespace src {
 	private:
 		OdbcConnection^ db_connect;
 		String^ nameDBMS;
-		String^ Server = nullptr;
-		String^ DataBase = nullptr;
-		String^ User = nullptr;
+		String^ Server;
+		String^ DataBase;
+		String^ User;
 	public:
 		ConnectionWindow(void)
 		{
@@ -47,17 +47,12 @@ namespace src {
 		/// </summary>
 		~ConnectionWindow()
 		{
-			if (components)
-			{
-				delete components;
-			}
+			if (components) delete components;
+			if (db_connect != nullptr && db_connect->State == ConnectionState::Open)
+				db_connect->Close();
 		}
-	private: System::Windows::Forms::Panel^ panel1;
-
-	
+	private: System::Windows::Forms::Panel^ panel1;	
 	protected:
-
-
 
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ labelPassword;
@@ -326,8 +321,9 @@ namespace src {
 
 		}
 #pragma endregion
-		private:System::Void connect1_Click(System::Object^, System::EventArgs^);
+		private: System::Void connect1_Click(System::Object^, System::EventArgs^);
 		private: System::Void CheckConnect_Click(System::Object^, System::EventArgs^);
+		private: System::Void ConnectionWindow_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 
 };
 }

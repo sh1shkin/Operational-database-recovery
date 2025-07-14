@@ -16,13 +16,14 @@ namespace src {
     public ref class PartialMainWindow : public System::Windows::Forms::Form
     {
     private:
+        OdbcConnection^ db_connect1; // Подключение к DB1
+        OdbcConnection^ db_connect2; // Подключение к DB2
         array<array<String^>^>^ queryParams;
         array<array<String^>^>^ queryParams1;
         OdbcConnection^ connect;
-        String^ typeString;
+        String^ nameDBMS;
         String^ nameDB;
         String^ nameUser;
-
     public:
         PartialMainWindow(void)
         {
@@ -30,7 +31,7 @@ namespace src {
         }
 
         PartialMainWindow(OdbcConnection^ connection, String^ typeStr, String^ dbName, String^ userName)
-            : connect(connection), typeString(typeStr), nameDB(dbName), nameUser(userName)
+            : db_connect1(connection), nameDBMS(typeStr), nameDB(dbName), nameUser(userName), db_connect2(nullptr)
         {
             queryParams = gcnew array<array<String^>^>(2) {
                 gcnew array<String^> { "id2in", "THICKNESS", "WIDTH", "SIS_COIL_STATUS" },
@@ -41,7 +42,6 @@ namespace src {
                     gcnew array<String^> { "soc_id2", "SOC_THICKNESS", "SOC_WIDTH", "SOC_SOS_COIL_STATUS" }
             };
             InitializeComponent();
-            // Инициализация формы с переданными параметрами
             lblConnectionInfo->Text = String::Format("DB1: {0}: {1}/{2}", typeStr, dbName, userName);
         }
 
@@ -51,14 +51,9 @@ namespace src {
         /// </summary>
         ~PartialMainWindow()
         {
-            if (components)
-            {
-                delete components;
-            }
-            if (connect != nullptr && connect->State == ConnectionState::Open)
-            {
-                connect->Close();
-            }
+            if (components) delete components;
+            if (db_connect1 != nullptr && db_connect1->State == ConnectionState::Open) db_connect1->Close();
+            if (db_connect2 != nullptr && db_connect2->State == ConnectionState::Open) db_connect2->Close();
         }
 
     private: System::Windows::Forms::Panel^ headerPanel;
@@ -88,6 +83,8 @@ namespace src {
     private: System::Windows::Forms::Panel^ panel1;
     private: System::Windows::Forms::Panel^ panel2;
     private: System::Windows::Forms::Label^ lblStatusTxt;
+    private: System::Windows::Forms::TextBox^ TextBoxPassword; // Поле для ввода пароля
+    private: System::Windows::Forms::Label^ lblPassword; // Метка для поля пароля
 
     private:
         /// <summary>
@@ -123,6 +120,8 @@ namespace src {
             this->lblConnectDB2Title = (gcnew System::Windows::Forms::Label());
             this->lblConnectDB2Desc = (gcnew System::Windows::Forms::Label());
             this->btnConnectDB2 = (gcnew System::Windows::Forms::Button());
+            this->lblPassword = (gcnew System::Windows::Forms::Label());
+            this->TextBoxPassword = (gcnew System::Windows::Forms::TextBox());
             this->panelLogs = (gcnew System::Windows::Forms::Panel());
             this->lblLogsTitle = (gcnew System::Windows::Forms::Label());
             this->lstLogs = (gcnew System::Windows::Forms::ListBox());
@@ -348,6 +347,8 @@ namespace src {
             this->panelConnectDB2->Controls->Add(this->lblConnectDB2Title);
             this->panelConnectDB2->Controls->Add(this->lblConnectDB2Desc);
             this->panelConnectDB2->Controls->Add(this->btnConnectDB2);
+            this->panelConnectDB2->Controls->Add(this->lblPassword);
+            this->panelConnectDB2->Controls->Add(this->TextBoxPassword);
             this->panelConnectDB2->Location = System::Drawing::Point(10, 224);
             this->panelConnectDB2->Name = L"panelConnectDB2";
             this->panelConnectDB2->Size = System::Drawing::Size(860, 157);
@@ -408,6 +409,23 @@ namespace src {
             this->btnConnectDB2->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnConnectDB2->UseVisualStyleBackColor = false;
             this->btnConnectDB2->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnConnectDB2_Click);
+            // 
+            // lblPassword
+            // 
+            this->lblPassword->AutoSize = true;
+            this->lblPassword->Location = System::Drawing::Point(20, 50);
+            this->lblPassword->Name = L"lblPassword";
+            this->lblPassword->Size = System::Drawing::Size(59, 16);
+            this->lblPassword->TabIndex = 34;
+            this->lblPassword->Text = L"Пароль:";
+            // 
+            // TextBoxPassword
+            // 
+            this->TextBoxPassword->Location = System::Drawing::Point(80, 50);
+            this->TextBoxPassword->Name = L"TextBoxPassword";
+            this->TextBoxPassword->PasswordChar = '*';
+            this->TextBoxPassword->Size = System::Drawing::Size(200, 22);
+            this->TextBoxPassword->TabIndex = 35;
             // 
             // panelLogs
             // 
@@ -533,5 +551,6 @@ namespace src {
         private:System::Void btnDisconnect_Click(System::Object^, System::EventArgs^);
         private:System::Void btnConnectDB2_Click(System::Object^, System::EventArgs^);
         private:System::Void btnGetID_Click(System::Object^, System::EventArgs^);
+        private: System::Void PartialMainWindow_FormClosing(System::Object^, System::Windows::Forms::FormClosingEventArgs^);
 };
 }
