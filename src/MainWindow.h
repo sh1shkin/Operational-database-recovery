@@ -31,6 +31,7 @@ namespace src {
     private: System::Windows::Forms::Button^ btnClosedMW;
 
            String^ nameUser2;
+
     public:
         MainWindow(OdbcConnection^ connection1, OdbcConnection^ connection2, String^ dbms1, String^ dbName1, String^ userName1,
             String^ dbms2, String^ dbName2, String^ userName2, PartialMainWindow^ connectForm1, ConnectionWindow^ connectForm2)

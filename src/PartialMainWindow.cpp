@@ -86,7 +86,6 @@ namespace src {
                 lstLogs->Items->Add(DateTime::Now.ToString() + ": Подключение к БД2 (" + nameDBMS2 + ") успешно установлено");
                 lblDB2Status->Text = "БД2: Подключено";
                 lblDB2Status->ForeColor = System::Drawing::Color::FromArgb(22, 163, 74);
-
                 // Переход к MainWindow
                 MainWindow^ mainWindow = gcnew MainWindow(db_connect1, db_connect2, nameDBMS, nameDB, nameUser, nameDBMS2, DataBase2, User2, this, connectForm);
                 mainWindow->Show();

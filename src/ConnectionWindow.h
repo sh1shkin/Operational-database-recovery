@@ -9,7 +9,7 @@ namespace src {
 	using namespace System::Drawing;
 	using namespace System::Data::SqlClient;
 	using namespace System::Data::Odbc;
-		/// <summary>
+	/// <summary>
 	/// Сводка для MyForm
 	/// </summary>
 	public ref class ConnectionWindow : public System::Windows::Forms::Form

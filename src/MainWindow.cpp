@@ -35,4 +35,5 @@ namespace src {
     System::Void MainWindow::MainWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
         isDragging = false;
     }
+
 }

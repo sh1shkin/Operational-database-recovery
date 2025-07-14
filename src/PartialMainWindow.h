@@ -10,7 +10,6 @@ namespace src {
     using namespace System::Drawing;
     using namespace System::Data::Odbc;
     using namespace System::Collections::Generic;
-
     /// <summary>
     /// Сводка для PartialMainWindow
     /// </summary>

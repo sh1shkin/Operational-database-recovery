@@ -64,7 +64,6 @@ namespace src {
                 MessageTextConnect->Text = "Выберите тип базы данных!";
                 return;
             }
-
             db_connect = gcnew OdbcConnection(connectionString);
             db_connect->Open();
             MessageTextConnect->Text = "Соединение успешно установлено!";
