@@ -1,4 +1,4 @@
-#include "PartialMainWindow.h"
+ï»¿#include "PartialMainWindow.h"
 #include "ConnectionWindow.h"
 #include "MainWindow.h"
 #include <Windows.h>
@@ -49,17 +49,17 @@ namespace src {
                     }
                 }
 
-                // Ïðîâåðêà, ÷òî âñå ïàðàìåòðû çàãðóæåíû
+                // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°, Ñ‡Ñ‚Ð¾ Ð²ÑÐµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð·Ð°Ð³Ñ€ÑƒÐ¶ÐµÐ½Ñ‹
                 if (String::IsNullOrEmpty(nameDBMS2) || String::IsNullOrEmpty(Server2) ||
                     String::IsNullOrEmpty(DataBase2) || String::IsNullOrEmpty(User2)) {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Íå âñå ïàðàìåòðû êîíôèãóðàöèè çàãðóæåíû!");
+                    lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐÐµ Ð²ÑÐµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸ Ð·Ð°Ð³Ñ€ÑƒÐ¶ÐµÐ½Ñ‹!");
                     return;
                 }
 
-                // Ïðîâåðêà ïàðîëÿ
+                // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð¾Ð»Ñ
                 String^ password = TextBoxPassword->Text;
                 if (String::IsNullOrEmpty(password)) {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Ïàðîëü íå ââåäåí!");
+                    lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ð½Ðµ Ð²Ð²ÐµÐ´ÐµÐ½!");
                     return;
                 }
 
@@ -77,23 +77,23 @@ namespace src {
                         ";Pwd=" + password + ";";
                 }
                 else {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Âûáåðèòå òèï áàçû äàííûõ äëÿ DB2!");
+                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð»Ñ DB2!");
                     return;
                 }
 
                 db_connect2 = gcnew OdbcConnection(connectionString);
                 db_connect2->Open();
-                lstLogs->Items->Add(DateTime::Now.ToString() + ": Ïîäêëþ÷åíèå ê ÁÄ2 (" + nameDBMS2 + ") óñïåøíî óñòàíîâëåíî");
-                lblDB2Status->Text = "ÁÄ2: Ïîäêëþ÷åíî";
+                lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð‘Ð”2 (" + nameDBMS2 + ") ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾");
+                lblDB2Status->Text = "Ð‘Ð”2: ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¾";
                 lblDB2Status->ForeColor = System::Drawing::Color::FromArgb(22, 163, 74);
 
-                // Ïåðåõîä ê MainWindow
+                // ÐŸÐµÑ€ÐµÑ…Ð¾Ð´ Ðº MainWindow
                 MainWindow^ mainWindow = gcnew MainWindow(db_connect1, db_connect2, nameDBMS, nameDB, nameUser, nameDBMS2, DataBase2, User2);
                 mainWindow->Show();
                 this->Hide();
             }
             catch (Exception^ ex) {
-                lstLogs->Items->Add(DateTime::Now.ToString() + ": Îøèáêà ïîäêëþ÷åíèÿ ê ÁÄ2: " + ex->Message);
+                lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº Ð‘Ð”2: " + ex->Message);
             }
         }
     }
@@ -153,10 +153,10 @@ namespace src {
                 getOutput = true;
             }
 
-            lstLogs->Items->Add(DateTime::Now.ToString() + ": ID óñïåøíî ïîëó÷åíû èç ÁÄ1");
+            lstLogs->Items->Add(DateTime::Now.ToString() + ": ID ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ñ‹ Ð¸Ð· Ð‘Ð”1");
         }
         catch (Exception^ ex) {
-            lstLogs->Items->Add(DateTime::Now.ToString() + ": Îøèáêà ïðè ïîëó÷åíèè ID: " + ex->Message);
+            lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ð¸ ID: " + ex->Message);
         }
     }
 
@@ -173,6 +173,32 @@ namespace src {
         if (connectForm != nullptr) {
             connectForm->Close();
             connectForm = nullptr;
+        }
+    }
+
+    void PartialMainWindow::PartialMainWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+    {
+        if (e->Button == System::Windows::Forms::MouseButtons::Left)
+        {
+            isDragging = true;
+            dragStartPoint = gcnew Point(e->X, e->Y);
+        }
+    }
+
+    void PartialMainWindow::PartialMainWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+    {
+        if (isDragging)
+        {
+            Point^ p = PointToScreen(Point(e->X, e->Y));
+            this->Location = Point(p->X - dragStartPoint->X, p->Y - dragStartPoint->Y);
+        }
+    }
+
+    void PartialMainWindow::PartialMainWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+    {
+        if (e->Button == System::Windows::Forms::MouseButtons::Left)
+        {
+            isDragging = false;
         }
     }
 }
