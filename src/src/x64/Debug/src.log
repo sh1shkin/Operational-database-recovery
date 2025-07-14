@@ -1,2 +1,3 @@
-﻿  Main.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+﻿  ConnectionWindow.cpp
+  Main.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   src.vcxproj -> E:\Project\Practica\Operational-database-recovery\src\x64\Debug\src.exe

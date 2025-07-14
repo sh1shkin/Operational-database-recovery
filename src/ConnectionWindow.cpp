@@ -71,7 +71,6 @@ namespace src {
 
             PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User);
             form2->Show();
-
             this->Hide();
         }
         catch (Exception^ ex) {
