@@ -7,7 +7,6 @@ using namespace System::IO;
 
 namespace src {
     System::Void ConnectionWindow::CheckConnect_Click(System::Object^ sender, System::EventArgs^ e) {
-
         OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
         openFileDialog->Filter = "Config files (*.ini;*.conf;*.txt)|*.ini;*.conf;*.txt|All files (*.*)|*.*";
         openFileDialog->FilterIndex = 1;
@@ -39,12 +38,14 @@ namespace src {
                             User = value;
                     }
                 }
+                MessageTextConnect->Text = "Êîíôèãóğàöèÿ çàãğóæåíà!";
             }
             catch (Exception^ ex) {
                 MessageBox::Show("Îøèáêà ÷òåíèÿ ôàéëà: " + ex->Message);
             }
         }
     }
+
     System::Void ConnectionWindow::connect1_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             String^ connectionString;
@@ -65,12 +66,18 @@ namespace src {
                 return;
             }
 
-            db_connect = gcnew OdbcConnection(connectionString);
-            db_connect->Open();
+            // Ñîçäà¸ì íîâîå ïîäêëş÷åíèå
+            OdbcConnection^ newConnection = gcnew OdbcConnection(connectionString);
+            newConnection->Open();
+            connections->Add(newConnection); // Äîáàâëÿåì â ñïèñîê ïîäêëş÷åíèé
+
             MessageTextConnect->Text = "Ñîåäèíåíèå óñïåøíî óñòàíîâëåíî!";
-            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User);
-            form2->Show();
-            //this->Hide();
+
+            // Ñîçäà¸ì íîâóş ôîğìó PartialMainWindow ñ íîâûì ïîäêëş÷åíèåì
+            PartialMainWindow^ obj1 = gcnew PartialMainWindow(newConnection, nameDBMS, DataBase, User);
+            obj1->Show();
+            // Íå ñêğûâàåì òåêóùóş ôîğìó, ÷òîáû ïîëüçîâàòåëü ìîã ñîçäàòü åù¸ îäíî ïîäêëş÷åíèå
+            // this->Hide(); // Óáğàíî
         }
         catch (Exception^ ex) {
             MessageTextConnect->Text = "Îøèáêà ïîäêëş÷åíèÿ: " + ex->Message;

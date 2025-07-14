@@ -9,6 +9,7 @@ namespace src {
 	using namespace System::Drawing;
 	using namespace System::Data::SqlClient;
 	using namespace System::Data::Odbc;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Сводка для MyForm
@@ -16,7 +17,7 @@ namespace src {
 	public ref class ConnectionWindow : public System::Windows::Forms::Form
 	{
 	private:
-		OdbcConnection^ db_connect;
+		List<OdbcConnection^>^ connections;
 		String^ nameDBMS;
 		String^ Server = nullptr;
 		String^ DataBase = nullptr;
@@ -25,6 +26,7 @@ namespace src {
 		ConnectionWindow(void)
 		{
 			InitializeComponent();
+			connections = gcnew List<OdbcConnection^>();
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -50,6 +52,13 @@ namespace src {
 			if (components)
 			{
 				delete components;
+			}
+			for each (OdbcConnection ^ conn in connections)
+			{
+				if (conn != nullptr && conn->State == ConnectionState::Open)
+				{
+					conn->Close();
+				}
 			}
 		}
 	private: System::Windows::Forms::Panel^ panel1;

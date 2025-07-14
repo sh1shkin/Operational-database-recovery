@@ -1,4 +1,4 @@
-п»ї#include "PartialMainWindow.h"
+#include "PartialMainWindow.h"
 #include "ConnectionWindow.h"
 
 namespace src {
@@ -26,14 +26,14 @@ namespace src {
             OdbcCommand^ cmd = gcnew OdbcCommand();
             cmd->Connection = connect;
 
-            // РћРїСЂРµРґРµР»СЏРµРј, РєР°РєРёРµ Р·Р°РїСЂРѕСЃС‹ РЅСѓР¶РЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ
+            // Определяем, какие запросы нужно выполнять
             bool getInput = false;
             bool getOutput = false;
 
             if (typeString == "MS SQL" && nameDB == L"CoilsDB1") {
                 getInput = true;
                 getOutput = true;
-                // Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃС‹ РЅР° РѕСЃРЅРѕРІРµ РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР°
+                // Выполняем запросы на основе глобального массива
                 for (int i = 0; i < queryParams1->Length; i++) {
                     if ((i == 0 && !getInput) || (i == 1 && !getOutput)) continue;
 
@@ -46,7 +46,7 @@ namespace src {
                     if (result != nullptr && result != DBNull::Value) {
                         if (column == "sic_id2") {
                             txtID2In->Text = result->ToString();
-                            // РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґСЂСѓРіРёРµ РїР°СЂР°РјРµС‚СЂС‹ РёР· queryParams[i]
+                            // Можно использовать другие параметры из queryParams[i]
                         }
                         else if (column == "soc_id2") {
                             txtID2Out->Text = result->ToString();
@@ -57,7 +57,7 @@ namespace src {
             else if (nameDB == L"FREEPDB1" && (nameUser == L"coils_user" || nameUser == L"COILS_USER")) {
                 getInput = true;
                 getOutput = true;
-                // Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃС‹ РЅР° РѕСЃРЅРѕРІРµ РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР°
+                // Выполняем запросы на основе глобального массива
                 for (int i = 0; i < queryParams->Length; i++) {
                     if ((i == 0 && !getInput) || (i == 1 && !getOutput)) continue;
 
@@ -70,7 +70,7 @@ namespace src {
                     if (result != nullptr && result != DBNull::Value) {
                         if (column == "id2in") {
                             txtID2In->Text = result->ToString();
-                            // РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґСЂСѓРіРёРµ РїР°СЂР°РјРµС‚СЂС‹ РёР· queryParams[i]
+                            // Можно использовать другие параметры из queryParams[i]
                         }
                         else if (column == "id2out") {
                             txtID2Out->Text = result->ToString();
@@ -85,7 +85,7 @@ namespace src {
 
         }
         catch (Exception^ ex) {
-            MessageBox::Show("РћС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё ID: " + ex->Message);
+            MessageBox::Show("Ошибка при получении ID: " + ex->Message);
         }
     }
 }
