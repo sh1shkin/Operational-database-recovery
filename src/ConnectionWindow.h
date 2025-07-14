@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 namespace src {
-	ref class PartialMainWindow;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
