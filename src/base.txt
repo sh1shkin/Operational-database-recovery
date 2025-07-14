@@ -1,0 +1,25 @@
+DBNAMEL3
+SCHEMANAMEL3
+USERNAMEL3
+USERPASSL3
+INPUTTABLEL3
+OUTPUTTABLEL3
+
+SERVERNAMEL2
+DBNAMEL2
+INSTANCENAMEL2
+USERNAMEL2
+USERPASSL2
+SAPASSL2
+SQLPATHL2
+INPUTTABLEL2
+OUTPUTTABLEL2
+ICID2
+OCID2
+
+
+
+пишем конфигурация которая называется закладка и там пишем параметры и задаём вручную 
+
+то что в скриптах брать из конфиг файлов 
+
