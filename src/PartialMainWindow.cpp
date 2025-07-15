@@ -1,4 +1,4 @@
-#include "PartialMainWindow.h"
+ï»¿#include "PartialMainWindow.h"
 #include "ConnectionWindow.h"
 #include "MainWindow.h"
 #include <Windows.h>
@@ -16,12 +16,12 @@ namespace src {
         }
         ConnectionWindow^ connectionWindow = gcnew ConnectionWindow();
         connectionWindow->Show();
-        this->Hide();
+        this->Close();
     }
 
     System::Void PartialMainWindow::btnConnectDB2_Click(System::Object^ sender, System::EventArgs^ e) {
         OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-        openFileDialog->Filter = "Config files (*.ini;*.conf;*.txt)|*.ini;*.conf;*.txt|All files (*.*)|*.*";
+        openFileDialog->Filter = "Config files (*.ini;*.conf;*.txt;*.cfg)|*.ini;*.conf;*.txt;*.cfg|All files (*.*)|*.*";
         openFileDialog->FilterIndex = 1;
         openFileDialog->RestoreDirectory = true;
 
@@ -31,10 +31,15 @@ namespace src {
             String^ Server2 = nullptr;
             String^ DataBase2 = nullptr;
             String^ User2 = nullptr;
+            String^ Driver2 = nullptr;
+            String^ tableInput = nullptr;
+            String^ tableOutput = nullptr;
+            String^ columnInputId = nullptr;
+            String^ columnOutputId = nullptr;
 
             try {
                 array<String^>^ lines = File::ReadAllLines(filePath);
-                for each (String ^ line in lines) {
+                for each(String ^ line in lines) {
                     line = line->Trim();
                     if (line->StartsWith("#") || line->IndexOf("=") == -1) continue;
 
@@ -46,58 +51,83 @@ namespace src {
                         else if (key == "server") Server2 = value;
                         else if (key == "database") DataBase2 = value;
                         else if (key == "user") User2 = value;
+                        else if (key == "driver") Driver2 = value;
+                        else if (key == "table_input") tableInput = value;
+                        else if (key == "table_output") tableOutput = value;
+                        else if (key == "column_input_id") columnInputId = value;
+                        else if (key == "column_output_id") columnOutputId = value;
                     }
                 }
 
-                // Ïðîâåðêà, ÷òî âñå ïàðàìåòðû çàãðóæåíû
+                // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°, Ñ‡Ñ‚Ð¾ Ð²ÑÐµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð·Ð°Ð³Ñ€ÑƒÐ¶ÐµÐ½Ñ‹
                 if (String::IsNullOrEmpty(nameDBMS2) || String::IsNullOrEmpty(Server2) ||
-                    String::IsNullOrEmpty(DataBase2) || String::IsNullOrEmpty(User2)) {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Íå âñå ïàðàìåòðû êîíôèãóðàöèè çàãðóæåíû!");
+                    String::IsNullOrEmpty(DataBase2) || String::IsNullOrEmpty(User2) ||
+                    String::IsNullOrEmpty(tableInput) || String::IsNullOrEmpty(tableOutput) ||
+                    String::IsNullOrEmpty(columnInputId) || String::IsNullOrEmpty(columnOutputId)) {
+                    lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐÐµ Ð²ÑÐµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸ Ð·Ð°Ð³Ñ€ÑƒÐ¶ÐµÐ½Ñ‹!");
                     return;
                 }
 
-                // Ïðîâåðêà ïàðîëÿ
+                // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð¾Ð»Ñ
                 String^ password = TextBoxPassword->Text;
                 if (String::IsNullOrEmpty(password)) {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Ïàðîëü íå ââåäåí!");
+                    lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ð½Ðµ Ð²Ð²ÐµÐ´ÐµÐ½!");
                     return;
                 }
 
                 String^ connectionString;
                 if (nameDBMS2 == "MS SQL") {
-                    connectionString = "Driver={SQL Server};Server=" + Server2 +
+                    connectionString = "Driver={" + Driver2 + "};Server=" + Server2 +
                         ";Database=" + DataBase2 +
                         ";Uid=" + User2 +
                         ";Pwd=" + password + ";";
                 }
                 else if (nameDBMS2 == "Oracle") {
-                    connectionString = "Driver={Oracle in instantclient_23_8};DBQ=" + Server2 +
+                    connectionString = "Driver={" + Driver2 + "};DBQ=" + Server2 +
                         "/" + DataBase2 +
                         ";Uid=" + User2 +
                         ";Pwd=" + password + ";";
                 }
                 else {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Âûáåðèòå òèï áàçû äàííûõ äëÿ DB2!");
+                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð»Ñ DB2!");
                     return;
                 }
 
                 db_connect2 = gcnew OdbcConnection(connectionString);
                 db_connect2->Open();
-                lstLogs->Items->Add(DateTime::Now.ToString() + ": Ïîäêëþ÷åíèå ê ÁÄ2 (" + nameDBMS2 + ") óñïåøíî óñòàíîâëåíî");
-                lblDB2Status->Text = "ÁÄ2: Ïîäêëþ÷åíî";
-                lblDB2Status->ForeColor = System::Drawing::Color::FromArgb(22, 163, 74);
-                // Ïåðåõîä ê MainWindow
+                lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð‘Ð”2 (" + nameDBMS2 + ") ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾");
+                // ÐŸÐµÑ€ÐµÑ…Ð¾Ð´ Ðº MainWindow
                 MainWindow^ mainWindow = gcnew MainWindow(db_connect1, db_connect2, nameDBMS, nameDB, nameUser, nameDBMS2, DataBase2, User2, this, connectForm);
+                mainWindow->tableInput = tableInput;
+                mainWindow->tableOutput = tableOutput;
+                mainWindow->columnInputId = columnInputId;
+                mainWindow->columnOutputId = columnOutputId;
                 mainWindow->Show();
                 this->Hide();
             }
             catch (Exception^ ex) {
-                lstLogs->Items->Add(DateTime::Now.ToString() + ": Îøèáêà ïîäêëþ÷åíèÿ ê ÁÄ2: " + ex->Message);
+                lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº Ð‘Ð”2: " + ex->Message);
             }
         }
     }
 
     System::Void PartialMainWindow::btnGetID_Click(System::Object^ sender, System::EventArgs^ e) {
+        for each (String ^ line in confDB1) {
+            line = line->Trim();
+            if (line->StartsWith("#") || line->IndexOf("=") == -1)
+                continue;
+
+            array<String^>^ parts = line->Split('=');
+            if (parts->Length == 2) {
+                String^ key = parts[0]->Trim();
+                String^ value = parts[1]->Trim();
+
+                if (key == "table_input") tableInput = value;
+                else if (key == "table_output") tableOutput = value;
+                else if (key == "column_input_id") columnInputId = value;
+                else if (key == "column_output_id") columnOutputId = value;
+            }
+        }
         try {
             if (db_connect1->State != ConnectionState::Open) {
                 db_connect1->Open();
@@ -110,52 +140,51 @@ namespace src {
             if (nameDBMS == "MS SQL" && nameDB == L"CoilsDB1") {
                 getInput = true;
                 getOutput = true;
-                for (int i = 0; i < queryParams1->Length; i++) {
-                    if ((i == 0 && !getInput) || (i == 1 && !getOutput)) continue;
 
-                    String^ column = queryParams1[i][0];
-                    String^ table = column == "sic_id2" ? "input" : "output";
-                    String^ query = String::Format("SELECT MAX(t.{0}) FROM sta_{1}_coils t", column, table);
-                    cmd->CommandText = query;
-                    Object^ result = cmd->ExecuteScalar();
-                    if (result != nullptr && result != DBNull::Value) {
-                        if (column == "sic_id2") {
-                            txtID2In->Text = result->ToString();
-                        }
-                        else if (column == "soc_id2") {
-                            txtID2Out->Text = result->ToString();
-                        }
-                    }
+                // Get input ID
+                String^ queryInput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnInputId, tableInput);
+                cmd->CommandText = queryInput;
+                Object^ resultInput = cmd->ExecuteScalar();
+                if (resultInput != nullptr && resultInput != DBNull::Value) {
+                    txtID2In->Text = resultInput->ToString();
+                }
+
+                // Get output ID
+                String^ queryOutput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnOutputId, tableOutput);
+                cmd->CommandText = queryOutput;
+                Object^ resultOutput = cmd->ExecuteScalar();
+                if (resultOutput != nullptr && resultOutput != DBNull::Value) {
+                    txtID2Out->Text = resultOutput->ToString();
                 }
             }
             else if (nameDB == L"FREEPDB1" && (nameUser == L"coils_user" || nameUser == L"COILS_USER")) {
                 getInput = true;
                 getOutput = true;
-                for (int i = 0; i < queryParams->Length; i++) {
-                    if ((i == 0 && !getInput) || (i == 1 && !getOutput)) continue;
 
-                    String^ column = queryParams[i][0];
-                    String^ table = column == "id2in" ? "input" : "output";
-                    cmd->CommandText = String::Format("SELECT MAX(t.{0}) FROM {1}_coils t", column, table);
-                    Object^ result = cmd->ExecuteScalar();
-                    if (result != nullptr && result != DBNull::Value) {
-                        if (column == "id2in") {
-                            txtID2In->Text = result->ToString();
-                        }
-                        else if (column == "id2out") {
-                            txtID2Out->Text = result->ToString();
-                        }
-                    }
+                // Get input ID
+                String^ queryInput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnInputId, tableInput);
+                cmd->CommandText = queryInput;
+                Object^ resultInput = cmd->ExecuteScalar();
+                if (resultInput != nullptr && resultInput != DBNull::Value) {
+                    txtID2In->Text = resultInput->ToString();
+                }
+
+                // Get output ID
+                String^ queryOutput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnOutputId, tableOutput);
+                cmd->CommandText = queryOutput;
+                Object^ resultOutput = cmd->ExecuteScalar();
+                if (resultOutput != nullptr && resultOutput != DBNull::Value) {
+                    txtID2Out->Text = resultOutput->ToString();
                 }
             }
             else {
                 getOutput = true;
             }
 
-            lstLogs->Items->Add(DateTime::Now.ToString() + ": ID óñïåøíî ïîëó÷åíû èç ÁÄ1");
+            lstLogs->Items->Add(DateTime::Now.ToString() + ": ID ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ñ‹ Ð¸Ð· Ð‘Ð”1");
         }
         catch (Exception^ ex) {
-            lstLogs->Items->Add(DateTime::Now.ToString() + ": Îøèáêà ïðè ïîëó÷åíèè ID: " + ex->Message);
+            lstLogs->Items->Add(DateTime::Now.ToString() + ": ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ð¸ ID: " + ex->Message);
         }
     }
 

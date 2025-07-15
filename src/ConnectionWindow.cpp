@@ -1,4 +1,4 @@
-#include "ConnectionWindow.h"
+ï»¿#include "ConnectionWindow.h"
 #include "PartialMainWindow.h"
 #include <Windows.h>
 #include <fstream>
@@ -18,7 +18,7 @@ namespace src {
 
             try {
                 array<String^>^ lines = File::ReadAllLines(filePath);
-
+                confBD1 = lines;
                 for each (String ^ line in lines) {
                     line = line->Trim();
                     if (line->StartsWith("#") || line->IndexOf("=") == -1)
@@ -41,7 +41,7 @@ namespace src {
                 }
             }
             catch (Exception^ ex) {
-                MessageBox::Show("Îøèáêà ÷òåíèÿ ôàéëà: " + ex->Message);
+                MessageBox::Show("ÐžÑˆÐ¸Ð±ÐºÐ° Ñ‡Ñ‚ÐµÐ½Ð¸Ñ Ñ„Ð°Ð¹Ð»Ð°: " + ex->Message);
             }
         }
     }
@@ -61,19 +61,19 @@ namespace src {
                     ";Pwd=" + TextBoxPassword->Text + ";";
             }
             else {
-                MessageTextConnect->Text = "Âûáåðèòå òèï áàçû äàííûõ!";
+                MessageTextConnect->Text = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…!";
                 return;
             }
             db_connect = gcnew OdbcConnection(connectionString);
             db_connect->Open();
-            MessageTextConnect->Text = "Ñîåäèíåíèå óñïåøíî óñòàíîâëåíî!";
+            MessageTextConnect->Text = "Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾!";
 
-            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User, this);
+            PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User, this, confBD1);
             form2->Show();
             this->Hide();
         }
         catch (Exception^ ex) {
-            MessageTextConnect->Text = "Îøèáêà ïîäêëþ÷åíèÿ: " + ex->Message;
+            MessageTextConnect->Text = "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ: " + ex->Message;
         }
     }
 
@@ -81,12 +81,13 @@ namespace src {
         if (db_connect != nullptr && db_connect->State == ConnectionState::Open) {
             db_connect->Close();
         }
-        Application::Exit(); // Çàâåðøàåì ïðèëîæåíèå ïðè çàêðûòèè ôîðìû
+        Application::Exit();
     }
     System::Void ConnectionWindow::btnClosedCW_Click(System::Object^ sender, System::EventArgs^ e) {
         if (this != nullptr) {
             this->Close();
         }
+        Application::Exit();
     }
     System::Void ConnectionWindow::ConnectionWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
         if (e->Button == System::Windows::Forms::MouseButtons::Left) {

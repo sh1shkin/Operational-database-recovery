@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 namespace src {
 	using namespace System;
@@ -10,17 +10,18 @@ namespace src {
 	using namespace System::Data::SqlClient;
 	using namespace System::Data::Odbc;
 	/// <summary>
-	/// Сводка для MyForm
+	/// РЎРІРѕРґРєР° РґР»СЏ MyForm
 	/// </summary>
 	public ref class ConnectionWindow : public System::Windows::Forms::Form
 	{
 	private:
-		bool isDragging; // Флаг, указывающий, выполняется ли перетаскивание
-		Point^ dragStartPoint; // Начальная точка перетаскивания
+		bool isDragging; // Р¤Р»Р°Рі, СѓРєР°Р·С‹РІР°СЋС‰РёР№, РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ Р»Рё РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёРµ
+		Point^ dragStartPoint; // РќР°С‡Р°Р»СЊРЅР°СЏ С‚РѕС‡РєР° РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ
 		OdbcConnection^ db_connect;
 		String^ nameDBMS;
 		String^ Server;
 		String^ DataBase;
+		array<String^>^ confBD1;
 	private: System::Windows::Forms::Button^ btnClosedCW;
 		   String^ User;
 	public:
@@ -30,7 +31,7 @@ namespace src {
 			isDragging = false;
 			dragStartPoint = gcnew Point(0, 0);
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 		
@@ -46,7 +47,7 @@ namespace src {
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~ConnectionWindow()
 		{
@@ -73,14 +74,14 @@ namespace src {
 
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -143,7 +144,7 @@ namespace src {
 			this->CheckConnect->Name = L"CheckConnect";
 			this->CheckConnect->Size = System::Drawing::Size(246, 32);
 			this->CheckConnect->TabIndex = 20;
-			this->CheckConnect->Text = L"Файл кофигурации";
+			this->CheckConnect->Text = L"Р¤Р°Р№Р» РєРѕС„РёРіСѓСЂР°С†РёРё";
 			this->CheckConnect->UseVisualStyleBackColor = false;
 			this->CheckConnect->Click += gcnew System::EventHandler(this, &ConnectionWindow::CheckConnect_Click);
 			// 
@@ -158,7 +159,7 @@ namespace src {
 			this->LabelText->Name = L"LabelText";
 			this->LabelText->Size = System::Drawing::Size(392, 25);
 			this->LabelText->TabIndex = 16;
-			this->LabelText->Text = L"Настройка подключения к базе данных";
+			this->LabelText->Text = L"РќР°СЃС‚СЂРѕР№РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±Р°Р·Рµ РґР°РЅРЅС‹С…";
 			// 
 			// pictureBox1
 			// 
@@ -197,7 +198,7 @@ namespace src {
 			this->ButtonConnect->Name = L"ButtonConnect";
 			this->ButtonConnect->Size = System::Drawing::Size(259, 32);
 			this->ButtonConnect->TabIndex = 6;
-			this->ButtonConnect->Text = L"Подключиться и продолжить";
+			this->ButtonConnect->Text = L"РџРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рё РїСЂРѕРґРѕР»Р¶РёС‚СЊ";
 			this->ButtonConnect->UseVisualStyleBackColor = false;
 			this->ButtonConnect->Click += gcnew System::EventHandler(this, &ConnectionWindow::connect1_Click);
 			// 
@@ -213,7 +214,7 @@ namespace src {
 			this->labelPassword->Name = L"labelPassword";
 			this->labelPassword->Size = System::Drawing::Size(68, 19);
 			this->labelPassword->TabIndex = 5;
-			this->labelPassword->Text = L"Пароль*";
+			this->labelPassword->Text = L"РџР°СЂРѕР»СЊ*";
 			// 
 			// label1
 			// 
@@ -226,7 +227,7 @@ namespace src {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(299, 19);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Подключение к БД1(Для получения данных)";
+			this->label1->Text = L"РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”1(Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…)";
 			// 
 			// pictureBox2
 			// 
@@ -261,7 +262,7 @@ namespace src {
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(431, 36);
 			this->label3->TabIndex = 0;
-			this->label3->Text = L"Управление ID2 для рулонов";
+			this->label3->Text = L"РЈРїСЂР°РІР»РµРЅРёРµ ID2 РґР»СЏ СЂСѓР»РѕРЅРѕРІ";
 			// 
 			// panel3
 			// 
@@ -295,7 +296,7 @@ namespace src {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(56, 19);
 			this->label2->TabIndex = 0;
-			this->label2->Text = L"Статус:";
+			this->label2->Text = L"РЎС‚Р°С‚СѓСЃ:";
 			// 
 			// btnClosedCW
 			// 
