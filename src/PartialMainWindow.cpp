@@ -36,9 +36,12 @@ namespace src {
             String^ tableOutput = nullptr;
             String^ columnInputId = nullptr;
             String^ columnOutputId = nullptr;
+            array<String^>^ lndb2 = nullptr;
+            array<String^>^ lndb1 = confDB1;
 
             try {
                 array<String^>^ lines = File::ReadAllLines(filePath);
+                lndb2 = lines;
                 for each(String ^ line in lines) {
                     line = line->Trim();
                     if (line->StartsWith("#") || line->IndexOf("=") == -1) continue;
@@ -58,20 +61,19 @@ namespace src {
                         else if (key == "column_output_id") columnOutputId = value;
                     }
                 }
-
                 // Проверка, что все параметры загружены
                 if (String::IsNullOrEmpty(nameDBMS2) || String::IsNullOrEmpty(Server2) ||
                     String::IsNullOrEmpty(DataBase2) || String::IsNullOrEmpty(User2) ||
                     String::IsNullOrEmpty(tableInput) || String::IsNullOrEmpty(tableOutput) ||
                     String::IsNullOrEmpty(columnInputId) || String::IsNullOrEmpty(columnOutputId)) {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Не все параметры конфигурации загружены!");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": Не все параметры конфигурации загружены!\n");
                     return;
                 }
 
                 // Проверка пароля
                 String^ password = TextBoxPassword->Text;
                 if (String::IsNullOrEmpty(password)) {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Пароль не введен!");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": Пароль не введен!\n");
                     return;
                 }
 
@@ -89,24 +91,20 @@ namespace src {
                         ";Pwd=" + password + ";";
                 }
                 else {
-                    lstLogs->Items->Add(DateTime::Now.ToString() + ": Выберите тип базы данных для DB2!");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": Выберите тип базы данных для DB2!\n");
                     return;
                 }
 
                 db_connect2 = gcnew OdbcConnection(connectionString);
                 db_connect2->Open();
-                lstLogs->Items->Add(DateTime::Now.ToString() + ": Подключение к БД2 (" + nameDBMS2 + ") успешно установлено");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД2 (" + nameDBMS2 + ") успешно установлено\n");
                 // Переход к MainWindow
-                MainWindow^ mainWindow = gcnew MainWindow(db_connect1, db_connect2, nameDBMS, nameDB, nameUser, nameDBMS2, DataBase2, User2, this, connectForm);
-                mainWindow->tableInput = tableInput;
-                mainWindow->tableOutput = tableOutput;
-                mainWindow->columnInputId = columnInputId;
-                mainWindow->columnOutputId = columnOutputId;
+                MainWindow^ mainWindow = gcnew MainWindow(db_connect1, db_connect2, nameDBMS, nameDB, nameUser, nameDBMS2, DataBase2, User2, this, connectForm, lndb1, lndb2);
                 mainWindow->Show();
                 this->Hide();
             }
             catch (Exception^ ex) {
-                lstLogs->Items->Add(DateTime::Now.ToString() + ": Ошибка подключения к БД2: " + ex->Message);
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка подключения к БД2: " + ex->Message + "\n");
             }
         }
     }
@@ -181,10 +179,10 @@ namespace src {
                 getOutput = true;
             }
 
-            lstLogs->Items->Add(DateTime::Now.ToString() + ": ID успешно получены из БД1");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": ID успешно получены из БД1\n");
         }
         catch (Exception^ ex) {
-            lstLogs->Items->Add(DateTime::Now.ToString() + ": Ошибка при получении ID: " + ex->Message);
+            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при получении ID: " + ex->Message + "\n");
         }
     }
 

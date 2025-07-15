@@ -9,7 +9,7 @@ namespace src {
     System::Void ConnectionWindow::CheckConnect_Click(System::Object^ sender, System::EventArgs^ e) {
 
         OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-        openFileDialog->Filter = "Config files (*.ini;*.conf;*.txt)|*.ini;*.conf;*.txt|All files (*.*)|*.*";
+        openFileDialog->Filter = "Config files (*.ini;*.conf;*.txt,*.cfg)|*.ini;*.conf;*.txt,*.cfg|All files (*.*)|*.*";
         openFileDialog->FilterIndex = 1;
         openFileDialog->RestoreDirectory = true;
 
@@ -41,7 +41,7 @@ namespace src {
                 }
             }
             catch (Exception^ ex) {
-                MessageBox::Show("Ошибка чтения файла: " + ex->Message);
+                MessageBox::Show("Ошибка чтения файла: " + ex->Message, "Ошибка");
             }
         }
     }
@@ -61,19 +61,18 @@ namespace src {
                     ";Pwd=" + TextBoxPassword->Text + ";";
             }
             else {
-                MessageTextConnect->Text = "Выберите тип базы данных!";
+                MessageBox::Show("Выберите тип базы данных!", "Сообщение");
                 return;
             }
             db_connect = gcnew OdbcConnection(connectionString);
             db_connect->Open();
-            MessageTextConnect->Text = "Соединение успешно установлено!";
 
             PartialMainWindow^ form2 = gcnew PartialMainWindow(db_connect, nameDBMS, DataBase, User, this, confBD1);
             form2->Show();
             this->Hide();
         }
         catch (Exception^ ex) {
-            MessageTextConnect->Text = "Ошибка подключения: " + ex->Message;
+            MessageBox::Show("Ошибка подключения: " + ex->Message, "Ошибка");
         }
     }
 

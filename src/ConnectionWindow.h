@@ -23,6 +23,8 @@ namespace src {
 		String^ DataBase;
 		array<String^>^ confBD1;
 	private: System::Windows::Forms::Button^ btnClosedCW;
+	private: System::Windows::Forms::Button^ button1;
+
 		   String^ User;
 	public:
 		ConnectionWindow(void)
@@ -34,16 +36,6 @@ namespace src {
 			//TODO: добавьте код конструктора
 			//
 		}
-		
-		/*public: void ClearFields() {
-			comboBox1->SelectedIndex = -1;
-			comboBox1->Text = "";
-			TextBoxDataBase->Text = "";
-			TextBoxUser->Text = "";
-			TextBoxPassword->Text = "";
-			TextBoxServer->Text = "";
-			MessageTextConnect->Text = "";
-		}*/
 
 	protected:
 		/// <summary>
@@ -65,9 +57,9 @@ namespace src {
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
-	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::Label^ MessageTextConnect;
-	private: System::Windows::Forms::Label^ label2;
+
+
+
 	private: System::Windows::Forms::Label^ LabelText;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ CheckConnect;
@@ -97,15 +89,12 @@ namespace src {
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->MessageTextConnect = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->btnClosedCW = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->panel2->SuspendLayout();
-			this->panel3->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -121,9 +110,10 @@ namespace src {
 			this->panel1->Controls->Add(this->labelPassword);
 			this->panel1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->panel1->Location = System::Drawing::Point(99, 120);
+			this->panel1->Location = System::Drawing::Point(132, 148);
+			this->panel1->Margin = System::Windows::Forms::Padding(4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(594, 316);
+			this->panel1->Size = System::Drawing::Size(792, 389);
 			this->panel1->TabIndex = 0;
 			// 
 			// CheckConnect
@@ -140,9 +130,10 @@ namespace src {
 				static_cast<System::Int32>(static_cast<System::Byte>(172)));
 			this->CheckConnect->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"CheckConnect.Image")));
 			this->CheckConnect->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->CheckConnect->Location = System::Drawing::Point(34, 261);
+			this->CheckConnect->Location = System::Drawing::Point(45, 321);
+			this->CheckConnect->Margin = System::Windows::Forms::Padding(4);
 			this->CheckConnect->Name = L"CheckConnect";
-			this->CheckConnect->Size = System::Drawing::Size(246, 32);
+			this->CheckConnect->Size = System::Drawing::Size(328, 39);
 			this->CheckConnect->TabIndex = 20;
 			this->CheckConnect->Text = L"Файл кофигурации";
 			this->CheckConnect->UseVisualStyleBackColor = false;
@@ -155,18 +146,20 @@ namespace src {
 				static_cast<System::Byte>(204)));
 			this->LabelText->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
 				static_cast<System::Int32>(static_cast<System::Byte>(216)));
-			this->LabelText->Location = System::Drawing::Point(118, 15);
+			this->LabelText->Location = System::Drawing::Point(157, 51);
+			this->LabelText->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->LabelText->Name = L"LabelText";
-			this->LabelText->Size = System::Drawing::Size(392, 25);
+			this->LabelText->Size = System::Drawing::Size(487, 31);
 			this->LabelText->TabIndex = 16;
 			this->LabelText->Text = L"Настройка подключения к базе данных";
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(83, 15);
+			this->pictureBox1->Location = System::Drawing::Point(111, 51);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(36, 39);
+			this->pictureBox1->Size = System::Drawing::Size(48, 48);
 			this->pictureBox1->TabIndex = 17;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -174,10 +167,11 @@ namespace src {
 			// 
 			this->TextBoxPassword->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->TextBoxPassword->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 12));
-			this->TextBoxPassword->Location = System::Drawing::Point(34, 104);
+			this->TextBoxPassword->Location = System::Drawing::Point(45, 179);
+			this->TextBoxPassword->Margin = System::Windows::Forms::Padding(4);
 			this->TextBoxPassword->Name = L"TextBoxPassword";
 			this->TextBoxPassword->PasswordChar = '*';
-			this->TextBoxPassword->Size = System::Drawing::Size(530, 29);
+			this->TextBoxPassword->Size = System::Drawing::Size(705, 34);
 			this->TextBoxPassword->TabIndex = 11;
 			// 
 			// ButtonConnect
@@ -194,9 +188,10 @@ namespace src {
 			this->ButtonConnect->ForeColor = System::Drawing::Color::White;
 			this->ButtonConnect->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ButtonConnect.Image")));
 			this->ButtonConnect->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->ButtonConnect->Location = System::Drawing::Point(305, 261);
+			this->ButtonConnect->Location = System::Drawing::Point(407, 321);
+			this->ButtonConnect->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonConnect->Name = L"ButtonConnect";
-			this->ButtonConnect->Size = System::Drawing::Size(259, 32);
+			this->ButtonConnect->Size = System::Drawing::Size(345, 39);
 			this->ButtonConnect->TabIndex = 6;
 			this->ButtonConnect->Text = L"Подключиться и продолжить";
 			this->ButtonConnect->UseVisualStyleBackColor = false;
@@ -210,9 +205,10 @@ namespace src {
 				static_cast<System::Byte>(204)));
 			this->labelPassword->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
 				static_cast<System::Int32>(static_cast<System::Byte>(216)));
-			this->labelPassword->Location = System::Drawing::Point(30, 82);
+			this->labelPassword->Location = System::Drawing::Point(40, 152);
+			this->labelPassword->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->labelPassword->Name = L"labelPassword";
-			this->labelPassword->Size = System::Drawing::Size(68, 19);
+			this->labelPassword->Size = System::Drawing::Size(85, 24);
 			this->labelPassword->TabIndex = 5;
 			this->labelPassword->Text = L"Пароль*";
 			// 
@@ -223,18 +219,20 @@ namespace src {
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
 				static_cast<System::Int32>(static_cast<System::Byte>(216)));
-			this->label1->Location = System::Drawing::Point(273, 44);
+			this->label1->Location = System::Drawing::Point(235, 54);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(299, 19);
+			this->label1->Size = System::Drawing::Size(392, 23);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Подключение к БД1(Для получения данных)";
 			// 
 			// pictureBox2
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(180, 10);
+			this->pictureBox2->Location = System::Drawing::Point(111, 12);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(45, 53);
+			this->pictureBox2->Size = System::Drawing::Size(60, 65);
 			this->pictureBox2->TabIndex = 13;
 			this->pictureBox2->TabStop = false;
 			// 
@@ -246,9 +244,10 @@ namespace src {
 			this->panel2->Controls->Add(this->label3);
 			this->panel2->Controls->Add(this->label1);
 			this->panel2->Controls->Add(this->pictureBox2);
-			this->panel2->Location = System::Drawing::Point(0, 45);
+			this->panel2->Location = System::Drawing::Point(132, 55);
+			this->panel2->Margin = System::Windows::Forms::Padding(4);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(800, 69);
+			this->panel2->Size = System::Drawing::Size(792, 85);
 			this->panel2->TabIndex = 1;
 			// 
 			// label3
@@ -258,45 +257,12 @@ namespace src {
 				static_cast<System::Byte>(204)));
 			this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
 				static_cast<System::Int32>(static_cast<System::Byte>(216)));
-			this->label3->Location = System::Drawing::Point(213, 10);
+			this->label3->Location = System::Drawing::Point(155, 12);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(431, 36);
+			this->label3->Size = System::Drawing::Size(541, 45);
 			this->label3->TabIndex = 0;
 			this->label3->Text = L"Управление ID2 для рулонов";
-			// 
-			// panel3
-			// 
-			this->panel3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->panel3->BackColor = System::Drawing::Color::White;
-			this->panel3->Controls->Add(this->MessageTextConnect);
-			this->panel3->Controls->Add(this->label2);
-			this->panel3->Location = System::Drawing::Point(0, 442);
-			this->panel3->MaximumSize = System::Drawing::Size(1000, 400);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(800, 70);
-			this->panel3->TabIndex = 2;
-			// 
-			// MessageTextConnect
-			// 
-			this->MessageTextConnect->AutoSize = true;
-			this->MessageTextConnect->Location = System::Drawing::Point(62, 11);
-			this->MessageTextConnect->Name = L"MessageTextConnect";
-			this->MessageTextConnect->Size = System::Drawing::Size(0, 13);
-			this->MessageTextConnect->TabIndex = 1;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
-				static_cast<System::Int32>(static_cast<System::Byte>(216)));
-			this->label2->Location = System::Drawing::Point(12, 11);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(56, 19);
-			this->label2->TabIndex = 0;
-			this->label2->Text = L"Статус:";
 			// 
 			// btnClosedCW
 			// 
@@ -309,30 +275,45 @@ namespace src {
 			this->btnClosedCW->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
 			this->btnClosedCW->ForeColor = System::Drawing::Color::White;
 			this->btnClosedCW->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClosedCW.Image")));
-			this->btnClosedCW->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->btnClosedCW->Location = System::Drawing::Point(756, -1);
+			this->btnClosedCW->Location = System::Drawing::Point(1005, 4);
+			this->btnClosedCW->Margin = System::Windows::Forms::Padding(4);
 			this->btnClosedCW->Name = L"btnClosedCW";
-			this->btnClosedCW->Size = System::Drawing::Size(41, 40);
+			this->btnClosedCW->Size = System::Drawing::Size(60, 45);
 			this->btnClosedCW->TabIndex = 6;
 			this->btnClosedCW->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnClosedCW->UseVisualStyleBackColor = false;
 			this->btnClosedCW->Click += gcnew System::EventHandler(this, &ConnectionWindow::btnClosedCW_Click);
 			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::White;
+			this->button1->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->button1->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
+				static_cast<System::Int32>(static_cast<System::Byte>(246)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
+			this->button1->Location = System::Drawing::Point(938, 4);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(60, 45);
+			this->button1->TabIndex = 45;
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &ConnectionWindow::button1_Click);
+			// 
 			// ConnectionWindow
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(249)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
-				static_cast<System::Int32>(static_cast<System::Byte>(249)));
-			this->ClientSize = System::Drawing::Size(800, 518);
+			this->BackColor = System::Drawing::Color::White;
+			this->ClientSize = System::Drawing::Size(1067, 638);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->btnClosedCW);
-			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->MaximizeBox = false;
-			this->MaximumSize = System::Drawing::Size(800, 518);
-			this->MinimumSize = System::Drawing::Size(800, 518);
+			this->MaximumSize = System::Drawing::Size(1067, 638);
+			this->MinimumSize = System::Drawing::Size(1067, 638);
 			this->Name = L"ConnectionWindow";
 			this->Text = L"Operational-database-recovery";
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &ConnectionWindow::ConnectionWindow_MouseDown);
@@ -344,8 +325,6 @@ namespace src {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
-			this->panel3->ResumeLayout(false);
-			this->panel3->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -357,5 +336,8 @@ namespace src {
 		private: System::Void ConnectionWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 		private: System::Void ConnectionWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 		private: System::Void ConnectionWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->WindowState = FormWindowState::Minimized;
+		}
 };
 }

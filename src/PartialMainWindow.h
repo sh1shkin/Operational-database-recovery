@@ -34,6 +34,7 @@ namespace src {
         array<String^>^ confDB1;
 
     private: System::Windows::Forms::Button^ btnClosed;
+    private: System::Windows::Forms::Button^ button1;
            String^ nameUser;
     public:
         PartialMainWindow(void)
@@ -44,14 +45,6 @@ namespace src {
         PartialMainWindow(OdbcConnection^ connection, String^ typeStr, String^ dbName, String^ userName, ConnectionWindow^ connectForm, array<String^>^ confBD1)
             : db_connect1(connection), nameDBMS(typeStr), nameDB(dbName), nameUser(userName), db_connect2(nullptr), connectForm(connectForm), confDB1(confBD1)
         {
-            queryParams = gcnew array<array<String^>^>(2) {
-                gcnew array<String^> { "id2in", "THICKNESS", "WIDTH", "SIS_COIL_STATUS" },
-                    gcnew array<String^> { "id2out", "THICKNESS", "WIDTH", "SOS_COIL_STATUS" }
-            };
-            queryParams1 = gcnew array<array<String^>^>(2) {
-                gcnew array<String^> { "sic_id2", "SIC_THICKNESS", "SIC_WIDTH", "SIC_SIS_COIL_STATUS" },
-                    gcnew array<String^> { "soc_id2", "SOC_THICKNESS", "SOC_WIDTH", "SOC_SOS_COIL_STATUS" }
-            };
             InitializeComponent();
             lblConnectionInfo->Text = String::Format("DB1: {0}: {1}/{2}", typeStr, dbName, userName);
         
@@ -87,10 +80,9 @@ namespace src {
     private: System::Windows::Forms::Button^ btnConnectDB2;
     private: System::Windows::Forms::Panel^ panelLogs;
     private: System::Windows::Forms::Label^ lblLogsTitle;
-    private: System::Windows::Forms::ListBox^ lstLogs;
+    private: System::Windows::Forms::RichTextBox^ lstLogs;
     private: System::Windows::Forms::Panel^ footerPanel;
     private: System::Windows::Forms::Label^ lblDB1Status;
-
     private: System::Windows::Forms::PictureBox^ pictureBox1;
     private: System::Windows::Forms::PictureBox^ pictureBox2;
     private: System::Windows::Forms::PictureBox^ pictureBox3;
@@ -138,11 +130,12 @@ namespace src {
             this->TextBoxPassword = (gcnew System::Windows::Forms::TextBox());
             this->panelLogs = (gcnew System::Windows::Forms::Panel());
             this->lblLogsTitle = (gcnew System::Windows::Forms::Label());
-            this->lstLogs = (gcnew System::Windows::Forms::ListBox());
+            this->lstLogs = (gcnew System::Windows::Forms::RichTextBox());
             this->footerPanel = (gcnew System::Windows::Forms::Panel());
             this->lblStatusTxt = (gcnew System::Windows::Forms::Label());
             this->lblDB1Status = (gcnew System::Windows::Forms::Label());
             this->btnClosed = (gcnew System::Windows::Forms::Button());
+            this->button1 = (gcnew System::Windows::Forms::Button());
             this->headerPanel->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
             this->panelID2->SuspendLayout();
@@ -196,9 +189,8 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(78)), static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblConnectionInfo->Location = System::Drawing::Point(58, 46);
             this->lblConnectionInfo->Name = L"lblConnectionInfo";
-            this->lblConnectionInfo->Size = System::Drawing::Size(296, 23);
+            this->lblConnectionInfo->Size = System::Drawing::Size(0, 23);
             this->lblConnectionInfo->TabIndex = 2;
-            this->lblConnectionInfo->Text = L"БД1: MSSQL: AEIP6L2S\\LEVEL2/NLMK";
             // 
             // btnDisconnect
             // 
@@ -412,7 +404,7 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->btnConnectDB2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnConnectDB2.Image")));
             this->btnConnectDB2->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-            this->btnConnectDB2->Location = System::Drawing::Point(326, 145);
+            this->btnConnectDB2->Location = System::Drawing::Point(326, 139);
             this->btnConnectDB2->Name = L"btnConnectDB2";
             this->btnConnectDB2->Padding = System::Windows::Forms::Padding(3);
             this->btnConnectDB2->Size = System::Drawing::Size(200, 40);
@@ -474,14 +466,12 @@ namespace src {
             this->lstLogs->Font = (gcnew System::Drawing::Font(L"Consolas", 9));
             this->lstLogs->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(22)), static_cast<System::Int32>(static_cast<System::Byte>(163)),
                 static_cast<System::Int32>(static_cast<System::Byte>(74)));
-            this->lstLogs->HorizontalExtent = 1000;
-            this->lstLogs->HorizontalScrollbar = true;
-            this->lstLogs->ItemHeight = 18;
-            this->lstLogs->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"11.07.2025 16:19: Подключение к БД1 (MSSQL) успешно установлено" });
             this->lstLogs->Location = System::Drawing::Point(15, 42);
             this->lstLogs->Name = L"lstLogs";
-            this->lstLogs->Size = System::Drawing::Size(820, 148);
+            this->lstLogs->ReadOnly = true;
+            this->lstLogs->Size = System::Drawing::Size(820, 166);
             this->lstLogs->TabIndex = 36;
+            this->lstLogs->Text = L"";
             // 
             // footerPanel
             // 
@@ -531,14 +521,27 @@ namespace src {
             this->btnClosed->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
             this->btnClosed->ForeColor = System::Drawing::Color::White;
             this->btnClosed->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClosed.Image")));
-            this->btnClosed->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-            this->btnClosed->Location = System::Drawing::Point(839, 8);
+            this->btnClosed->Location = System::Drawing::Point(822, 4);
             this->btnClosed->Name = L"btnClosed";
-            this->btnClosed->Size = System::Drawing::Size(41, 40);
+            this->btnClosed->Size = System::Drawing::Size(60, 45);
             this->btnClosed->TabIndex = 5;
-            this->btnClosed->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnClosed->UseVisualStyleBackColor = false;
             this->btnClosed->Click += gcnew System::EventHandler(this, &PartialMainWindow::btnClosed_Click);
+            // 
+            // button1
+            // 
+            this->button1->BackColor = System::Drawing::Color::White;
+            this->button1->FlatAppearance->BorderColor = System::Drawing::Color::White;
+            this->button1->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
+                static_cast<System::Int32>(static_cast<System::Byte>(246)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
+            this->button1->Location = System::Drawing::Point(770, 4);
+            this->button1->Name = L"button1";
+            this->button1->Size = System::Drawing::Size(60, 45);
+            this->button1->TabIndex = 46;
+            this->button1->UseVisualStyleBackColor = false;
+            this->button1->Click += gcnew System::EventHandler(this, &PartialMainWindow::button1_Click);
             // 
             // PartialMainWindow
             // 
@@ -546,6 +549,7 @@ namespace src {
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(870, 750);
+            this->Controls->Add(this->button1);
             this->Controls->Add(this->btnClosed);
             this->Controls->Add(this->headerPanel);
             this->Controls->Add(this->panelID2);
@@ -582,11 +586,11 @@ namespace src {
         private:System::Void btnGetID_Click(System::Object^, System::EventArgs^);
         private:System::Void PartialMainWindow_FormClosing(System::Object^, System::Windows::Forms::FormClosingEventArgs^);
         private:System::Void btnClosed_Click(System::Object^, System::EventArgs^);
-        private:
-            System::Void PartialMainWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
-            System::Void PartialMainWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
-            System::Void PartialMainWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
-
-
+        private:System::Void PartialMainWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+        private:System::Void PartialMainWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+        private:System::Void PartialMainWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+        private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+            this->WindowState = FormWindowState::Minimized;
+        }
 };
 }
