@@ -138,21 +138,6 @@
         DPkNohjWAV5v9IT8p3bITzO/JWbIf2PwH1yC74CM09AtAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnDisconnect.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAKJJREFUOE+t
-        0zEOQUEQh/F3Aeej0FEQTuACIg6g0UsQN5BoHEFNHEEvP/Fs8Uy8ZHm+ZJv/7H7JTGaL4h+ghQn2OKTT
-        jvdqwdCLY0XQifdqwQq7mGeDDdYxr4IT+jEvyRRMU5ujWMsSPME8Scax8CZAtzLMeC5JsvhVcMYdy1pB
-        HdktfAKz9HgQa7mCK3oxL0mLtI15NmmVb2FYX61ys8/UhAfk0SOP8VGMWwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnAddRecords.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAGNJREFUOE/N
-        kEsKgDAMBXsEz+Dl/Zyg6MbzeImRQAoSAj432oG3mbQPklK6Bhgs0csAhyV6GWAFluhlvi0ARmBve3tO
-        z91t9jb+bwU2fCqoaUHGqxUyuiiYgSl6GT+sdrDfuACb7p65DCyb3AAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="picSettingsIcon.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAA9dJREFUWEfV
@@ -173,6 +158,13 @@
         L1lugO5QOPUUQWXaoZwKdN9YJhB/G/irb+/6BQIoBxccSBT5SEayX0cyHatUnx2+/Lr5B0pRHsnkYNVI
         pufqPEayhQHUftgH0jcg18e82esbJFRmDRBRnKwqdtoby/U8XLSxvIFzi3ynrBK1qY/lDRQOk6dtYC/n
         7PWDgrbbCOWt/+TndND4B42uclI41kO2AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnAddRecords.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAGNJREFUOE/N
+        kEsKgDAMBXsEz+Dl/Zyg6MbzeImRQAoSAj432oG3mbQPklK6Bhgs0csAhyV6GWAFluhlvi0ARmBve3tO
+        z91t9jb+bwU2fCqoaUHGqxUyuiiYgSl6GT+sdrDfuACb7p65DCyb3AAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnConfirmID.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -34,49 +34,23 @@ namespace src {
             OdbcCommand^ cmd = gcnew OdbcCommand();
             cmd->Connection = db_connect1;
 
-            bool getInput = false, getOutput = false;
-            if (nameDBMS1 == "MS SQL") {
-                getInput = true;
-                getOutput = true;
+            if (nameDBMS1 == "Oracle") {
 
-                // Get input ID
                 String^ queryInput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnInputId1, tableInput1);
                 cmd->CommandText = queryInput;
                 Object^ resultInput = cmd->ExecuteScalar();
                 if (resultInput != nullptr && resultInput != DBNull::Value) {
                     txtID2In->Text = resultInput->ToString();
                 }
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Успешно выполнен запрос: " + queryInput + "\n");
 
-                // Get output ID
                 String^ queryOutput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnOutputId1, tableOutput1);
                 cmd->CommandText = queryOutput;
                 Object^ resultOutput = cmd->ExecuteScalar();
                 if (resultOutput != nullptr && resultOutput != DBNull::Value) {
                     txtID2Out->Text = resultOutput->ToString();
                 }
-            }
-            else if (nameDBMS1 == "Oracle") {
-                getInput = true;
-                getOutput = true;
-
-                // Get input ID
-                String^ queryInput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnInputId1, tableInput1);
-                cmd->CommandText = queryInput;
-                Object^ resultInput = cmd->ExecuteScalar();
-                if (resultInput != nullptr && resultInput != DBNull::Value) {
-                    txtID2In->Text = resultInput->ToString();
-                }
-
-                // Get output ID
-                String^ queryOutput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnOutputId1, tableOutput1);
-                cmd->CommandText = queryOutput;
-                Object^ resultOutput = cmd->ExecuteScalar();
-                if (resultOutput != nullptr && resultOutput != DBNull::Value) {
-                    txtID2Out->Text = resultOutput->ToString();
-                }
-            }
-            else {
-                getOutput = true;
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Успешно выполнен запрос: " + queryOutput + "\n");
             }
 
             lstLogs->AppendText(DateTime::Now.ToString() + ": ID успешно получены из БД1\n");
@@ -150,25 +124,13 @@ namespace src {
                 cmd->Parameters->AddWithValue("@width", Convert::ToInt32(txtWidthIn->Text));
                 cmd->Parameters->AddWithValue("@status", Convert::ToInt32(txtStatusIn->Text));
             }
-            else if (nameDBMS2 == "Oracle") {
-                queryInput = String::Format(
-                    "INSERT INTO {0} ({1}, {2}, {3}, {4}) "
-                    "VALUES (:id2in, :thickness, :width, :status)",
-                    tableInput2, columnInputId2, dataIn1, dataIn2, dataIn3);
-
-                cmd->CommandText = queryInput;
-                cmd->Parameters->Clear();
-                cmd->Parameters->AddWithValue(":id2in", id2In + 1);
-                cmd->Parameters->AddWithValue(":thickness", Convert::ToDecimal(txtThicknessIn->Text));
-                cmd->Parameters->AddWithValue(":width", Convert::ToInt32(txtWidthIn->Text));
-                cmd->Parameters->AddWithValue(":status", Convert::ToInt32(txtStatusIn->Text));
-            }
             else {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Неизвестный тип СУБД: " + nameDBMS2 + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Недопустимый тип СУБД: " + nameDBMS2 + "\n");
                 return;
             }
 
             cmd->ExecuteNonQuery();
+            lstLogs->AppendText(DateTime::Now.ToString() + ": Успешно выполнен запрос: " + queryInput + "\n");
             lstLogs->AppendText(DateTime::Now.ToString() + ": Добавлена запись в " + tableInput2 + " с ID " + (id2In + 1) + "\n");
 
             // Вставка выходного рулона с явным ID
@@ -188,21 +150,9 @@ namespace src {
                 cmd->Parameters->AddWithValue("@width", Convert::ToInt32(txtWidthOut->Text));
                 cmd->Parameters->AddWithValue("@status", Convert::ToInt32(txtStatusOut->Text));
             }
-            else if (nameDBMS2 == "Oracle") {
-                queryOutput = String::Format(
-                    "INSERT INTO {0} ({1}, {2}, {3}, {4}) "
-                    "VALUES (:id2out, :thickness, :width, :status)",
-                    tableOutput2, columnOutputId2, dataOut1, dataOut2, dataOut3);
-
-                cmd->CommandText = queryOutput;
-                cmd->Parameters->Clear();
-                cmd->Parameters->AddWithValue(":id2out", id2Out + 1);
-                cmd->Parameters->AddWithValue(":thickness", Convert::ToDecimal(txtThicknessOut->Text));
-                cmd->Parameters->AddWithValue(":width", Convert::ToInt32(txtWidthOut->Text));
-                cmd->Parameters->AddWithValue(":status", Convert::ToInt32(txtStatusOut->Text));
-            }
 
             cmd->ExecuteNonQuery();
+            lstLogs->AppendText(DateTime::Now.ToString() + ": Успешно выполнен запрос: " + queryOutput + "\n");
             lstLogs->AppendText(DateTime::Now.ToString() + ": Добавлена запись в " + tableOutput2 + " с ID " + (id2Out + 1) + "\n");
 
             // Обновление полей с ID
@@ -260,11 +210,11 @@ namespace src {
             OdbcDataReader^ reader = cmd->ExecuteReader();
             while (reader->Read()) {
                 dgvResults->Rows->Add(
-                    reader->GetValue(reader->GetOrdinal("ID"))->ToString(), // Получение ID
-                    reader->GetString(reader->GetOrdinal("Type")),          // Type как строка
-                    reader->GetString(reader->GetOrdinal("Thickness"))->ToString(), // Thickness как DECIMAL
-                    reader->GetString(reader->GetOrdinal("Width"))->ToString(),      // Width как INT
-                    reader->GetString(reader->GetOrdinal("Status"))->ToString());    // Status как INT
+                    reader->GetValue(reader->GetOrdinal("ID"))->ToString(),
+                    reader->GetString(reader->GetOrdinal("Type")),
+                    reader->GetString(reader->GetOrdinal("Thickness"))->ToString(),
+                    reader->GetString(reader->GetOrdinal("Width"))->ToString(), 
+                    reader->GetString(reader->GetOrdinal("Status"))->ToString()); 
             }
             reader->Close();
             lstLogs->AppendText(DateTime::Now.ToString() + ": Проверены записи в " + tableInput2 + "\n");
@@ -279,11 +229,11 @@ namespace src {
             reader = cmd->ExecuteReader();
             while (reader->Read()) {
                 dgvResults->Rows->Add(
-                    reader->GetValue(reader->GetOrdinal("ID"))->ToString(), // Получение ID
-                    reader->GetString(reader->GetOrdinal("Type")),          // Type как строка
-                    reader->GetString(reader->GetOrdinal("Thickness"))->ToString(), // Thickness как DECIMAL
-                    reader->GetString(reader->GetOrdinal("Width"))->ToString(),      // Width как INT
-                    reader->GetString(reader->GetOrdinal("Status"))->ToString());    // Status как INT
+                    reader->GetValue(reader->GetOrdinal("ID"))->ToString(),
+                    reader->GetString(reader->GetOrdinal("Type")),
+                    reader->GetString(reader->GetOrdinal("Thickness"))->ToString(),
+                    reader->GetString(reader->GetOrdinal("Width"))->ToString(),
+                    reader->GetString(reader->GetOrdinal("Status"))->ToString());
             }
             reader->Close();
             lstLogs->AppendText(DateTime::Now.ToString() + ": Проверены записи в " + tableOutput2 + "\n");

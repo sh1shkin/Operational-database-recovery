@@ -31,12 +31,17 @@ namespace src {
         String^ nameUser2;
         String^ nameDB2;
         array<String^>^ lndb2;
+
     private: System::Windows::Forms::Button^ button1;
+    private: System::Windows::Forms::Label^ label1;
+    private: System::Windows::Forms::Label^ label2;
+    private: System::Windows::Forms::Label^ label3;
 
 
            array<String^>^ lndb1;
 
     public:
+
         MainWindow(OdbcConnection^ connection1, OdbcConnection^ connection2, String^ dbms1, String^ dbName1, String^ userName1,
             String^ dbms2, String^ dbName2, String^ userName2, PartialMainWindow^ connectForm1, ConnectionWindow^ connectForm2, 
             array<String^>^ lnDB1, array<String^>^ lnDB2)
@@ -49,8 +54,14 @@ namespace src {
             lblConnectionInfoDB2->Text = String::Format("БД2: {0}: {1}/{2}", dbms2, dbName2, userName2);
             isDragging = false;
             dragStartPoint = gcnew Point(0, 0);
+            if (db_connect1 != nullptr && db_connect1->State == ConnectionState::Open) { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 (Oracle) успешно установлено\n"); }
+            else { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 (Oracle) не установлено\n"); }
+            if (db_connect2 != nullptr && db_connect2->State == ConnectionState::Open) { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД2 (MSSQL) успешно установлено\n"); }
+            else { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД2 (MSSQL) не установлено\n"); }
         }
-
+        MainWindow() {
+            InitializeComponent();
+        }
     protected:
         /// <summary>
         /// Освободить все используемые ресурсы.
@@ -68,7 +79,6 @@ namespace src {
     private: System::Windows::Forms::Label^ lblTitle;
     private: System::Windows::Forms::Label^ lblConnectionInfoDB1;
     private: System::Windows::Forms::Label^ lblConnectionInfoDB2;
-    private: System::Windows::Forms::Button^ btnDisconnect;
     private: System::Windows::Forms::Panel^ panelID2;
     private: System::Windows::Forms::PictureBox^ picSettingsIcon;
     private: System::Windows::Forms::Label^ lblID2Title;
@@ -128,14 +138,15 @@ namespace src {
         {
             System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainWindow::typeid));
             this->headerPanel = (gcnew System::Windows::Forms::Panel());
+            this->label1 = (gcnew System::Windows::Forms::Label());
             this->picDatabaseIcon = (gcnew System::Windows::Forms::PictureBox());
             this->lblTitle = (gcnew System::Windows::Forms::Label());
             this->lblConnectionInfoDB1 = (gcnew System::Windows::Forms::Label());
             this->lblConnectionInfoDB2 = (gcnew System::Windows::Forms::Label());
-            this->btnDisconnect = (gcnew System::Windows::Forms::Button());
             this->panelID2 = (gcnew System::Windows::Forms::Panel());
-            this->btnAddRecords = (gcnew System::Windows::Forms::Button());
             this->picSettingsIcon = (gcnew System::Windows::Forms::PictureBox());
+            this->label2 = (gcnew System::Windows::Forms::Label());
+            this->btnAddRecords = (gcnew System::Windows::Forms::Button());
             this->lblID2Title = (gcnew System::Windows::Forms::Label());
             this->lblID2In = (gcnew System::Windows::Forms::Label());
             this->txtID2In = (gcnew System::Windows::Forms::TextBox());
@@ -165,6 +176,7 @@ namespace src {
             this->panel2 = (gcnew System::Windows::Forms::Panel());
             this->panelResults = (gcnew System::Windows::Forms::Panel());
             this->picSearchIcon = (gcnew System::Windows::Forms::PictureBox());
+            this->label3 = (gcnew System::Windows::Forms::Label());
             this->lblResultsTitle = (gcnew System::Windows::Forms::Label());
             this->btnCheckRecords = (gcnew System::Windows::Forms::Button());
             this->dgvResults = (gcnew System::Windows::Forms::DataGridView());
@@ -194,15 +206,27 @@ namespace src {
             // 
             this->headerPanel->BackColor = System::Drawing::Color::White;
             this->headerPanel->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+            this->headerPanel->Controls->Add(this->label1);
             this->headerPanel->Controls->Add(this->picDatabaseIcon);
             this->headerPanel->Controls->Add(this->lblTitle);
             this->headerPanel->Controls->Add(this->lblConnectionInfoDB1);
             this->headerPanel->Controls->Add(this->lblConnectionInfoDB2);
-            this->headerPanel->Controls->Add(this->btnDisconnect);
             this->headerPanel->Location = System::Drawing::Point(8, 60);
             this->headerPanel->Name = L"headerPanel";
             this->headerPanel->Size = System::Drawing::Size(860, 100);
             this->headerPanel->TabIndex = 0;
+            // 
+            // label1
+            // 
+            this->label1->AutoSize = true;
+            this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold));
+            this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(58)),
+                static_cast<System::Int32>(static_cast<System::Byte>(138)));
+            this->label1->Location = System::Drawing::Point(61, 52);
+            this->label1->Name = L"label1";
+            this->label1->Size = System::Drawing::Size(239, 28);
+            this->label1->TabIndex = 5;
+            this->label1->Text = L"Текущие подключения";
             // 
             // picDatabaseIcon
             // 
@@ -232,7 +256,7 @@ namespace src {
             this->lblConnectionInfoDB1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 8));
             this->lblConnectionInfoDB1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)),
                 static_cast<System::Int32>(static_cast<System::Byte>(78)), static_cast<System::Int32>(static_cast<System::Byte>(216)));
-            this->lblConnectionInfoDB1->Location = System::Drawing::Point(60, 50);
+            this->lblConnectionInfoDB1->Location = System::Drawing::Point(252, 50);
             this->lblConnectionInfoDB1->Name = L"lblConnectionInfoDB1";
             this->lblConnectionInfoDB1->Size = System::Drawing::Size(245, 19);
             this->lblConnectionInfoDB1->TabIndex = 3;
@@ -244,38 +268,19 @@ namespace src {
             this->lblConnectionInfoDB2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 8));
             this->lblConnectionInfoDB2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)),
                 static_cast<System::Int32>(static_cast<System::Byte>(78)), static_cast<System::Int32>(static_cast<System::Byte>(216)));
-            this->lblConnectionInfoDB2->Location = System::Drawing::Point(60, 70);
+            this->lblConnectionInfoDB2->Location = System::Drawing::Point(252, 70);
             this->lblConnectionInfoDB2->Name = L"lblConnectionInfoDB2";
             this->lblConnectionInfoDB2->Size = System::Drawing::Size(185, 19);
             this->lblConnectionInfoDB2->TabIndex = 4;
             this->lblConnectionInfoDB2->Text = L"БД2: ORACLE: SERVER2/DB2";
             // 
-            // btnDisconnect
-            // 
-            this->btnDisconnect->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
-                static_cast<System::Int32>(static_cast<System::Byte>(216)));
-            this->btnDisconnect->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)),
-                static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(175)));
-            this->btnDisconnect->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->btnDisconnect->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
-            this->btnDisconnect->ForeColor = System::Drawing::Color::White;
-            this->btnDisconnect->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnDisconnect.Image")));
-            this->btnDisconnect->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-            this->btnDisconnect->Location = System::Drawing::Point(690, 30);
-            this->btnDisconnect->Name = L"btnDisconnect";
-            this->btnDisconnect->Size = System::Drawing::Size(150, 30);
-            this->btnDisconnect->TabIndex = 5;
-            this->btnDisconnect->Text = L"Отключиться";
-            this->btnDisconnect->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-            this->btnDisconnect->UseVisualStyleBackColor = false;
-            this->btnDisconnect->Click += gcnew System::EventHandler(this, &MainWindow::btnDisconnect_Click);
-            // 
             // panelID2
             // 
             this->panelID2->BackColor = System::Drawing::Color::White;
             this->panelID2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-            this->panelID2->Controls->Add(this->btnAddRecords);
             this->panelID2->Controls->Add(this->picSettingsIcon);
+            this->panelID2->Controls->Add(this->label2);
+            this->panelID2->Controls->Add(this->btnAddRecords);
             this->panelID2->Controls->Add(this->lblID2Title);
             this->panelID2->Controls->Add(this->lblID2In);
             this->panelID2->Controls->Add(this->txtID2In);
@@ -292,6 +297,28 @@ namespace src {
             this->panelID2->Size = System::Drawing::Size(860, 280);
             this->panelID2->TabIndex = 6;
             // 
+            // picSettingsIcon
+            // 
+            this->picSettingsIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picSettingsIcon.Image")));
+            this->picSettingsIcon->Location = System::Drawing::Point(49, 15);
+            this->picSettingsIcon->Name = L"picSettingsIcon";
+            this->picSettingsIcon->Size = System::Drawing::Size(20, 20);
+            this->picSettingsIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+            this->picSettingsIcon->TabIndex = 7;
+            this->picSettingsIcon->TabStop = false;
+            // 
+            // label2
+            // 
+            this->label2->AutoSize = true;
+            this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold));
+            this->label2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(58)),
+                static_cast<System::Int32>(static_cast<System::Byte>(138)));
+            this->label2->Location = System::Drawing::Point(21, 8);
+            this->label2->Name = L"label2";
+            this->label2->Size = System::Drawing::Size(35, 41);
+            this->label2->TabIndex = 36;
+            this->label2->Text = L"3";
+            // 
             // btnAddRecords
             // 
             this->btnAddRecords->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
@@ -307,20 +334,10 @@ namespace src {
             this->btnAddRecords->Name = L"btnAddRecords";
             this->btnAddRecords->Size = System::Drawing::Size(250, 30);
             this->btnAddRecords->TabIndex = 33;
-            this->btnAddRecords->Text = L"Добавить записи";
+            this->btnAddRecords->Text = L"Добавить записи в БД MS SQL";
             this->btnAddRecords->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnAddRecords->UseVisualStyleBackColor = false;
             this->btnAddRecords->Click += gcnew System::EventHandler(this, &MainWindow::btnAddRecords_Click);
-            // 
-            // picSettingsIcon
-            // 
-            this->picSettingsIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picSettingsIcon.Image")));
-            this->picSettingsIcon->Location = System::Drawing::Point(20, 20);
-            this->picSettingsIcon->Name = L"picSettingsIcon";
-            this->picSettingsIcon->Size = System::Drawing::Size(20, 20);
-            this->picSettingsIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-            this->picSettingsIcon->TabIndex = 7;
-            this->picSettingsIcon->TabStop = false;
             // 
             // lblID2Title
             // 
@@ -328,11 +345,11 @@ namespace src {
             this->lblID2Title->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold));
             this->lblID2Title->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(58)),
                 static_cast<System::Int32>(static_cast<System::Byte>(138)));
-            this->lblID2Title->Location = System::Drawing::Point(50, 20);
+            this->lblID2Title->Location = System::Drawing::Point(73, 16);
             this->lblID2Title->Name = L"lblID2Title";
-            this->lblID2Title->Size = System::Drawing::Size(168, 28);
+            this->lblID2Title->Size = System::Drawing::Size(274, 28);
             this->lblID2Title->TabIndex = 8;
-            this->lblID2Title->Text = L"Управление ID2";
+            this->lblID2Title->Text = L"Увеличить ID в БД MS SQL";
             // 
             // lblID2In
             // 
@@ -342,9 +359,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblID2In->Location = System::Drawing::Point(20, 60);
             this->lblID2In->Name = L"lblID2In";
-            this->lblID2In->Size = System::Drawing::Size(68, 20);
+            this->lblID2In->Size = System::Drawing::Size(60, 20);
             this->lblID2In->TabIndex = 9;
-            this->lblID2In->Text = L"ID2 вход";
+            this->lblID2In->Text = L"ID вход";
             // 
             // txtID2In
             // 
@@ -354,7 +371,6 @@ namespace src {
             this->txtID2In->Font = (gcnew System::Drawing::Font(L"Consolas", 10));
             this->txtID2In->Location = System::Drawing::Point(36, 91);
             this->txtID2In->Name = L"txtID2In";
-            this->txtID2In->ReadOnly = true;
             this->txtID2In->Size = System::Drawing::Size(233, 20);
             this->txtID2In->TabIndex = 10;
             // 
@@ -366,9 +382,9 @@ namespace src {
                 static_cast<System::Int32>(static_cast<System::Byte>(216)));
             this->lblID2Out->Location = System::Drawing::Point(290, 60);
             this->lblID2Out->Name = L"lblID2Out";
-            this->lblID2Out->Size = System::Drawing::Size(79, 20);
+            this->lblID2Out->Size = System::Drawing::Size(71, 20);
             this->lblID2Out->TabIndex = 11;
-            this->lblID2Out->Text = L"ID2 выход";
+            this->lblID2Out->Text = L"ID выход";
             // 
             // txtID2Out
             // 
@@ -378,7 +394,6 @@ namespace src {
             this->txtID2Out->Font = (gcnew System::Drawing::Font(L"Consolas", 10));
             this->txtID2Out->Location = System::Drawing::Point(307, 90);
             this->txtID2Out->Name = L"txtID2Out";
-            this->txtID2Out->ReadOnly = true;
             this->txtID2Out->Size = System::Drawing::Size(233, 20);
             this->txtID2Out->TabIndex = 12;
             // 
@@ -397,7 +412,7 @@ namespace src {
             this->btnConfirmID->Name = L"btnConfirmID";
             this->btnConfirmID->Size = System::Drawing::Size(280, 30);
             this->btnConfirmID->TabIndex = 13;
-            this->btnConfirmID->Text = L"Подтвердить ID";
+            this->btnConfirmID->Text = L"Получить ID из БД Oracle";
             this->btnConfirmID->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnConfirmID->UseVisualStyleBackColor = false;
             this->btnConfirmID->Click += gcnew System::EventHandler(this, &MainWindow::btnConfirmID_Click);
@@ -642,6 +657,7 @@ namespace src {
             this->panelResults->BackColor = System::Drawing::Color::White;
             this->panelResults->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
             this->panelResults->Controls->Add(this->picSearchIcon);
+            this->panelResults->Controls->Add(this->label3);
             this->panelResults->Controls->Add(this->lblResultsTitle);
             this->panelResults->Controls->Add(this->btnCheckRecords);
             this->panelResults->Controls->Add(this->dgvResults);
@@ -653,12 +669,24 @@ namespace src {
             // picSearchIcon
             // 
             this->picSearchIcon->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picSearchIcon.Image")));
-            this->picSearchIcon->Location = System::Drawing::Point(20, 20);
+            this->picSearchIcon->Location = System::Drawing::Point(47, 20);
             this->picSearchIcon->Name = L"picSearchIcon";
             this->picSearchIcon->Size = System::Drawing::Size(20, 20);
             this->picSearchIcon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
             this->picSearchIcon->TabIndex = 35;
             this->picSearchIcon->TabStop = false;
+            // 
+            // label3
+            // 
+            this->label3->AutoSize = true;
+            this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold));
+            this->label3->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(58)),
+                static_cast<System::Int32>(static_cast<System::Byte>(138)));
+            this->label3->Location = System::Drawing::Point(17, 9);
+            this->label3->Name = L"label3";
+            this->label3->Size = System::Drawing::Size(35, 41);
+            this->label3->TabIndex = 37;
+            this->label3->Text = L"4";
             // 
             // lblResultsTitle
             // 
@@ -666,11 +694,11 @@ namespace src {
             this->lblResultsTitle->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold));
             this->lblResultsTitle->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(58)),
                 static_cast<System::Int32>(static_cast<System::Byte>(138)));
-            this->lblResultsTitle->Location = System::Drawing::Point(47, 19);
+            this->lblResultsTitle->Location = System::Drawing::Point(74, 19);
             this->lblResultsTitle->Name = L"lblResultsTitle";
-            this->lblResultsTitle->Size = System::Drawing::Size(222, 28);
+            this->lblResultsTitle->Size = System::Drawing::Size(294, 28);
             this->lblResultsTitle->TabIndex = 36;
-            this->lblResultsTitle->Text = L"Результаты проверки";
+            this->lblResultsTitle->Text = L"Проверить результат записи";
             // 
             // btnCheckRecords
             // 
@@ -687,7 +715,7 @@ namespace src {
             this->btnCheckRecords->Name = L"btnCheckRecords";
             this->btnCheckRecords->Size = System::Drawing::Size(380, 30);
             this->btnCheckRecords->TabIndex = 37;
-            this->btnCheckRecords->Text = L"Проверить записи";
+            this->btnCheckRecords->Text = L"Проверить записи в БД MS SQL";
             this->btnCheckRecords->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
             this->btnCheckRecords->UseVisualStyleBackColor = false;
             this->btnCheckRecords->Click += gcnew System::EventHandler(this, &MainWindow::btnCheckRecords_Click);
@@ -777,6 +805,7 @@ namespace src {
             // 
             this->lstLogs->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)), static_cast<System::Int32>(static_cast<System::Byte>(246)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->lstLogs->BorderStyle = System::Windows::Forms::BorderStyle::None;
             this->lstLogs->Font = (gcnew System::Drawing::Font(L"Consolas", 9));
             this->lstLogs->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(22)), static_cast<System::Int32>(static_cast<System::Byte>(163)),
                 static_cast<System::Int32>(static_cast<System::Byte>(74)));
@@ -790,8 +819,7 @@ namespace src {
             // 
             // btnClosedMW
             // 
-            this->btnClosedMW->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->btnClosedMW->BackColor = System::Drawing::Color::Azure;
             this->btnClosedMW->FlatAppearance->BorderColor = System::Drawing::Color::White;
             this->btnClosedMW->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
                 static_cast<System::Int32>(static_cast<System::Byte>(246)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
@@ -799,7 +827,7 @@ namespace src {
             this->btnClosedMW->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
             this->btnClosedMW->ForeColor = System::Drawing::Color::White;
             this->btnClosedMW->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClosedMW.Image")));
-            this->btnClosedMW->Location = System::Drawing::Point(815, 9);
+            this->btnClosedMW->Location = System::Drawing::Point(811, 7);
             this->btnClosedMW->Name = L"btnClosedMW";
             this->btnClosedMW->Size = System::Drawing::Size(60, 45);
             this->btnClosedMW->TabIndex = 43;
@@ -808,13 +836,13 @@ namespace src {
             // 
             // button1
             // 
-            this->button1->BackColor = System::Drawing::Color::White;
+            this->button1->BackColor = System::Drawing::Color::Azure;
             this->button1->FlatAppearance->BorderColor = System::Drawing::Color::White;
             this->button1->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
                 static_cast<System::Int32>(static_cast<System::Byte>(246)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
-            this->button1->Location = System::Drawing::Point(754, 9);
+            this->button1->Location = System::Drawing::Point(745, 7);
             this->button1->Name = L"button1";
             this->button1->Size = System::Drawing::Size(60, 45);
             this->button1->TabIndex = 47;
@@ -823,8 +851,8 @@ namespace src {
             // 
             // MainWindow
             // 
-            this->BackColor = System::Drawing::Color::White;
-            this->ClientSize = System::Drawing::Size(880, 760);
+            this->BackColor = System::Drawing::Color::Azure;
+            this->ClientSize = System::Drawing::Size(877, 760);
             this->Controls->Add(this->button1);
             this->Controls->Add(this->btnClosedMW);
             this->Controls->Add(this->headerPanel);
