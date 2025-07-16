@@ -6,29 +6,31 @@
 
 namespace src {
     System::Void MainWindow::btnConfirmID_Click(System::Object^ sender, System::EventArgs^ e) {
-        for each (String ^ line in lndb1) {
-            line = line->Trim();
-            if (line->StartsWith("#") || line->IndexOf("=") == -1) continue;
-
-            array<String^>^ parts = line->Split('=');
-            if (parts->Length == 2) {
-                String^ key = parts[0]->Trim();
-                String^ value = parts[1]->Trim();
-                if (key == "dbms") nameDBMS1 = value;
-                else if (key == "server") Server1 = value;
-                else if (key == "database") DataBase1 = value;
-                else if (key == "user") User1 = value;
-                else if (key == "driver") Driver1 = value;
-                else if (key == "table_input") tableInput1 = value;
-                else if (key == "table_output") tableOutput1 = value;
-                else if (key == "column_input_id") columnInputId1 = value;
-                else if (key == "column_output_id") columnOutputId1 = value;
-            }
-        }
         try {
+
             if (db_connect1->State != ConnectionState::Open) {
                 db_connect1->Open();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с БД1 восстановлено\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с Oracle восстановлено\n");
+            }
+
+            for each (String ^ line in lndb1) {
+                line = line->Trim();
+                if (line->StartsWith("#") || line->IndexOf("=") == -1) continue;
+
+                array<String^>^ parts = line->Split('=');
+                if (parts->Length == 2) {
+                    String^ key = parts[0]->Trim();
+                    String^ value = parts[1]->Trim();
+                    if (key == "dbms") nameDBMS1 = value;
+                    else if (key == "server") Server1 = value;
+                    else if (key == "database") DataBase1 = value;
+                    else if (key == "user") User1 = value;
+                    else if (key == "driver") Driver1 = value;
+                    else if (key == "table_input") tableInput1 = value;
+                    else if (key == "table_output") tableOutput1 = value;
+                    else if (key == "column_input_id") columnInputId1 = value;
+                    else if (key == "column_output_id") columnOutputId1 = value;
+                }
             }
 
             OdbcCommand^ cmd = gcnew OdbcCommand();
@@ -53,7 +55,7 @@ namespace src {
                 lstLogs->AppendText(DateTime::Now.ToString() + ": Успешно выполнен запрос: " + queryOutput + "\n");
             }
 
-            lstLogs->AppendText(DateTime::Now.ToString() + ": ID успешно получены из БД1\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": ID успешно получены из Oracle\n");
         }
         catch (Exception^ ex) {
             lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при получении ID: " + ex->Message + "\n");
@@ -90,14 +92,9 @@ namespace src {
 
         try {
             // Проверка и открытие соединений
-            if (db_connect1->State != ConnectionState::Open) {
-                db_connect1->Open();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с БД1 восстановлено\n");
-            }
-
             if (db_connect2 != nullptr && db_connect2->State != ConnectionState::Open) {
                 db_connect2->Open();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с БД2 восстановлено\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с MS SQL восстановлено\n");
             }
 
             OdbcCommand^ cmd = gcnew OdbcCommand();
@@ -193,7 +190,7 @@ namespace src {
         try {
             if (db_connect2->State != ConnectionState::Open) {
                 db_connect2->Open();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с БД1 восстановлено\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Соединение с Oracle восстановлено\n");
             }
 
             dgvResults->Rows->Clear();
@@ -257,9 +254,9 @@ namespace src {
         Application::Exit();
     }
     System::Void MainWindow::btnClosedCW_Click(System::Object^ sender, System::EventArgs^ e) {
-        connectForm2->Close();
-        connectForm1->Close();
-        this->Close();
+        if (db_connect1 != nullptr && db_connect1->State == ConnectionState::Open) db_connect1->Close();
+        if (db_connect2 != nullptr && db_connect2->State == ConnectionState::Open) db_connect2->Close();
+        Application::Exit();
     }
     System::Void MainWindow::MainWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
         if (e->Button == System::Windows::Forms::MouseButtons::Left) {

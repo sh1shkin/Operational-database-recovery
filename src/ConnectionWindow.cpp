@@ -77,15 +77,11 @@ namespace src {
     }
 
     System::Void ConnectionWindow::ConnectionWindow_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-        if (db_connect != nullptr && db_connect->State == ConnectionState::Open) {
-            db_connect->Close();
-        }
+
         Application::Exit();
     }
     System::Void ConnectionWindow::btnClosedCW_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (this != nullptr) {
-            this->Close();
-        }
+
         Application::Exit();
     }
     System::Void ConnectionWindow::ConnectionWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {

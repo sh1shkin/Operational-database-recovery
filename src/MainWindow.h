@@ -36,6 +36,7 @@ namespace src {
     private: System::Windows::Forms::Label^ label1;
     private: System::Windows::Forms::Label^ label2;
     private: System::Windows::Forms::Label^ label3;
+    private: System::Windows::Forms::PictureBox^ pictureBox4;
 
 
            array<String^>^ lndb1;
@@ -55,7 +56,10 @@ namespace src {
             isDragging = false;
             dragStartPoint = gcnew Point(0, 0);
             if (db_connect1 != nullptr && db_connect1->State == ConnectionState::Open) { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 (Oracle) успешно установлено\n"); }
-            else { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 (Oracle) не установлено\n"); }
+            else { 
+                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 (Oracle) не установлено\n"); 
+                btnConfirmID->Enabled = false;
+            }
             if (db_connect2 != nullptr && db_connect2->State == ConnectionState::Open) { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД2 (MSSQL) успешно установлено\n"); }
             else { lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД2 (MSSQL) не установлено\n"); }
         }
@@ -190,6 +194,7 @@ namespace src {
             this->lstLogs = (gcnew System::Windows::Forms::RichTextBox());
             this->btnClosedMW = (gcnew System::Windows::Forms::Button());
             this->button1 = (gcnew System::Windows::Forms::Button());
+            this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
             this->headerPanel->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picDatabaseIcon))->BeginInit();
             this->panelID2->SuspendLayout();
@@ -200,6 +205,7 @@ namespace src {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picSearchIcon))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvResults))->BeginInit();
             this->panelLogs->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
             this->SuspendLayout();
             // 
             // headerPanel
@@ -849,10 +855,21 @@ namespace src {
             this->button1->UseVisualStyleBackColor = false;
             this->button1->Click += gcnew System::EventHandler(this, &MainWindow::button1_Click);
             // 
+            // pictureBox4
+            // 
+            this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
+            this->pictureBox4->Location = System::Drawing::Point(8, 7);
+            this->pictureBox4->Name = L"pictureBox4";
+            this->pictureBox4->Size = System::Drawing::Size(90, 45);
+            this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+            this->pictureBox4->TabIndex = 48;
+            this->pictureBox4->TabStop = false;
+            // 
             // MainWindow
             // 
             this->BackColor = System::Drawing::Color::Azure;
             this->ClientSize = System::Drawing::Size(877, 760);
+            this->Controls->Add(this->pictureBox4);
             this->Controls->Add(this->button1);
             this->Controls->Add(this->btnClosedMW);
             this->Controls->Add(this->headerPanel);
@@ -883,6 +900,7 @@ namespace src {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvResults))->EndInit();
             this->panelLogs->ResumeLayout(false);
             this->panelLogs->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
             this->ResumeLayout(false);
 
         }

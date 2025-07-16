@@ -1,14 +1,14 @@
-#include "PartialMainWindow.h"
+п»ї#include "PartialMainWindow.h"
 #include "ConnectionWindow.h"
 #include "MainWindow.h"
 #include <Windows.h>
 #include <fstream>
 using namespace System::IO;
-using namespace System::Collections::Generic; // Явно указано пространство имён
+using namespace System::Collections::Generic; // РЇРІРЅРѕ СѓРєР°Р·Р°РЅРѕ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ РёРјС‘РЅ
 
 namespace src {
 
-    // Инициализация путей при загрузке формы
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїСѓС‚РµР№ РїСЂРё Р·Р°РіСЂСѓР·РєРµ С„РѕСЂРјС‹
     System::Void PartialMainWindow::PartialMainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
         try {
             String^ mainConfigPath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath), "app.conf");
@@ -28,61 +28,61 @@ namespace src {
                     }
                 }
                 if (!String::IsNullOrEmpty(PathConfig1)) {
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Загружен путь для DB1: " + PathConfig1 + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": Р—Р°РіСЂСѓР¶РµРЅ РїСѓС‚СЊ РґР»СЏ DB1: " + PathConfig1 + "\n");
                     if (!File::Exists(PathConfig1)) {
-                        lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB1 не найден: " + PathConfig1 + "\n");
+                        lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB1 РЅРµ РЅР°Р№РґРµРЅ: " + PathConfig1 + "\n");
                     }
                 }
                 if (!String::IsNullOrEmpty(PathConfig2)) {
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Загружен путь для DB2: " + PathConfig2 + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": Р—Р°РіСЂСѓР¶РµРЅ РїСѓС‚СЊ РґР»СЏ DB2: " + PathConfig2 + "\n");
                     if (!File::Exists(PathConfig2)) {
-                        lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB2 не найден: " + PathConfig2 + "\n");
+                        lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB2 РЅРµ РЅР°Р№РґРµРЅ: " + PathConfig2 + "\n");
                     }
                 }
             }
             else {
-                // Создаём пустой app.conf, если он не существует
-                List<String^>^ mainConfigLines = gcnew List<String^>(); // Исправлено: явная инициализация
+                // РЎРѕР·РґР°С‘Рј РїСѓСЃС‚РѕР№ app.conf, РµСЃР»Рё РѕРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+                List<String^>^ mainConfigLines = gcnew List<String^>(2); // РСЃРїСЂР°РІР»РµРЅРѕ: СЏРІРЅР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
                 mainConfigLines->Add("last_config_db1=");
                 mainConfigLines->Add("last_config_db2=");
                 File::WriteAllLines(mainConfigPath, mainConfigLines);
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Создан новый основной конфигурационный файл: " + mainConfigPath + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РЎРѕР·РґР°РЅ РЅРѕРІС‹Р№ РѕСЃРЅРѕРІРЅРѕР№ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р»: " + mainConfigPath + "\n");
             }
         }
         catch (Exception^ ex) {
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при чтении основного конфигурационного файла: " + ex->Message + "\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё РѕСЃРЅРѕРІРЅРѕРіРѕ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРіРѕ С„Р°Р№Р»Р°: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик для отключения баз данных
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РѕС‚РєР»СЋС‡РµРЅРёСЏ Р±Р°Р· РґР°РЅРЅС‹С…
     System::Void PartialMainWindow::btnDisconnect_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             if (db_connect1 != nullptr && db_connect1->State == ConnectionState::Open) {
                 db_connect1->Close();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к DB1 закрыто.\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB1 Р·Р°РєСЂС‹С‚Рѕ.\n");
             }
             if (db_connect2 != nullptr && db_connect2->State == ConnectionState::Open) {
                 db_connect2->Close();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к DB2 закрыто.\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB2 Р·Р°РєСЂС‹С‚Рѕ.\n");
             }
             ConnectionWindow^ connectionWindow = gcnew ConnectionWindow();
             connectionWindow->Show();
             this->Close();
         }
         catch (Exception^ ex) {
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при отключении баз данных: " + ex->Message + "\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё РѕС‚РєР»СЋС‡РµРЅРёРё Р±Р°Р· РґР°РЅРЅС‹С…: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик для подключения к DB1
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє DB1
     System::Void PartialMainWindow::btnConnectDB1_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             if (String::IsNullOrEmpty(PathConfig1)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Путь к конфигурационному файлу для DB1 не задан!\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџСѓС‚СЊ Рє РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРјСѓ С„Р°Р№Р»Сѓ РґР»СЏ DB1 РЅРµ Р·Р°РґР°РЅ!\n");
                 return;
             }
             if (!File::Exists(PathConfig1)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB1 не найден: " + PathConfig1 + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB1 РЅРµ РЅР°Р№РґРµРЅ: " + PathConfig1 + "\n");
                 return;
             }
 
@@ -117,58 +117,52 @@ namespace src {
 
             if (String::IsNullOrEmpty(nameDBMS) || String::IsNullOrEmpty(Server) ||
                 String::IsNullOrEmpty(nameDB) || String::IsNullOrEmpty(nameUser)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Не все обязательные параметры конфигурации DB1 загружены!\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РќРµ РІСЃРµ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB1 Р·Р°РіСЂСѓР¶РµРЅС‹!\n");
                 return;
             }
 
             if (String::IsNullOrEmpty(TextBoxPassword->Text)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Пароль не введен!\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџР°СЂРѕР»СЊ РЅРµ РІРІРµРґРµРЅ!\n");
                 return;
             }
 
             String^ connectionString;
             if (nameDBMS == "Oracle") {
                 connectionString = String::Format(
-                    "Driver={{Oracle in instantclient_23_8}};DBQ={0}/{1};Uid={2};Pwd={3};",
-                    Server, nameDB, nameUser, TextBoxPassword->Text);
-            }
-            else if (nameDBMS == "MS SQL") {
-                connectionString = String::Format(
-                    "Driver={{SQL Server}};Server={0};Database={1};Uid={2};Pwd={3};",
-                    Server, nameDB, nameUser, TextBoxPassword->Text);
+                    "Driver={0};DBQ={1}/{2};Uid={3};Pwd={4};",
+                    Driver, Server, nameDB, nameUser, TextBoxPassword->Text);
             }
             else {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка! Неизвестный тип базы данных: " + nameDBMS + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР°! РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ С‚РёРї Р±Р°Р·С‹ РґР°РЅРЅС‹С…: " + nameDBMS + "\n");
                 return;
             }
 
             try {
                 db_connect1 = gcnew OdbcConnection(connectionString);
                 db_connect1->Open();
-                MessageBox::Show("Подключение к базе данных успешно!", "Успех");
                 lblConnectionInfo->Text = String::Format("DB1: {0}: {1}/{2}", nameDBMS, nameDB, nameUser);
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к DB1 успешно установлено\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB1 СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ\n");
             }
             catch (Exception^ ex) {
-                MessageBox::Show("Ошибка подключения: " + ex->Message, "Ошибка");
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка подключения к DB1: " + ex->Message + "\n");
+                MessageBox::Show("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ: " + ex->Message, "РћС€РёР±РєР°");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє DB1: " + ex->Message + "\n");
             }
         }
         catch (Exception^ ex) {
-            MessageBox::Show("Ошибка чтения конфигурации: " + ex->Message, "Ошибка");
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка чтения конфигурации DB1: " + ex->Message + "\n");
+            MessageBox::Show("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё: " + ex->Message, "РћС€РёР±РєР°");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° С‡С‚РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB1: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик для подключения к DB2
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє DB2
     System::Void PartialMainWindow::btnConnectDB2_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             if (String::IsNullOrEmpty(PathConfig2)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Путь к конфигурационному файлу для DB2 не задан!\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџСѓС‚СЊ Рє РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРјСѓ С„Р°Р№Р»Сѓ РґР»СЏ DB2 РЅРµ Р·Р°РґР°РЅ!\n");
                 return;
             }
             if (!File::Exists(PathConfig2)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB2 не найден: " + PathConfig2 + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB2 РЅРµ РЅР°Р№РґРµРЅ: " + PathConfig2 + "\n");
                 return;
             }
 
@@ -201,147 +195,126 @@ namespace src {
                 String::IsNullOrEmpty(DataBase2) || String::IsNullOrEmpty(User2) ||
                 String::IsNullOrEmpty(tableInput2) || String::IsNullOrEmpty(tableOutput2) ||
                 String::IsNullOrEmpty(columnInputId2) || String::IsNullOrEmpty(columnOutputId2)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Не все параметры конфигурации DB2 загружены!\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РќРµ РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹ РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB2 Р·Р°РіСЂСѓР¶РµРЅС‹!\n");
                 return;
             }
 
             String^ password = TextBoxPassword->Text;
             if (String::IsNullOrEmpty(password)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Пароль не введен!\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџР°СЂРѕР»СЊ РЅРµ РІРІРµРґРµРЅ!\n");
                 return;
             }
 
             String^ connectionString;
             if (nameDBMS2 == "MS SQL") {
                 connectionString = String::Format(
-                    "Driver={{SQL Server}};Server={0};Database={1};Uid={2};Pwd={3};",
-                    Server2, DataBase2, User2, password);
-            }
-            else if (nameDBMS2 == "Oracle") {
-                connectionString = String::Format(
-                    "Driver={{Oracle in instantclient_23_8}};DBQ={0}/{1};Uid={2};Pwd={3};",
-                    Server2, DataBase2, User2, password);
+                    "Driver={0};Server={1};Database={2};Uid={3};Pwd={4};",
+                    Driver2, Server2, DataBase2, User2, password);
             }
             else {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка! Неизвестный тип базы данных: " + nameDBMS2 + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР°! РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ С‚РёРї Р±Р°Р·С‹ РґР°РЅРЅС‹С…: " + nameDBMS2 + "\n");
                 return;
             }
 
             try {
                 db_connect2 = gcnew OdbcConnection(connectionString);
                 db_connect2->Open();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД2 (" + nameDBMS2 + ") успешно установлено\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє MS SQL (" + nameDBMS2 + ") СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ\n");
                 MainWindow^ mainWindow = gcnew MainWindow(db_connect1, db_connect2, nameDBMS, nameDB, nameUser, nameDBMS2, DataBase2, User2, this, connectForm, lndb1, lndb2);
                 mainWindow->Show();
                 this->Hide();
             }
             catch (Exception^ ex) {
-                MessageBox::Show("Ошибка подключения: " + ex->Message, "Ошибка");
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка подключения к БД2: " + ex->Message + "\n");
+                MessageBox::Show("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ: " + ex->Message, "РћС€РёР±РєР°");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє MS SQL: " + ex->Message + "\n");
             }
         }
         catch (Exception^ ex) {
-            MessageBox::Show("Ошибка чтения конфигурации: " + ex->Message, "Ошибка");
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка чтения конфигурации DB2: " + ex->Message + "\n");
+            MessageBox::Show("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё: " + ex->Message, "РћС€РёР±РєР°");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° С‡С‚РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё MS SQL: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик для получения ID из таблиц
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ ID РёР· С‚Р°Р±Р»РёС†
     System::Void PartialMainWindow::btnGetID_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
-            // Проверяем, инициализировано ли подключение
+            // РџСЂРѕРІРµСЂСЏРµРј, РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРѕ Р»Рё РїРѕРґРєР»СЋС‡РµРЅРёРµ
             if (db_connect1 == nullptr) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 не инициализировано! Подключитесь к БД1.\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Oracle РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРѕ! РџРѕРґРєР»СЋС‡РёС‚РµСЃСЊ Рє Oracle.\n");
                 return;
             }
 
-            // Проверяем наличие параметров таблицы и столбцов
+            // РџСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ РїР°СЂР°РјРµС‚СЂРѕРІ С‚Р°Р±Р»РёС†С‹ Рё СЃС‚РѕР»Р±С†РѕРІ
             if (String::IsNullOrEmpty(tableInput) || String::IsNullOrEmpty(tableOutput) ||
                 String::IsNullOrEmpty(columnInputId) || String::IsNullOrEmpty(columnOutputId)) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Параметры таблиц или столбцов не загружены! Проверьте конфигурацию.\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџР°СЂР°РјРµС‚СЂС‹ С‚Р°Р±Р»РёС† РёР»Рё СЃС‚РѕР»Р±С†РѕРІ РЅРµ Р·Р°РіСЂСѓР¶РµРЅС‹! РџСЂРѕРІРµСЂСЊС‚Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ.\n");
                 return;
             }
 
-            // Проверяем состояние подключения
+            // РџСЂРѕРІРµСЂСЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РїРѕРґРєР»СЋС‡РµРЅРёСЏ
             if (db_connect1->State != ConnectionState::Open) {
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 закрыто. Попытка восстановления...\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Oracle Р·Р°РєСЂС‹С‚Рѕ. РџРѕРїС‹С‚РєР° РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ...\n");
                 try {
                     db_connect1->Open();
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к БД1 восстановлено.\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Oracle РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРѕ.\n");
                 }
                 catch (Exception^ ex) {
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при восстановлении подключения к БД1: " + ex->Message + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРё РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Oracle: " + ex->Message + "\n");
                     return;
                 }
             }
 
-            // Выполняем запросы
+            // Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃС‹
             OdbcCommand^ cmd = gcnew OdbcCommand();
             cmd->Connection = db_connect1;
 
-            bool getInput = false, getOutput = false;
-            if (nameDBMS == "MS SQL" && nameDB == L"CoilsDB1") {
-                getInput = true;
-                getOutput = true;
-            }
-            else if (nameDB == L"FREEPDB1" && (nameUser == L"coils_user" || nameUser == L"COILS_USER")) {
-                getInput = true;
-                getOutput = true;
+
+            // РџРѕР»СѓС‡Р°РµРј input ID
+            String^ queryInput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnInputId, tableInput);
+            cmd->CommandText = queryInput;
+            Object^ resultInput = cmd->ExecuteScalar();
+            if (resultInput != nullptr && resultInput != DBNull::Value) {
+                txtID2In->Text = resultInput->ToString();
             }
             else {
-                getOutput = true;
+                txtID2In->Text = "0";
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ input ID (РІРѕР·РјРѕР¶РЅРѕ, С‚Р°Р±Р»РёС†Р° РїСѓСЃС‚Р°).\n");
             }
 
-            // Получаем input ID
-            if (getInput) {
-                String^ queryInput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnInputId, tableInput);
-                cmd->CommandText = queryInput;
-                Object^ resultInput = cmd->ExecuteScalar();
-                if (resultInput != nullptr && resultInput != DBNull::Value) {
-                    txtID2In->Text = resultInput->ToString();
-                }
-                else {
-                    txtID2In->Text = "0";
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Не удалось получить input ID (возможно, таблица пуста).\n");
-                }
+            // РџРѕР»СѓС‡Р°РµРј output ID
+            String^ queryOutput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnOutputId, tableOutput);
+            cmd->CommandText = queryOutput;
+            Object^ resultOutput = cmd->ExecuteScalar();
+            if (resultOutput != nullptr && resultOutput != DBNull::Value) {
+                txtID2Out->Text = resultOutput->ToString();
+            }
+            else {
+                txtID2Out->Text = "0";
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ output ID (РІРѕР·РјРѕР¶РЅРѕ, С‚Р°Р±Р»РёС†Р° РїСѓСЃС‚Р°).\n");
             }
 
-            // Получаем output ID
-            if (getOutput) {
-                String^ queryOutput = String::Format("SELECT MAX(t.{0}) FROM {1} t", columnOutputId, tableOutput);
-                cmd->CommandText = queryOutput;
-                Object^ resultOutput = cmd->ExecuteScalar();
-                if (resultOutput != nullptr && resultOutput != DBNull::Value) {
-                    txtID2Out->Text = resultOutput->ToString();
-                }
-                else {
-                    txtID2Out->Text = "0";
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Не удалось получить output ID (возможно, таблица пуста).\n");
-                }
-            }
-
-            lstLogs->AppendText(DateTime::Now.ToString() + ": ID успешно получены из БД1.\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": ID СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РµРЅС‹ РёР· Oracle.\n");
         }
         catch (Exception^ ex) {
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при получении ID: " + ex->Message + "\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё ID: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик для обновления конфигурации DB1
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB1
     System::Void PartialMainWindow::btnUpdateconfig1_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-            openFileDialog->Filter = "Конфигурационные файлы (*.conf)|*.conf|Все файлы (*.*)|*.*";
-            openFileDialog->Title = "Выберите конфигурационный файл для DB1";
+            openFileDialog->Filter = "РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Рµ С„Р°Р№Р»С‹ (*.conf)|*.conf|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*";
+            openFileDialog->Title = "Р’С‹Р±РµСЂРёС‚Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB1";
             openFileDialog->InitialDirectory = Path::GetDirectoryName(Application::ExecutablePath);
 
             if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
                 String^ newConfigPath = openFileDialog->FileName;
                 PathConfig1 = newConfigPath;
 
-                // Обновляем основной конфигурационный файл (app.conf)
+                // РћР±РЅРѕРІР»СЏРµРј РѕСЃРЅРѕРІРЅРѕР№ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» (app.conf)
                 String^ mainConfigPath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath), "app.conf");
-                List<String^>^ mainConfigLines = gcnew List<String^>(); // Исправлено: явная инициализация
+                List<String^>^ mainConfigLines = gcnew List<String^>(2); // РСЃРїСЂР°РІР»РµРЅРѕ: СЏРІРЅР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
                 bool lastConfigDb1Updated = false;
 
                 if (File::Exists(mainConfigPath)) {
@@ -360,11 +333,11 @@ namespace src {
                     mainConfigLines->Add("last_config_db1=" + newConfigPath);
                 }
 
-                // Записываем обновлённый основной конфигурационный файл
+                // Р—Р°РїРёСЃС‹РІР°РµРј РѕР±РЅРѕРІР»С‘РЅРЅС‹Р№ РѕСЃРЅРѕРІРЅРѕР№ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р»
                 File::WriteAllLines(mainConfigPath, mainConfigLines);
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB1 обновлен: " + PathConfig1 + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB1 РѕР±РЅРѕРІР»РµРЅ: " + PathConfig1 + "\n");
 
-                // Читаем настройки из нового конфигурационного файла
+                // Р§РёС‚Р°РµРј РЅР°СЃС‚СЂРѕР№РєРё РёР· РЅРѕРІРѕРіРѕ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРіРѕ С„Р°Р№Р»Р°
                 if (File::Exists(PathConfig1)) {
                     array<String^>^ lines = File::ReadAllLines(PathConfig1);
                     confDB1 = lines;
@@ -394,33 +367,33 @@ namespace src {
                             else if (key == "data_out_3") DataOut3 = value;
                         }
                     }
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Настройки для DB1 загружены из: " + PathConfig1 + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": РќР°СЃС‚СЂРѕР№РєРё РґР»СЏ DB1 Р·Р°РіСЂСѓР¶РµРЅС‹ РёР·: " + PathConfig1 + "\n");
                 }
                 else {
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB1 не найден: " + PathConfig1 + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB1 РЅРµ РЅР°Р№РґРµРЅ: " + PathConfig1 + "\n");
                 }
             }
         }
         catch (Exception^ ex) {
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при обновлении конфигурации DB1: " + ex->Message + "\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё РѕР±РЅРѕРІР»РµРЅРёРё РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB1: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик для обновления конфигурации DB2
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB2
     System::Void PartialMainWindow::btnUpdateconfig2_Click(System::Object^ sender, System::EventArgs^ e) {
         try {
             OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-            openFileDialog->Filter = "Конфигурационные файлы (*.conf)|*.conf|Все файлы (*.*)|*.*";
-            openFileDialog->Title = "Выберите конфигурационный файл для DB2";
+            openFileDialog->Filter = "РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Рµ С„Р°Р№Р»С‹ (*.conf)|*.conf|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*";
+            openFileDialog->Title = "Р’С‹Р±РµСЂРёС‚Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB2";
             openFileDialog->InitialDirectory = Path::GetDirectoryName(Application::ExecutablePath);
 
             if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
                 String^ newConfigPath = openFileDialog->FileName;
                 PathConfig2 = newConfigPath;
 
-                // Обновляем основной конфигурационный файл (app.conf)
+                // РћР±РЅРѕРІР»СЏРµРј РѕСЃРЅРѕРІРЅРѕР№ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» (app.conf)
                 String^ mainConfigPath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath), "app.conf");
-                List<String^>^ mainConfigLines = gcnew List<String^>(); // Исправлено: явная инициализация
+                List<String^>^ mainConfigLines = gcnew List<String^>(2); // РСЃРїСЂР°РІР»РµРЅРѕ: СЏРІРЅР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
                 bool lastConfigDb2Updated = false;
 
                 if (File::Exists(mainConfigPath)) {
@@ -439,11 +412,11 @@ namespace src {
                     mainConfigLines->Add("last_config_db2=" + newConfigPath);
                 }
 
-                // Записываем обновлённый основной конфигурационный файл
+                // Р—Р°РїРёСЃС‹РІР°РµРј РѕР±РЅРѕРІР»С‘РЅРЅС‹Р№ РѕСЃРЅРѕРІРЅРѕР№ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р»
                 File::WriteAllLines(mainConfigPath, mainConfigLines);
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB2 обновлен: " + PathConfig2 + "\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB2 РѕР±РЅРѕРІР»РµРЅ: " + PathConfig2 + "\n");
 
-                // Читаем настройки из нового конфигурационного файла
+                // Р§РёС‚Р°РµРј РЅР°СЃС‚СЂРѕР№РєРё РёР· РЅРѕРІРѕРіРѕ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅРѕРіРѕ С„Р°Р№Р»Р°
                 if (File::Exists(PathConfig2)) {
                     array<String^>^ lines = File::ReadAllLines(PathConfig2);
                     for each (String ^ line in lines) {
@@ -466,42 +439,42 @@ namespace src {
                             else if (key == "column_output_id") columnOutputId2 = value;
                         }
                     }
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Настройки для DB2 загружены из: " + PathConfig2 + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": РќР°СЃС‚СЂРѕР№РєРё РґР»СЏ DB2 Р·Р°РіСЂСѓР¶РµРЅС‹ РёР·: " + PathConfig2 + "\n");
                 }
                 else {
-                    lstLogs->AppendText(DateTime::Now.ToString() + ": Конфигурационный файл для DB2 не найден: " + PathConfig2 + "\n");
+                    lstLogs->AppendText(DateTime::Now.ToString() + ": РљРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р» РґР»СЏ DB2 РЅРµ РЅР°Р№РґРµРЅ: " + PathConfig2 + "\n");
                 }
             }
         }
         catch (Exception^ ex) {
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при обновлении конфигурации DB2: " + ex->Message + "\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё РѕР±РЅРѕРІР»РµРЅРёРё РєРѕРЅС„РёРіСѓСЂР°С†РёРё DB2: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик закрытия формы
+    // РћР±СЂР°Р±РѕС‚С‡РёРє Р·Р°РєСЂС‹С‚РёСЏ С„РѕСЂРјС‹
     System::Void PartialMainWindow::PartialMainWindow_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
         try {
             if (db_connect1 != nullptr && db_connect1->State == ConnectionState::Open) {
                 db_connect1->Close();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к DB1 закрыто при закрытии формы.\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB1 Р·Р°РєСЂС‹С‚Рѕ РїСЂРё Р·Р°РєСЂС‹С‚РёРё С„РѕСЂРјС‹.\n");
             }
             if (db_connect2 != nullptr && db_connect2->State == ConnectionState::Open) {
                 db_connect2->Close();
-                lstLogs->AppendText(DateTime::Now.ToString() + ": Подключение к DB2 закрыто при закрытии формы.\n");
+                lstLogs->AppendText(DateTime::Now.ToString() + ": РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє DB2 Р·Р°РєСЂС‹С‚Рѕ РїСЂРё Р·Р°РєСЂС‹С‚РёРё С„РѕСЂРјС‹.\n");
             }
             Application::Exit();
         }
         catch (Exception^ ex) {
-            lstLogs->AppendText(DateTime::Now.ToString() + ": Ошибка при закрытии формы: " + ex->Message + "\n");
+            lstLogs->AppendText(DateTime::Now.ToString() + ": РћС€РёР±РєР° РїСЂРё Р·Р°РєСЂС‹С‚РёРё С„РѕСЂРјС‹: " + ex->Message + "\n");
         }
     }
 
-    // Обработчик кнопки закрытия
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ
     System::Void PartialMainWindow::btnClosed_Click(System::Object^ sender, System::EventArgs^ e) {
         this->Close();
     }
 
-    // Обработчики для перетаскивания формы
+    // РћР±СЂР°Р±РѕС‚С‡РёРєРё РґР»СЏ РїРµСЂРµС‚Р°СЃРєРёРІР°РЅРёСЏ С„РѕСЂРјС‹
     void PartialMainWindow::PartialMainWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
         if (e->Button == System::Windows::Forms::MouseButtons::Left) {
             isDragging = true;
