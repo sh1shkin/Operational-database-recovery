@@ -197,7 +197,6 @@ namespace src {
             OdbcCommand^ cmd = gcnew OdbcCommand();
             cmd->Connection = db_connect2;
 
-            // Check input table
             String^ queryInput = String::Format(
                 "SELECT {0} AS ID, 'Input' AS Type, {1} AS Thickness, {2} AS Width, {3} AS Status "
                 "FROM {4} "
@@ -273,4 +272,6 @@ namespace src {
     System::Void MainWindow::MainWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
         isDragging = false;
     }
+
+    
 }

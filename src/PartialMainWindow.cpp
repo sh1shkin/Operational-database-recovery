@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <fstream>
 using namespace System::IO;
-using namespace System::Collections::Generic; // Явно указано пространство имён
+using namespace System::Collections::Generic;
 
 namespace src {
 
@@ -314,7 +314,7 @@ namespace src {
 
                 // Обновляем основной конфигурационный файл (app.conf)
                 String^ mainConfigPath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath), "app.conf");
-                List<String^>^ mainConfigLines = gcnew List<String^>(2); // Исправлено: явная инициализация
+                List<String^>^ mainConfigLines = gcnew List<String^>(2);
                 bool lastConfigDb1Updated = false;
 
                 if (File::Exists(mainConfigPath)) {
@@ -393,7 +393,7 @@ namespace src {
 
                 // Обновляем основной конфигурационный файл (app.conf)
                 String^ mainConfigPath = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath), "app.conf");
-                List<String^>^ mainConfigLines = gcnew List<String^>(2); // Исправлено: явная инициализация
+                List<String^>^ mainConfigLines = gcnew List<String^>(2);
                 bool lastConfigDb2Updated = false;
 
                 if (File::Exists(mainConfigPath)) {

@@ -31,15 +31,14 @@ namespace src {
         String^ nameUser2;
         String^ nameDB2;
         array<String^>^ lndb2;
+        array<String^>^ lndb1;
 
     private: System::Windows::Forms::Button^ button1;
     private: System::Windows::Forms::Label^ label1;
     private: System::Windows::Forms::Label^ label2;
     private: System::Windows::Forms::Label^ label3;
     private: System::Windows::Forms::PictureBox^ pictureBox4;
-
-
-           array<String^>^ lndb1;
+    private: System::Windows::Forms::Button^ button2;
 
     public:
 
@@ -195,6 +194,7 @@ namespace src {
             this->btnClosedMW = (gcnew System::Windows::Forms::Button());
             this->button1 = (gcnew System::Windows::Forms::Button());
             this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+            this->button2 = (gcnew System::Windows::Forms::Button());
             this->headerPanel->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picDatabaseIcon))->BeginInit();
             this->panelID2->SuspendLayout();
@@ -212,6 +212,7 @@ namespace src {
             // 
             this->headerPanel->BackColor = System::Drawing::Color::White;
             this->headerPanel->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+            this->headerPanel->Controls->Add(this->button2);
             this->headerPanel->Controls->Add(this->label1);
             this->headerPanel->Controls->Add(this->picDatabaseIcon);
             this->headerPanel->Controls->Add(this->lblTitle);
@@ -865,6 +866,25 @@ namespace src {
             this->pictureBox4->TabIndex = 48;
             this->pictureBox4->TabStop = false;
             // 
+            // button2
+            // 
+            this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(78)),
+                static_cast<System::Int32>(static_cast<System::Byte>(216)));
+            this->button2->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)),
+                static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(175)));
+            this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
+            this->button2->ForeColor = System::Drawing::Color::White;
+            this->button2->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button2->Location = System::Drawing::Point(754, 30);
+            this->button2->Name = L"button2";
+            this->button2->Size = System::Drawing::Size(86, 38);
+            this->button2->TabIndex = 37;
+            this->button2->Text = L"<- Назад";
+            this->button2->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+            this->button2->UseVisualStyleBackColor = false;
+            this->button2->Click += gcnew System::EventHandler(this, &MainWindow::button2_Click);
+            // 
             // MainWindow
             // 
             this->BackColor = System::Drawing::Color::Azure;
@@ -916,6 +936,10 @@ namespace src {
         private: System::Void btnCheckRecords_Click(System::Object^ sender, System::EventArgs^ e);
         private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
             this->WindowState = FormWindowState::Minimized;
+        }
+        private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+            connectForm1->Visible = true;
+            this->Close();
         }
 };
 }
